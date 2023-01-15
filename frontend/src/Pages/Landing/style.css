@@ -1,0 +1,71 @@
+* {
+    /* outline: 1px solid red; */
+}
+
+.LandingPageContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.LandingPageContent__Left {
+    flex: 0 0 35%;
+    max-width: 35%;
+}
+
+.LandingPageContent__Left__label {
+    color: #51a4ac;
+    font-weight: bold;
+}
+
+.LandingPageContent__Left__heading {
+    color: black;
+    font-weight: bold;
+    font-size: 5vw;
+    line-height: 0.9;
+    margin-top: 0.3em;
+    margin-bottom: 0.5em;
+    font-family: "Roboto Slab", serif;
+}
+
+.LandingPageContent__Left__paragraph {
+    color: black;
+    font-size: large;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+    word-spacing: 3px;
+}
+
+.LandingPageContent__Left__button {
+    background-color: rgba(145, 204, 210, 0.5);
+    color: #498c92;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 20px;
+    box-shadow: 5px 10px #ec685a;
+    cursor: pointer;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.LandingPageContent__Left__button:hover {
+    box-shadow: -5px -10px #498c92;
+    transform: translate(10px, 10px);
+}
+
+.LandingPageContent__Right {
+    flex: 0 0 65%;
+    max-width: 900px;
+}
+
+.LandingPageContent__Right img {
+    width: 100%;
+    height: auto;
+}

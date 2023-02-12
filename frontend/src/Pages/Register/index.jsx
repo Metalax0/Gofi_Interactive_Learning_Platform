@@ -1,37 +1,56 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import Navigationbar from "../../Components/NavigationBar";
-import { setUserInfo } from "../../StateManagement/Slices/UserSlice";
-import store from "../../StateManagement/Store";
+import { useSelector } from "react-redux";
 
 const Register = () => {
+    const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [fullName, setFullName] = useState("");
-    const userInfo_Selector = useSelector((state) => state.userInfo);
-    const dispatch = useDispatch();
+    const [isRegistered, setisRegistered] = useState(false);
+    const globalSelector = useSelector((state) => state.global);
 
     const handleSubmit = (e) => {
-        console.log("handle submit");
         e.preventDefault();
-        // Add logic to submit form and register new user
-        dispatch(
-            setUserInfo({
-                fullName: "test name",
-                email: "test email",
-                password: "test password",
-            })
-        );
-    };
 
-    console.log(userInfo_Selector);
-    console.log(store.getState());
+        // set configurations
+        const configuration = {
+            method: "post",
+            url: globalSelector.registerURL,
+            data: {
+                fullName,
+                email,
+                password,
+            },
+        };
+        axios(configuration)
+            .then((result) => {
+                console.log("SUCCESS: Registration success", result);
+                setisRegistered(true);
+            })
+            .catch((error) => {
+                setisRegistered(false);
+                console.log(
+                    "ERROR: Registration Failed, most likeky because user exists",
+                    error
+                );
+            });
+    };
 
     return (
         <div className="register-container">
             <Navigationbar />
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
+                <label>
+                    Full Name:
+                    <input
+                        type="text"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        required
+                    />
+                </label>
                 <label>
                     Email:
                     <input
@@ -50,17 +69,17 @@ const Register = () => {
                         required
                     />
                 </label>
-                <label>
-                    Full Name:
-                    <input
-                        type="text"
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                        required
-                    />
-                </label>
+
                 <button type="submit">Register</button>
             </form>
+
+            {isRegistered ? (
+                <p className="message-success">
+                    You Are Registered Successfully
+                </p>
+            ) : (
+                <p className="message-error">You Are Not Registered Yet</p>
+            )}
         </div>
     );
 };

@@ -1,23 +1,15 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import "./App.css";
-import Landing from "./Pages/Landing";
-import Login from "./Pages/Login";
-import Register from "./Pages/Register";
-import Error from "./Pages/Error";
 import store from "./StateManagement/Store";
+import RoutesDefinition from "./Routes/RoutesDefinition";
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
     return (
         <div className="MainContainer">
             <Provider store={store}>
                 <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<Landing />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="*" element={<Error />} />
-                    </Routes>
+                    <RoutesDefinition />
                 </BrowserRouter>
             </Provider>
         </div>

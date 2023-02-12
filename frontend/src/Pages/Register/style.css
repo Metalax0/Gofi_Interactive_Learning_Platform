@@ -36,3 +36,12 @@
 .register-container button:hover {
     background-color: #3e8e41;
 }
+
+/*  */
+.message-success {
+    color: green;
+}
+
+.message-error {
+    color: red;
+}

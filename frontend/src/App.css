@@ -1,6 +1,9 @@
 /* All CSS imports of the project */
-@import "./Pages/Register/style.css";
+
 @import "./Pages/Landing/style.css";
+@import "./Pages/Register/style.css";
+@import "./Pages/Login/style.css";
+
 @import "./Components/Header/style.css";
 @import "./Components/Footer/style.css";
 @import "./Components/NavigationBar/style.css";

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     baseURL: "http://localhost:8000",
-    registerURL: "http://localhost:8000/register",
+    signupURL: "http://localhost:8000/signup",
     loginURL: "http://localhost:8000/login",
 };
 

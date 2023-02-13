@@ -10,7 +10,7 @@ const Header = () => {
                 <Link to="/login" className="btn btn--secondary">
                     <b>Login</b> &#10140;
                 </Link>
-                <Link to="/register" className="btn btn--primary">
+                <Link to="/signup" className="btn btn--primary">
                     Sign Up
                 </Link>
             </div>

@@ -1,0 +1,52 @@
+.register-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.register-container-inner {
+    width: 60vw;
+    max-width: 600px;
+    box-shadow: 20px 20px 40px #888888;
+    display: grid;
+    grid-template-areas: "left left right ";
+    align-items: center;
+    justify-content: end;
+    border-left: 1px solid#888888;
+    border-top: 1px solid#888888;
+    /* border: 0px solid black; */
+    border-radius: 30px;
+    position: relative;
+}
+
+.register-container-float {
+    position: absolute;
+    /* any non zero value auto centers vertically */
+    top: 1;
+    outline: 3px solid red;
+    padding: 40px 90px;
+    margin-left: -150px;
+
+    background-color: aquamarine;
+}
+
+.register-container-right {
+    padding: 30px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.message-success {
+    color: green;
+}
+
+.message-error {
+    color: red;
+}

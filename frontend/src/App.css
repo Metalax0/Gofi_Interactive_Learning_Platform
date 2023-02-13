@@ -1,7 +1,6 @@
 /* All CSS imports of the project */
 
 @import "./Pages/Landing/style.css";
-@import "./Pages/Register/style.css";
 @import "./Pages/Login/style.css";
 
 @import "./Components/Header/style.css";
@@ -17,18 +16,20 @@ body {
 }
 
 * {
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
+}
+
+.MainContainer {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .App-logo {
     height: 40vmin;
     pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
 }
 
 .App-header {
@@ -44,6 +45,12 @@ body {
 
 .App-link {
     color: #61dafb;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 @keyframes App-logo-spin {

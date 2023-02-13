@@ -31,7 +31,7 @@ app.listen(PORT, () => {
 dbConnect();
 
 // register endpoint
-app.post("/register", (request, response) => {
+app.post("/signup", (request, response) => {
     // hash the password
     bcrypt
         .hash(request.body.password, 10)

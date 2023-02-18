@@ -2,6 +2,7 @@
 
 @import "./Pages/Landing/style.css";
 @import "./Pages/Login/style.css";
+@import "./Pages/SignUp/style.css";
 
 @import "./Components/Header/style.css";
 @import "./Components/Footer/style.css";
@@ -25,6 +26,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-image: url("./Assets/idBackground.jpg"); */
+    /* background-size: cover; */
 }
 
 .App-logo {

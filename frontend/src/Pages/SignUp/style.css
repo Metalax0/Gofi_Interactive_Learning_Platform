@@ -1,4 +1,15 @@
 .register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../Assets/idBackground.jpg");
+    /* background-size: cover; */
+    /* background-size: contain; */
+}
+
+.register-container-outer {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -7,34 +18,84 @@
 .register-container-inner {
     width: 60vw;
     max-width: 600px;
-    box-shadow: 20px 20px 40px #888888;
+    /* box-shadow: 20px 20px 40px #888888; */
+    box-shadow: 30px 30px 50px #444444;
     display: grid;
     grid-template-areas: "left left right ";
     align-items: center;
     justify-content: end;
     border-left: 1px solid#888888;
     border-top: 1px solid#888888;
-    /* border: 0px solid black; */
     border-radius: 30px;
     position: relative;
+
+    background-image: url("../../Assets/idBackground.jpg");
+    background-size: cover;
 }
 
 .register-container-float {
     position: absolute;
     /* any non zero value auto centers vertically */
     top: 1;
-    outline: 3px solid red;
-    padding: 40px 90px;
-    margin-left: -150px;
+    /* padding: 20px 50px; */
+    padding: 40px 20px;
+    margin-left: -90px;
+    gap: 10px;
 
-    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* background-color: rgb(101, 247, 198); */
+    border-radius: 20px;
+    box-shadow: 20px 20px 40px #888888;
+
+    background-image: url("../../Assets/idBackground1.jpg");
+    background-size: cover;
+}
+
+.register-container-float__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.register-container-float__details * {
+    font-size: 11px;
 }
 
 .register-container-right {
-    padding: 30px 50px;
+    padding: 30px 60px;
     display: flex;
     flex-direction: column;
     gap: 30px;
+}
+
+.register-identity-input {
+    border: none;
+    border-radius: 20px;
+    border-bottom: 1px solid #757474;
+    background-color: rgba(217, 230, 250, 0.95);
+}
+
+.register-identity-input:hover {
+    border: none;
+    border-bottom: 1px solid #757474;
+}
+
+.register-identity-input::placeholder {
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: transparent;
+}
+
+#userProfileCanvas {
+    border-radius: 20px;
+    /* border-radius: 100%; */
+    outline: 1px solid black;
+    background-color: rgba(217, 230, 250, 0.95);
 }
 
 #signup-form {
@@ -49,4 +110,11 @@
 
 .message-error {
     color: red;
+}
+
+/* Overwriting antd styles */
+
+.ant-input-affix-wrapper-disabled,
+.ant-input[disabled] {
+    color: rgba(0, 0, 0);
 }

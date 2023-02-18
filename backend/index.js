@@ -41,6 +41,8 @@ app.post("/signup", (request, response) => {
                 fullName: request.body.fullName,
                 email: request.body.email,
                 password: hashedPassword,
+                dateRegistered: request.body.dateRegistered,
+                profileImg: request.body.profileImgBase64,
             });
 
             user.save()

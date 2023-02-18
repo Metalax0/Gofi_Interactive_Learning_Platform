@@ -1,23 +1,16 @@
-import axios from "axios";
-import { useState } from "react";
+import { KeyOutlined, MailOutlined } from "@ant-design/icons";
+import { Button, Form, Input } from "antd";
 import { useSelector } from "react-redux";
-import Cookies from "universal-cookie";
-import Navigationbar from "../../Components/NavigationBar";
-
-const cookies = new Cookies();
-// set the cookie
+import { Link } from "react-router-dom";
+import { handleLogin } from "../../Functions/handleLogin";
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [isLoggedIn, setisLoggedIn] = useState(false);
     const globalSelector = useSelector((state) => state.global);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
+    const handleSubmit = async (value) => {
+        const { email, password } = value;
         // set configurations
-        const configuration = {
+        const loginConfig = {
             method: "post",
             url: globalSelector.loginURL,
             data: {
@@ -25,54 +18,102 @@ const Login = () => {
                 password,
             },
         };
-        axios(configuration)
-            .then((result) => {
-                console.log("SUCCESS: Login success", result);
-                setisLoggedIn(true);
-                cookies.set("TOKEN", result.data.token, {
-                    path: "/",
-                });
-                window.location.href = "/home";
-            })
-            .catch((error) => {
-                setisLoggedIn(false);
-                console.log(
-                    "ERROR: Login Failed, no details available atm",
-                    error
-                );
-            });
+
+        const loginStatus = await handleLogin(loginConfig);
+        if (!loginStatus)
+            document.getElementById("login-error").innerHTML =
+                "ERROR: Failed to Login";
+    };
+
+    const onFinishFailed = (errorInfo) => {
+        console.log("Failed:", errorInfo);
     };
 
     return (
         <div className="LoginPageContainer">
-            <Navigationbar />
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Email:
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </label>
-                <label>
-                    Password:
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </label>
+            <div className="login-container-inner">
+                <div className="login-container--left">
+                    <h1> Welcome Back</h1>
+                    <p> You can log in with an existing account</p>
+                </div>
+                <div className="login-container--right">
+                    <Form
+                        id="login-form"
+                        name="basic"
+                        labelCol={{
+                            span: 23,
+                        }}
+                        wrapperCol={{
+                            span: 23,
+                        }}
+                        style={{
+                            maxWidth: 700,
+                        }}
+                        initialValues={{
+                            remember: true,
+                        }}
+                        onFinish={handleSubmit}
+                        onFinishFailed={onFinishFailed}
+                        autoComplete="off"
+                        layout="vertical"
+                    >
+                        <Form.Item
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please input your Email!",
+                                },
+                            ]}
+                        >
+                            <Input
+                                size="large"
+                                placeholder="Email"
+                                prefix={<MailOutlined />}
+                            />
+                        </Form.Item>
 
-                <button type="submit">Register</button>
-            </form>
-            {isLoggedIn ? (
-                <p className="text-success">You Are Logged in Successfully</p>
-            ) : (
-                <p className="text-danger">You Are Not Logged in</p>
-            )}
+                        <Form.Item
+                            name="password"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please input your password!",
+                                },
+                            ]}
+                        >
+                            <Input.Password
+                                size="large"
+                                placeholder="Password"
+                                prefix={<KeyOutlined />}
+                            />
+                        </Form.Item>
+                        <div>
+                            <Form.Item>
+                                <Button
+                                    id="submit-button-register"
+                                    type="primary"
+                                    htmlType="submit"
+                                    size="large"
+                                    block
+                                >
+                                    Log In
+                                </Button>
+                            </Form.Item>
+                            <label id="subit-button-register-message">
+                                Or <Link to="/signup">sign up </Link>for a new
+                                account!
+                            </label>
+                            <label>
+                                <p
+                                    id="login-error"
+                                    className="message-error"
+                                ></p>
+                            </label>
+                        </div>
+                    </Form>
+                </div>
+            </div>
         </div>
     );
 };

@@ -14,6 +14,14 @@ export default function RoutesDefinition() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route
+                path="/home"
+                element={
+                    <ProtectedRoutes>
+                        <Home />
+                    </ProtectedRoutes>
+                }
+            />
+            <Route
                 path="*"
                 element={
                     <ProtectedRoutes>

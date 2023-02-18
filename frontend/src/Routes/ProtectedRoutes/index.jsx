@@ -7,7 +7,6 @@ const cookies = new Cookies();
 const ProtectedRoutes = ({ children }) => {
     const token = cookies.get("TOKEN");
     let location = useLocation();
-    console.log(token);
     if (!token)
         return <Navigate to="/login" state={{ from: location }} replace />;
     return children;

@@ -70,21 +70,28 @@ const SignUp = () => {
             },
         };
 
-        const loginConfig = {
-            method: "post",
-            url: globalSelector.loginURL,
-            data: {
-                email,
-                password,
-            },
-        };
+        // const loginConfig = {
+        //     method: "post",
+        //     url: globalSelector.loginURL,
+        //     data: {
+        //         email,
+        //         password,
+        //     },
+        // };
 
         const signupStatus = await handleSignup(registerConfig);
 
-        if (signupStatus) handleLogin(loginConfig);
+        if (signupStatus)
+            document.getElementById("signup-error").innerHTML =
+                "Registered Successfully";
         else
             document.getElementById("signup-error").innerHTML =
                 "ERROR: Failed to signup";
+
+        // if (signupStatus) handleLogin(loginConfig);
+        // else
+        //     document.getElementById("signup-error").innerHTML =
+        //         "ERROR: Failed to signup";
     };
 
     return (

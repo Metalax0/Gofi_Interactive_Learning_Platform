@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     baseURL: "http://localhost:8000",
-    signupURL: "http://localhost:8000/signup",
-    loginURL: "http://localhost:8000/login",
+    signupURL: "http://localhost:8000/api/signup",
+    loginURL: "http://localhost:8000/api/login",
 };
 
 const globalOptions = {

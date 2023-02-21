@@ -1,15 +1,19 @@
+.landing-page {
+    flex: 1;
+    padding: 0px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .LandingPageContent {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    padding-left: 100px;
-    padding-right: 100px;
 }
 
 .LandingPageContent__Left {
-    flex: 0 0 35%;
-    max-width: 35%;
+    max-width: 40%;
 }
 
 .LandingPageContent__Left__label {
@@ -57,7 +61,7 @@
 }
 
 .LandingPageContent__Right {
-    flex: 0 0 65%;
+    flex: 0 0 70%;
     max-width: 900px;
 }
 

@@ -3,6 +3,8 @@ import { Button, Form, Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { handleLogin } from "../../Functions/handleLogin";
+import { setisLoggedIn } from "../../StateManagement/Slices/GlobalSlice";
+import "./style.css";
 
 const Login = () => {
     const globalSelector = useSelector((state) => state.global);
@@ -22,7 +24,8 @@ const Login = () => {
         };
 
         const loginStatus = await handleLogin(loginConfig, dispatch, navigate);
-        if (!loginStatus)
+        if (loginStatus) dispatch(setisLoggedIn(true));
+        else
             document.getElementById("login-error").innerHTML =
                 "ERROR: Failed to Login";
     };

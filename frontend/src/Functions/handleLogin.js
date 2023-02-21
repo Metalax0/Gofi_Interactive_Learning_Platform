@@ -14,8 +14,6 @@ export const handleLogin = async (config, dispatch, navigate) => {
             // Setting active user
             dispatch(setActiveUser(result.data));
             localStorage.setItem("activeUser", JSON.stringify(result.data));
-            // This might be possible cause for page refresh
-            // window.location.href = "/home";
             navigate("/home");
             return true;
         })

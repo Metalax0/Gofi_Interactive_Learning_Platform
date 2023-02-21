@@ -10,7 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { handleSignup } from "../../Functions/handleSignUp";
-import { handleLogin } from "../../Functions/handleLogin";
+import "./style.css";
 
 const SignUp = () => {
     const [fullName, setFullname] = useState("");

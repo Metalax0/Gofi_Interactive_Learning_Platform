@@ -1,10 +1,8 @@
-import Header from "../../Components/Header";
-import Footer from "../../Components/Footer";
+import "./style.css";
 
 const Landing = () => {
     return (
-        <div className="LandingPageContainer">
-            <Header />
+        <div className="landing-page">
             <div className="LandingPageContent">
                 <div className="LandingPageContent__Left">
                     <label className="LandingPageContent__Left__label">

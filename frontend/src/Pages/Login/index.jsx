@@ -1,12 +1,13 @@
 import { KeyOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { handleLogin } from "../../Functions/handleLogin";
 
 const Login = () => {
     const globalSelector = useSelector((state) => state.global);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = async (value) => {
         const { email, password } = value;
@@ -20,7 +21,7 @@ const Login = () => {
             },
         };
 
-        const loginStatus = await handleLogin(loginConfig, dispatch);
+        const loginStatus = await handleLogin(loginConfig, dispatch, navigate);
         if (!loginStatus)
             document.getElementById("login-error").innerHTML =
                 "ERROR: Failed to Login";

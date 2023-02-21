@@ -57,6 +57,7 @@ const SignUp = () => {
             .getElementById("userProfileCanvas")
             .toDataURL();
 
+        const userType = "member";
         // set configurations
         const registerConfig = {
             method: "post",
@@ -67,17 +68,9 @@ const SignUp = () => {
                 password,
                 dateRegistered,
                 profileImgBase64,
+                userType,
             },
         };
-
-        // const loginConfig = {
-        //     method: "post",
-        //     url: globalSelector.loginURL,
-        //     data: {
-        //         email,
-        //         password,
-        //     },
-        // };
 
         const signupStatus = await handleSignup(registerConfig);
 
@@ -87,11 +80,6 @@ const SignUp = () => {
         else
             document.getElementById("signup-error").innerHTML =
                 "ERROR: Failed to signup";
-
-        // if (signupStatus) handleLogin(loginConfig);
-        // else
-        //     document.getElementById("signup-error").innerHTML =
-        //         "ERROR: Failed to signup";
     };
 
     return (

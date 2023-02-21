@@ -38,6 +38,7 @@ exports.login = (request, response) => {
                         fullName: user.fullName,
                         email: user.email,
                         userID: user._id,
+                        userType: user.userType,
                         token,
                     });
                 })
@@ -70,6 +71,7 @@ exports.signup = (request, response) => {
                 password: hashedPassword,
                 dateRegistered: request.body.dateRegistered,
                 profileImg: request.body.profileImgBase64,
+                userType: request.body.userType,
             });
 
             user.save()

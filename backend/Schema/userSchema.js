@@ -28,7 +28,13 @@ const UserSchema = new mongoose.Schema({
 
     profileImg: {
         type: String,
-        required: [true, "Please provide an image for profile"],
+        required: false,
+        unique: false,
+    },
+
+    userType: {
+        type: String,
+        required: [true, "Please provide a user type"],
         unique: false,
     },
 });

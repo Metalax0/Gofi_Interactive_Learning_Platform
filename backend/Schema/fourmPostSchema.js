@@ -14,24 +14,20 @@ const FourmPostSchema = new mongoose.Schema({
     },
     comments: [
         {
-            user_id: {
+            author: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "User",
                 required: true,
             },
-            username: { type: String, required: true },
             body: { type: String, required: true },
-            created_at: { type: Date, default: Date.now },
+            datePublished: { type: Date, default: Date.now },
+            likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
         },
     ],
     likes: [
         {
-            user_id: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "User",
-                required: true,
-            },
-            username: { type: String, required: true },
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
         },
     ],
     created_at: { type: Date, default: Date.now },

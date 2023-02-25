@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import Cookies from "universal-cookie";
 import "./style.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setisLoggedIn } from "../../../StateManagement/Slices/GlobalSlice";
 
 const cookies = new Cookies();
@@ -10,13 +10,16 @@ const cookies = new Cookies();
 export default function NavigationbarTwo() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const activeUser = useSelector((state) => state.user.fullName);
     const handleLogout = () => {
         // Resetting all user data and logged in status
         dispatch(setisLoggedIn(false));
         localStorage.removeItem("activeUser");
         cookies.remove("TOKEN");
+        cookies.remove("USERID");
         navigate("/landing");
     };
+
     return (
         <>
             <Link to="/">
@@ -45,7 +48,15 @@ export default function NavigationbarTwo() {
                 <div className="navigation-bar--vertical-line"> | </div>
                 <Link to="/profile" className="navigation-bar--item">
                     <UserOutlined />
-                    Username
+                    <label>
+                        {
+                            (activeUser
+                                ? activeUser
+                                : JSON.parse(localStorage.getItem("activeUser"))
+                                      .fullName
+                            ).split(" ")[0]
+                        }
+                    </label>
                 </Link>
                 <button
                     className="navigation-bar--item navigation-bar--logout"

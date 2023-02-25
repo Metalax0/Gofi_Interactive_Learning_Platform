@@ -1,17 +1,19 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import Cookies from "universal-cookie";
 import NavigationbarOne from "./NavigationBarOne";
 import NavigationbarTwo from "./NavigationBarTwo";
 import "./style.css";
 
+const cookies = new Cookies();
+
 const NavigationBar = () => {
-    // sub to store, check if logged in or not, logged in
+    // sub to store to trigger re-render.
     const isLoggedIn = useSelector((state) => state.global.isLoggedIn);
-    console.log(isLoggedIn);
+    const token = cookies.get("TOKEN");
 
     return (
         <div className="navigation-bar">
-            {!isLoggedIn ? <NavigationbarOne /> : <NavigationbarTwo />}
+            {!token ? <NavigationbarOne /> : <NavigationbarTwo />}
         </div>
     );
 };

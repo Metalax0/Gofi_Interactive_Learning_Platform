@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const userStatisticsSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        unique: false,
+        default: "novice",
+    },
     badges: {
         type: [
             {

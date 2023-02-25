@@ -11,9 +11,20 @@ export const handleLogin = async (config, dispatch, navigate) => {
             cookies.set("TOKEN", result.data.token, {
                 path: "/",
             });
+            cookies.set("USERID", result.data.userID, {
+                path: "/",
+            });
             // Setting active user
             dispatch(setActiveUser(result.data));
-            localStorage.setItem("activeUser", JSON.stringify(result.data));
+            const localStorageData = {
+                fullName: result.data.fullName,
+                userID: result.data.userID,
+                userType: result.data.userType,
+            };
+            localStorage.setItem(
+                "activeUser",
+                JSON.stringify(localStorageData)
+            );
             navigate("/home");
             return true;
         })

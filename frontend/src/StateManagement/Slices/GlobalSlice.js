@@ -4,6 +4,7 @@ const initialState = {
     baseURL: "http://localhost:8000",
     signupURL: "http://localhost:8000/api/signup",
     loginURL: "http://localhost:8000/api/login",
+    userDataURL: "http://localhost:8000/api/userdata",
     isLoggedIn: false,
 };
 

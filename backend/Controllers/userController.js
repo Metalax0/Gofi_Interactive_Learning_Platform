@@ -36,7 +36,6 @@ exports.login = (request, response) => {
                     response.status(200).send({
                         message: "Login Successful",
                         fullName: user.fullName,
-                        email: user.email,
                         userID: user._id,
                         userType: user.userType,
                         token,

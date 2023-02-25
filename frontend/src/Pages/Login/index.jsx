@@ -7,7 +7,7 @@ import { setisLoggedIn } from "../../StateManagement/Slices/GlobalSlice";
 import "./style.css";
 
 const Login = () => {
-    const globalSelector = useSelector((state) => state.global);
+    const loginURL = useSelector((state) => state.global.loginURL);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ const Login = () => {
         // set configurations
         const loginConfig = {
             method: "post",
-            url: globalSelector.loginURL,
+            url: loginURL,
             data: {
                 email,
                 password,
@@ -35,7 +35,7 @@ const Login = () => {
     };
 
     return (
-        <div className="LoginPageContainer">
+        <div className="login-page">
             <div className="login-container-inner">
                 <div className="login-container--left">
                     <h1> Welcome Back</h1>

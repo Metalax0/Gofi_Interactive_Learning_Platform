@@ -38,11 +38,7 @@ export default function Profile() {
     }, []);
 
     const dateObj = userData ? new Date(userData.dateRegistered) : null;
-    const dateJoined = userData
-        ? `${dateObj.getFullYear()}-${
-              dateObj.getMonth() + 1
-          }-${dateObj.getDate()}`
-        : null;
+    const dateJoined = userData ? dateObj.toISOString().substring(0, 10) : null;
 
     if (!userData) return null;
     else

@@ -24,7 +24,12 @@
 .forum-page__right {
     border: 1px solid black;
     flex-basis: 75%;
-    height: 90%;
+    height: 700px;
     overflow-y: auto;
+    overflow-x: none;
     box-shadow: 3px 3px 10px #888888;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }

@@ -7,6 +7,8 @@ const initialState = {
     userDataURL: "http://localhost:8000/api/userdata",
     createPostURL: "http://localhost:8000/api/createpost",
     getAllPostURL: "http://localhost:8000/api/getallpost",
+    addCommentURL: "http://localhost:8000/api/addcomment",
+
     isLoggedIn: false,
 };
 

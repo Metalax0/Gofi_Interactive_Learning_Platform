@@ -72,6 +72,7 @@ exports.signup = (request, response) => {
                 dateRegistered: request.body.dateRegistered,
                 profileImg: request.body.profileImgBase64,
                 userType: request.body.userType,
+                statistics: {},
             });
 
             user.save()

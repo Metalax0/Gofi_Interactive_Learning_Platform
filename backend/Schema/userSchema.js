@@ -1,37 +1,44 @@
 const mongoose = require("mongoose");
 
-//
 const userStatisticsSchema = new mongoose.Schema({
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    badges: [
-        {
-            title: { type: String, required: true },
-            description: { type: String, required: true },
-            badgeImage: { type: String, required: true },
-        },
-    ],
-    tutorialProgress: [
-        {
-            tutorial: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Tutorial",
-                required: true,
+    badges: {
+        type: [
+            {
+                title: { type: String, required: true, default: "" },
+                description: { type: String, required: true, default: "" },
+                badgeImage: { type: String, required: true, default: "" },
             },
-            chaptersCompleted: { type: Number, required: true },
-        },
-    ],
-    testDetails: [
-        {
-            test: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Test",
-                required: true,
+        ],
+        default: [],
+    },
+    tutorialProgress: {
+        type: [
+            {
+                tutorial: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "Tutorial",
+                    required: true,
+                },
+                chaptersCompleted: { type: Number, required: true, default: 0 },
             },
-            attempts: { type: Number, required: true },
-            score: { type: Number, required: true },
-            dateTaken: { type: Date, required: true },
-        },
-    ],
+        ],
+        default: [],
+    },
+    testDetails: {
+        type: [
+            {
+                test: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "Test",
+                    required: true,
+                },
+                attempts: { type: Number, required: true, default: 0 },
+                score: { type: Number, required: true, default: 0 },
+                dateTaken: { type: Date, required: true, default: Date.now },
+            },
+        ],
+        default: [],
+    },
     communityStats: {
         communityPoints: { type: Number, default: 0 },
         totalPosts: { type: Number, default: 0 },
@@ -85,14 +92,24 @@ const UserSchema = new mongoose.Schema({
 
     userType: {
         type: String,
-        userType: {
-            type: String,
-            enum: ["admin", "member", "guest"],
-            default: "member",
-        },
+        enum: ["admin", "member", "guest"],
+        default: "member",
         unique: false,
     },
-    statistics: { type: userStatisticsSchema, default: {} },
+
+    statistics: {
+        type: userStatisticsSchema,
+        default: {
+            badges: [],
+            tutorialProgress: [],
+            testDetails: [],
+            communityStats: {
+                communityPoints: 0,
+                totalPosts: 0,
+                totalComments: 0,
+            },
+        },
+    },
 });
 
 module.exports = mongoose.model.Users || mongoose.model("Users", UserSchema);

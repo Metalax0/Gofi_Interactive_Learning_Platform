@@ -21,7 +21,7 @@ export default function NavigationbarTwo() {
         localStorage.removeItem("activeUser");
         cookies.remove("TOKEN");
         cookies.remove("USERID");
-        navigate("/landing");
+        navigate("/login");
     };
 
     return (

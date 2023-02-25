@@ -1,0 +1,25 @@
+.badge-circle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    border: 1px solid black;
+    background-color: antiquewhite;
+    padding: 10px;
+    text-align: center;
+}
+
+.badge-circle__img {
+    border-radius: 100%;
+    width: inherit;
+}
+
+.badge-circle__description {
+    font-size: 0.9rem;
+}
+
+.badge-circle__title {
+    font-weight: bold;
+}

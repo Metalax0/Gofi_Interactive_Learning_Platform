@@ -1,5 +1,4 @@
 const User = require("../Schema/userSchema");
-const ObjectId = require("mongodb").ObjectId;
 
 exports.userData = (request, response) => {
     const { userID } = request.query;

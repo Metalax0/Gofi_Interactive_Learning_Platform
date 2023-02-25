@@ -10,7 +10,6 @@ const cookies = new Cookies();
 export default function Profile() {
     const [userData, setuserData] = useState(null);
     const userDataURL = useSelector((state) => state.global.userDataURL);
-    // const userID = useSelector((state) => state.user.userID);
     const userID = cookies.get("USERID");
 
     const userDataConfig = {
@@ -21,15 +20,14 @@ export default function Profile() {
 
     useEffect(() => {
         async function fetchUserData() {
-            if (userID)
-                setuserData(
-                    await (
-                        await handleUserDataFetch(userDataConfig)
-                    ).data.userData
-                );
+            setuserData(
+                await (
+                    await handleUserDataFetch(userDataConfig)
+                ).data.userData
+            );
         }
         fetchUserData();
-    }, [userID]);
+    }, []);
 
     console.log("USER DATA IS", userData);
 

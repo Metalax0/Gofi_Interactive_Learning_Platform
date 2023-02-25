@@ -11,6 +11,10 @@ export default function NavigationbarTwo() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const activeUser = useSelector((state) => state.user.fullName);
+    const activeUserLocalStorage = JSON.parse(
+        localStorage.getItem("activeUser")
+    );
+
     const handleLogout = () => {
         // Resetting all user data and logged in status
         dispatch(setisLoggedIn(false));
@@ -52,8 +56,9 @@ export default function NavigationbarTwo() {
                         {
                             (activeUser
                                 ? activeUser
-                                : JSON.parse(localStorage.getItem("activeUser"))
-                                      .fullName
+                                : activeUserLocalStorage
+                                ? activeUserLocalStorage.fullName
+                                : "NULL"
                             ).split(" ")[0]
                         }
                     </label>

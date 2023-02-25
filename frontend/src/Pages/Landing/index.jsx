@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 const Landing = () => {
+    const navigate = useNavigate();
+
+    const handleBttnClick = () => {
+        navigate("/home");
+    };
     return (
         <div className="landing-page">
             <div className="LandingPageContent">
@@ -15,7 +21,10 @@ const Landing = () => {
                         learn programming and problem solving in an easy way
                         with the help of visuals and game like interfaces
                     </p>
-                    <button className="LandingPageContent__Left__button">
+                    <button
+                        className="LandingPageContent__Left__button"
+                        onClick={handleBttnClick}
+                    >
                         Start Your Journey
                     </button>
                 </div>
@@ -26,7 +35,6 @@ const Landing = () => {
                     />
                 </div>
             </div>
-            {/* <Footer /> */}
         </div>
     );
 };

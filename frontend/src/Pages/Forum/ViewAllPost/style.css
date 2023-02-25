@@ -34,6 +34,9 @@
 }
 
 .view-all-post__comments__view__comment img {
-    padding-left: 10px;
     width: 30px;
+}
+
+.view-all-post__comments__view__comment small {
+    padding-left: 20px;
 }

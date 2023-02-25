@@ -16,11 +16,6 @@ export default function ViewAllPost() {
     const addCommentURL = useSelector((state) => state.global.addCommentURL);
 
     useEffect(() => {
-        // const config = {
-        //     method: "get",
-        //     url: getAllPostURL,
-        // };
-        // handleGetAllPost(config).then((res) => setallPostData(res.data));
         getAllPostData();
     }, []);
 
@@ -96,6 +91,13 @@ export default function ViewAllPost() {
                                               className="view-all-post__comments__view__comment"
                                               key={j}
                                           >
+                                              <small>
+                                                  {new Date(
+                                                      comment.datePublished
+                                                  )
+                                                      .toISOString()
+                                                      .substring(0, 10)}
+                                              </small>
                                               <img
                                                   src={
                                                       comment.author_id

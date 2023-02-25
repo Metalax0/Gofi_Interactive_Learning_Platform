@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Cookies from "universal-cookie";
 import BadgeSquare from "../../Components/Badge/BadgeSquare";
 import { handleUserDataFetch } from "../../Functions/handleUserDataFetch";
@@ -10,11 +10,14 @@ import totalCommentsImg from "../../Assets/totalComments.png";
 import totalPostsImg from "../../Assets/totalPosts.png";
 import { Skeleton } from "antd";
 import BadgeCircle from "../../Components/Badge/BadgeCircle";
+import { setActiveUser } from "../../StateManagement/Slices/UserSlice";
 const cookies = new Cookies();
 
 export default function Profile() {
     const [userData, setuserData] = useState(null);
     const userDataURL = useSelector((state) => state.global.userDataURL);
+    const dispatch = useDispatch();
+
     const userID = cookies.get("USERID");
 
     const userDataConfig = {
@@ -34,11 +37,6 @@ export default function Profile() {
         fetchUserData();
     }, []);
 
-    //
-    const badgeCount = 0;
-    const communityPoints = 0;
-    const totalComments = 0;
-    const totalPosts = 0;
     const dateObj = userData ? new Date(userData.dateRegistered) : null;
     const dateJoined = userData
         ? `${dateObj.getFullYear()}-${

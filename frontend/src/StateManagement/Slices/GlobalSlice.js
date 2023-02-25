@@ -5,6 +5,8 @@ const initialState = {
     signupURL: "http://localhost:8000/api/signup",
     loginURL: "http://localhost:8000/api/login",
     userDataURL: "http://localhost:8000/api/userdata",
+    createPostURL: "http://localhost:8000/api/createpost",
+    getAllPostURL: "http://localhost:8000/api/getallpost",
     isLoggedIn: false,
 };
 

@@ -1,0 +1,10 @@
+* {
+    /* outline: 1px solid red; */
+}
+
+.create-post {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}

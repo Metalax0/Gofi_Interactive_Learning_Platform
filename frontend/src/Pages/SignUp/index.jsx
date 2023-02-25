@@ -15,7 +15,7 @@ import "./style.css";
 const SignUp = () => {
     const [fullName, setFullname] = useState("");
     const [email, setEmail] = useState("");
-    const globalSelector = useSelector((state) => state.global);
+    const signupURL = useSelector((state) => state.global.signupURL);
     let drag = false;
 
     useEffect(() => {
@@ -61,7 +61,7 @@ const SignUp = () => {
         // set configurations
         const registerConfig = {
             method: "post",
-            url: globalSelector.signupURL,
+            url: signupURL,
             data: {
                 fullName,
                 email,

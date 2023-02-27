@@ -17,3 +17,10 @@
     align-items: center;
     height: 100%;
 }
+
+.home-page-section-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

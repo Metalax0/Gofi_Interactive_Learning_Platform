@@ -1,19 +1,66 @@
 .landing-page {
-    flex: 1;
-    padding: 0px 40px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC")
+        repeat 0 0;
+    -webkit-animation: bg-scrolling-reverse 0.9s infinite;
+    -moz-animation: bg-scrolling-reverse 0.9s infinite;
+    -o-animation: bg-scrolling-reverse 0.9s infinite;
+    animation: bg-scrolling-reverse 0.9s infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+
+.landing-page-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.landing-page-section-1 {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.LandingPageContent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.landing-page-section-2 {
+    padding: 0px 70px;
+    background-color: wheat;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+}
+
+.landing-page-section-1 label {
+    font-size: 15rem;
+    padding-bottom: 20px;
+    font-family: "Rampart One", cursive;
+}
+
+.landing-page-section-1__span-1 {
+    color: #463e44;
+}
+
+.landing-page-section-1__span-2 {
+    color: #6c959e;
+}
+
+.landing-page-section-1__span-3 {
+    color: #ff5e4d;
+}
+
+.landing-page-section-1__span-4 {
+    color: #52cbd6;
 }
 
 .LandingPageContent__Left {
-    max-width: 40%;
+    max-width: 45%;
 }
 
 .LandingPageContent__Left__label {
@@ -68,4 +115,45 @@
 .LandingPageContent__Right img {
     width: 100%;
     height: auto;
+}
+
+@-webkit-keyframes bg-scrolling-reverse {
+    100% {
+        background-position: 50px 50px;
+    }
+}
+@-moz-keyframes bg-scrolling-reverse {
+    100% {
+        background-position: 50px 50px;
+    }
+}
+@-o-keyframes bg-scrolling-reverse {
+    100% {
+        background-position: 50px 50px;
+    }
+}
+@keyframes bg-scrolling-reverse {
+    100% {
+        background-position: 50px 50px;
+    }
+}
+@-webkit-keyframes bg-scrolling {
+    0% {
+        background-position: 50px 50px;
+    }
+}
+@-moz-keyframes bg-scrolling {
+    0% {
+        background-position: 50px 50px;
+    }
+}
+@-o-keyframes bg-scrolling {
+    0% {
+        background-position: 50px 50px;
+    }
+}
+@keyframes bg-scrolling {
+    0% {
+        background-position: 50px 50px;
+    }
 }

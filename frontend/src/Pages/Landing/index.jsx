@@ -9,7 +9,15 @@ const Landing = () => {
     };
     return (
         <div className="landing-page">
-            <div className="LandingPageContent">
+            <div className="landing-page-section landing-page-section-1">
+                <label>
+                    <span className="landing-page-section-1__span-1">G</span>
+                    <span className="landing-page-section-1__span-2">O</span>
+                    <span className="landing-page-section-1__span-3">F</span>
+                    <span className="landing-page-section-1__span-4">I</span>
+                </label>
+            </div>
+            <div className="landing-page-section landing-page-section-2">
                 <div className="LandingPageContent__Left">
                     <label className="LandingPageContent__Left__label">
                         E-COURSE PLATFORM
@@ -30,11 +38,14 @@ const Landing = () => {
                 </div>
                 <div className="LandingPageContent__Right">
                     <img
-                        src="/images/landingPage/landing_right_img.png"
+                        // src="/images/landingPage/landing_right_1.png"
+                        src="/images/landingPage/landing_right_4.png"
                         alt="vector art of a boy"
                     />
                 </div>
             </div>
+            <div className="landing-page-section">SECTION 3</div>
+            <div className="landing-page-section">SECTION 4</div>
         </div>
     );
 };

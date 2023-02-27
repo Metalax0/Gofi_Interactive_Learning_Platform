@@ -10,7 +10,7 @@ export default function Home() {
             <section className="home-page-section-2">
                 <h1> Section 2</h1>
             </section>
-            <section className="home-page-section-2">
+            <section className="home-page-section-3">
                 <h1> Section 3</h1>
             </section>
         </div>

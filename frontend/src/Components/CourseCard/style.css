@@ -1,0 +1,55 @@
+.course-card {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    gap: 5px;
+
+    overflow: hidden;
+    border: 1px solid #888888;
+    border-radius: 5px;
+    box-shadow: -10px 10px 1px #888888;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.course-card:hover {
+    transform: translate(10px, -10px);
+    box-shadow: -20px 20px 1px #252525;
+}
+
+.course-card:hover * {
+    cursor: pointer;
+}
+
+.course-card:hover .tutorial-page {
+    background-color: red;
+}
+
+.course-card__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.course-card__header {
+    background-color: var(--bg-header);
+    padding: 5px 10px;
+}
+
+.course-card__body__title {
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.course-card__body__text {
+    padding: 5px 10px;
+}
+
+.course-card__footer {
+    padding: 10px 10px;
+}
+
+.course-card__footer div {
+    padding: 5px;
+    border-top: 1px dashed black;
+}

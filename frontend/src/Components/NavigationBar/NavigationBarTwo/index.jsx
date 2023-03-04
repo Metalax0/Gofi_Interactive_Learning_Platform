@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import Cookies from "universal-cookie";
 import "./style.css";
@@ -24,33 +24,64 @@ export default function NavigationbarTwo() {
         navigate("/login");
     };
 
+    const activeStyle = {
+        borderBottom: "3px solid black",
+    };
+
     return (
         <>
-            <Link to="/">
+            <NavLink to="/">
                 <img
                     className="navigation-bar__logo"
                     src="/images/logo/logo.png"
                     alt="Logo"
                 />
-            </Link>
+            </NavLink>
             <div className="navigation-bar__links">
-                <Link
+                <NavLink
                     to="/home"
-                    className=" navigation-bar--item navigation-bar--active"
+                    className=" navigation-bar--item"
+                    style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                    }
                 >
                     Home
-                </Link>
-                <Link to="/tutorial" className="navigation-bar--item">
+                </NavLink>
+                <NavLink
+                    to="/tutorial"
+                    className="navigation-bar--item"
+                    style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                    }
+                >
                     Tutorial
-                </Link>
-                <Link to="/test" className="navigation-bar--item">
+                </NavLink>
+                <NavLink
+                    to="/test"
+                    className="navigation-bar--item"
+                    style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                    }
+                >
                     Test
-                </Link>
-                <Link to="/forum" className="navigation-bar--item">
+                </NavLink>
+                <NavLink
+                    to="/forum"
+                    className="navigation-bar--item"
+                    style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                    }
+                >
                     Forum
-                </Link>
+                </NavLink>
                 <div className="navigation-bar--vertical-line"> | </div>
-                <Link to="/profile" className="navigation-bar--item">
+                <NavLink
+                    to="/profile"
+                    className="navigation-bar--item"
+                    style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                    }
+                >
                     <UserOutlined />
                     <label>
                         {
@@ -62,7 +93,7 @@ export default function NavigationbarTwo() {
                             ).split(" ")[0]
                         }
                     </label>
-                </Link>
+                </NavLink>
                 <button
                     className="navigation-bar--item navigation-bar--logout"
                     onClick={handleLogout}

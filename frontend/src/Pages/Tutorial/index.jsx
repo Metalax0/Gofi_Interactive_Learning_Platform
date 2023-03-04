@@ -1,17 +1,41 @@
 import React from "react";
+import CourseCard from "../../Components/CourseCard";
+import { tutorialData } from "../../Data";
 import "./style.css";
 
 export default function Tutorial() {
+    // handleTutorial
     return (
         <div className="tutorial-page">
             <section className="tutorial-section">
-                <h1> HTML </h1>
+                <CourseCard
+                    headerText={tutorialData.html.headerText}
+                    bodyTitle={tutorialData.html.bodyTitle}
+                    bodyText={tutorialData.html.bodyText}
+                    chapterCount={tutorialData.html.chapterCount}
+                    difficulty={tutorialData.html.difficulty}
+                    headerColor={tutorialData.html.headerColor}
+                />
             </section>
             <section className="tutorial-section">
-                <h1> CSS </h1>
+                <CourseCard
+                    headerText={tutorialData.css.headerText}
+                    bodyTitle={tutorialData.css.bodyTitle}
+                    bodyText={tutorialData.css.bodyText}
+                    chapterCount={tutorialData.css.chapterCount}
+                    difficulty={tutorialData.css.difficulty}
+                    headerColor={tutorialData.css.headerColor}
+                />
             </section>
             <section className="tutorial-section">
-                <h1> JavaScript </h1>
+                <CourseCard
+                    headerText={tutorialData.js.headerText}
+                    bodyTitle={tutorialData.js.bodyTitle}
+                    bodyText={tutorialData.js.bodyText}
+                    chapterCount={tutorialData.js.chapterCount}
+                    difficulty={tutorialData.js.difficulty}
+                    headerColor={tutorialData.js.headerColor}
+                />
             </section>
         </div>
     );

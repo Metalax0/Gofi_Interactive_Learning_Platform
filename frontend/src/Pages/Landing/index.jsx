@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Carousel } from "antd";
 import "./style.css";
 
 const Landing = () => {
@@ -44,8 +45,15 @@ const Landing = () => {
                     />
                 </div>
             </div>
-            <div className="landing-page-section">SECTION 3</div>
-            <div className="landing-page-section">SECTION 4</div>
+            <div className="landing-page-section landing-page-section-3">
+                <h1> COURSES </h1>
+            </div>
+            <div className="landing-page-section landing-page-section-4">
+                <h1> TESTIMONIALS </h1>
+            </div>
+            <div className="landing-page-section landing-page-section-4">
+                <h1> Footer </h1>
+            </div>
         </div>
     );
 };

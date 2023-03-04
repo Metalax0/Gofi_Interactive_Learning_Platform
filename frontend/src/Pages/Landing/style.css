@@ -37,6 +37,10 @@
     border-bottom: 3px solid black;
 }
 
+.landing-page-section-2 {
+    background-color: wheat;
+}
+
 .landing-page-section-1 label {
     font-size: 15rem;
     padding-bottom: 20px;

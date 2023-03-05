@@ -1,4 +1,4 @@
-export const tutorialData = {
+export const tutorialCardData = {
     html: {
         headerText: "Structure",
         bodyTitle: "Learn HTML",
@@ -36,8 +36,7 @@ export const htmlTutorialData = {
         title: "INTRODUCTION TO HTML",
         body: [
             {
-                content:
-                    "Welcome to the world of code! HTML is the skeleton of all web pages. It’s often the first language learned by developers, marketers, and designers and is core to front-end development work. If this is your first time touching code, we’re excited for what you’re about to create.",
+                content: "Welcome to the first chapter of HTML tutorial. ",
                 type: "paragraph",
             },
             {

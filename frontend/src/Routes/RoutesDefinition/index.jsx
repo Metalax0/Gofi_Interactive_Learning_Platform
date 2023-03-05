@@ -1,5 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import ProtectedRoutes from "../ProtectedRoutes";
+import AdminRoutes from "../AdminRoutes";
+
 import Home from "../../Pages/Home";
 import Landing from "../../Pages/Landing";
 import Login from "../../Pages/Login";
@@ -8,17 +11,18 @@ import Tutorial from "../../Pages/Tutorial";
 import Test from "../../Pages/Test";
 import Forum from "../../Pages/Forum";
 import Profile from "../../Pages/Profile";
-import ProtectedRoutes from "../ProtectedRoutes";
 import TutorialHTML from "../../Pages/Tutorial/HTML";
+import AdminHTMLTutorial from "../../Pages/Admin/HTMLTutorial";
 
 export default function RoutesDefinition() {
     return (
         <>
             <Routes>
+                {/* GENERAL ROUTES */}
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
-
+                {/* MEMBER ROUTES */}
                 <Route
                     path="/home"
                     element={
@@ -67,6 +71,18 @@ export default function RoutesDefinition() {
                         </ProtectedRoutes>
                     }
                 />
+
+                {/* ADMIN ROUTES */}
+                <Route
+                    path="/admin/htmltutorial"
+                    element={
+                        <AdminRoutes>
+                            <AdminHTMLTutorial />
+                        </AdminRoutes>
+                    }
+                />
+
+                {/* ERROR/INVALID ROUTES */}
                 <Route
                     path="*"
                     element={

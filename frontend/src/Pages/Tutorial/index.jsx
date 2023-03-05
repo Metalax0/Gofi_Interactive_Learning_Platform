@@ -1,43 +1,42 @@
 import React from "react";
 import CourseCard from "../../Components/CourseCard";
-import { tutorialData } from "../../Data";
+import { tutorialCardData } from "../../Data";
 import "./style.css";
 
 export default function Tutorial() {
-    // handleTutorial
     return (
         <div className="tutorial-page">
             <section className="tutorial-section">
                 <CourseCard
-                    headerText={tutorialData.html.headerText}
-                    bodyTitle={tutorialData.html.bodyTitle}
-                    bodyText={tutorialData.html.bodyText}
-                    chapterCount={tutorialData.html.chapterCount}
-                    difficulty={tutorialData.html.difficulty}
-                    headerColor={tutorialData.html.headerColor}
-                    navigateTo={tutorialData.html.navigateTo}
+                    headerText={tutorialCardData.html.headerText}
+                    bodyTitle={tutorialCardData.html.bodyTitle}
+                    bodyText={tutorialCardData.html.bodyText}
+                    chapterCount={tutorialCardData.html.chapterCount}
+                    difficulty={tutorialCardData.html.difficulty}
+                    headerColor={tutorialCardData.html.headerColor}
+                    navigateTo={tutorialCardData.html.navigateTo}
                 />
             </section>
             <section className="tutorial-section">
                 <CourseCard
-                    headerText={tutorialData.css.headerText}
-                    bodyTitle={tutorialData.css.bodyTitle}
-                    bodyText={tutorialData.css.bodyText}
-                    chapterCount={tutorialData.css.chapterCount}
-                    difficulty={tutorialData.css.difficulty}
-                    headerColor={tutorialData.css.headerColor}
-                    navigateTo={tutorialData.css.navigateTo}
+                    headerText={tutorialCardData.css.headerText}
+                    bodyTitle={tutorialCardData.css.bodyTitle}
+                    bodyText={tutorialCardData.css.bodyText}
+                    chapterCount={tutorialCardData.css.chapterCount}
+                    difficulty={tutorialCardData.css.difficulty}
+                    headerColor={tutorialCardData.css.headerColor}
+                    navigateTo={tutorialCardData.css.navigateTo}
                 />
             </section>
             <section className="tutorial-section">
                 <CourseCard
-                    headerText={tutorialData.js.headerText}
-                    bodyTitle={tutorialData.js.bodyTitle}
-                    bodyText={tutorialData.js.bodyText}
-                    chapterCount={tutorialData.js.chapterCount}
-                    difficulty={tutorialData.js.difficulty}
-                    headerColor={tutorialData.js.headerColor}
-                    navigateTo={tutorialData.js.navigateTo}
+                    headerText={tutorialCardData.js.headerText}
+                    bodyTitle={tutorialCardData.js.bodyTitle}
+                    bodyText={tutorialCardData.js.bodyText}
+                    chapterCount={tutorialCardData.js.chapterCount}
+                    difficulty={tutorialCardData.js.difficulty}
+                    headerColor={tutorialCardData.js.headerColor}
+                    navigateTo={tutorialCardData.js.navigateTo}
                 />
             </section>
         </div>

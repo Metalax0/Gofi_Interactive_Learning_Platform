@@ -7,7 +7,7 @@ import { setisLoggedIn } from "../../../StateManagement/Slices/GlobalSlice";
 
 const cookies = new Cookies();
 
-export default function NavigationbarTwo() {
+export default function NavigationbarAdmin() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const activeUser = useSelector((state) => state.user.fullName);
@@ -74,6 +74,16 @@ export default function NavigationbarTwo() {
                     }
                 >
                     Forum
+                </NavLink>
+                <div className="navigation-bar--vertical-line"> | </div>
+                <NavLink
+                    to="/admin/htmltutorial"
+                    className="navigation-bar--item"
+                    style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                    }
+                >
+                    Manage tutorial
                 </NavLink>
                 <div className="navigation-bar--vertical-line"> | </div>
                 <NavLink

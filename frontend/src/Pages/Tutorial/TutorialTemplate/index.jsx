@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { htmlTutorialData } from "../../../Data";
 import { Button, Input, Tour } from "antd";
 import { ProfileOutlined } from "@ant-design/icons";
 import "./style.css";
 
-const TutorialTemplate = ({ dataaa, state, setState }) => {
+const TutorialTemplate = ({ tutorialData, state, setState }) => {
     const [isAnswerCorrect, setisAnswerCorrect] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -20,7 +19,7 @@ const TutorialTemplate = ({ dataaa, state, setState }) => {
         setOpen(true);
     }, []);
 
-    const data = htmlTutorialData.ch1;
+    const data = tutorialData.ch1;
 
     const steps = [
         {

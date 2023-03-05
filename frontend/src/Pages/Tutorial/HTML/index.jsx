@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { htmlTutorialData } from "../../../Data";
 import HTMLTutorialTemplate from "../TutorialTemplate";
 import "./style.css";
 const TutorialHTML = () => {
@@ -11,6 +12,7 @@ const TutorialHTML = () => {
                     <HTMLTutorialTemplate
                         state={activeChapter}
                         setState={setactiveChapter}
+                        tutorialData={htmlTutorialData}
                     />
                 );
 

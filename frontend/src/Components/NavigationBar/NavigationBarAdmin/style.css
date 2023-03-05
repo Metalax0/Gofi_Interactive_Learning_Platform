@@ -1,0 +1,30 @@
+.navigation-bar--active {
+    border-bottom: 3px solid black;
+}
+
+.navigation-bar--item {
+    padding: 2px 10px;
+}
+
+.navigation-bar--item:hover {
+    background-color: #333;
+    color: wheat;
+    outline: 3px solid yellow;
+}
+
+.navigation-bar--vertical-line {
+    color: black;
+    padding-left: 14px;
+}
+
+.navigation-bar--logout {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation-bar--logout:hover {
+    cursor: pointer;
+}

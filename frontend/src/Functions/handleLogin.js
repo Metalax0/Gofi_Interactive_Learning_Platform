@@ -14,6 +14,9 @@ export const handleLogin = async (config, dispatch, navigate) => {
             cookies.set("USERID", result.data.userID, {
                 path: "/",
             });
+            cookies.set("USERTYPE", result.data.userType, {
+                path: "/",
+            });
             // Setting active user
             dispatch(setActiveUser(result.data));
             const localStorageData = {

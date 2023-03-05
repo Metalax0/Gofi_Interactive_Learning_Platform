@@ -3,32 +3,33 @@ import { Button, Form, Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React from "react";
 import { useSelector } from "react-redux";
-import { handleCreatePost } from "../../../Functions/handleCreatePost";
+import Cookies from "universal-cookie";
+import { handleAddHtmlChapter } from "../../../Functions/handleAddHtmlChapter";
 import "./style.css";
 
-export default function CreatePost() {
-    const createPostURL = useSelector((state) => state.global.createPostURL);
+const cookies = new Cookies();
+
+export default function AdminHTMLTutorial() {
+    const APIURL = useSelector((state) => state.global.addhtmlchapter);
 
     const handleSubmit = async (value) => {
-        const { title, body, tag } = value;
-        const authorName = JSON.parse(
-            localStorage.getItem("activeUser")
-        ).fullName;
-        const userID = JSON.parse(localStorage.getItem("activeUser")).userID;
-
-        const createPostConfig = {
-            method: "post",
-            url: createPostURL,
-            data: {
-                title,
-                body,
-                tag,
-                authorName,
-                userID,
-            },
+        const dummyData = {
+            title: "New Chapter Title",
+            body: [
+                {
+                    content: "New chapter content",
+                    type: "paragraph",
+                },
+            ],
         };
 
-        handleCreatePost(createPostConfig);
+        const config = {
+            method: "post",
+            url: APIURL,
+            data: dummyData,
+        };
+
+        handleAddHtmlChapter(config);
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -36,7 +37,7 @@ export default function CreatePost() {
     };
 
     return (
-        <div className="create-post">
+        <div className="admin-html-tutorial">
             <Form
                 id="signup-form"
                 name="createpost"
@@ -58,15 +59,7 @@ export default function CreatePost() {
                 autoComplete="off"
                 layout="vertical"
             >
-                <Form.Item
-                    name="title"
-                    rules={[
-                        {
-                            required: true,
-                            message: "Please input title!",
-                        },
-                    ]}
-                >
+                <Form.Item name="title">
                     <Input
                         size="large"
                         placeholder="Title"
@@ -74,15 +67,7 @@ export default function CreatePost() {
                     />
                 </Form.Item>
 
-                <Form.Item
-                    name="body"
-                    rules={[
-                        {
-                            required: true,
-                            message: "Please input the content!",
-                        },
-                    ]}
-                >
+                <Form.Item name="body">
                     <TextArea
                         showCount
                         maxLength={100}

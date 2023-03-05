@@ -8,8 +8,10 @@ const initialState = {
     createPostURL: "http://localhost:8000/api/createpost",
     getAllPostURL: "http://localhost:8000/api/getallpost",
     addCommentURL: "http://localhost:8000/api/addcomment",
+    addhtmlchapter: "http://localhost:8000/api/addhtmlchapter",
+    gethtmlchapter: "http://localhost:8000/api/gethtmlchapter",
 
-    isLoggedIn: false,
+    isLoggedIn: "false",
 };
 
 const globalOptions = {

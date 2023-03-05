@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const TestSchema = new mongoose.Schema({
     title: { type: String, required: true },
     description: { type: String },
-    tutorial: { type: mongoose.Schema.Types.ObjectId, ref: "Tutorial" },
+    category: { type: String, required: true },
     attempts: [
         {
             member: { type: mongoose.Schema.Types.ObjectId, ref: "User" },

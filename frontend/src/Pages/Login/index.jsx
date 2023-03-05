@@ -24,7 +24,7 @@ const Login = () => {
         };
 
         const loginStatus = await handleLogin(loginConfig, dispatch, navigate);
-        if (loginStatus) dispatch(setisLoggedIn(true));
+        if (loginStatus) dispatch(setisLoggedIn("true"));
         else
             document.getElementById("login-error").innerHTML =
                 "ERROR: Failed to Login";

@@ -3,7 +3,7 @@ import { Button, Input, Tour } from "antd";
 import { ProfileOutlined } from "@ant-design/icons";
 import "./style.css";
 
-const TutorialTemplate = ({ tutorialData, state, setState }) => {
+const TutorialTemplate = ({ data, state, setState }) => {
     const [isAnswerCorrect, setisAnswerCorrect] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -18,8 +18,6 @@ const TutorialTemplate = ({ tutorialData, state, setState }) => {
     useEffect(() => {
         setOpen(true);
     }, []);
-
-    const data = tutorialData.ch1;
 
     const steps = [
         {
@@ -92,6 +90,7 @@ const TutorialTemplate = ({ tutorialData, state, setState }) => {
                     steps={steps}
                 />
             ) : null}
+
             <div className="tutorial-template__top">
                 <div className="tutorial-template__content" ref={TutorialRef}>
                     <label className="tutorial__content__label">LEARN</label>

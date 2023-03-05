@@ -1,12 +1,15 @@
 .tutorial-page {
     display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     padding: 50px;
-    gap: 5%;
+    gap: 3%;
 }
 
 .tutorial-section {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 30%;
 }

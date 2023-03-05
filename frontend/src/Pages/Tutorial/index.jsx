@@ -12,8 +12,10 @@ export default function Tutorial() {
                     bodyTitle={tutorialCardData.html.bodyTitle}
                     bodyText={tutorialCardData.html.bodyText}
                     chapterCount={tutorialCardData.html.chapterCount}
-                    difficulty={tutorialCardData.html.difficulty}
+                    reward={tutorialCardData.html.reward}
                     headerColor={tutorialCardData.html.headerColor}
+                    chapters={tutorialCardData.html.chapters}
+                    progress={tutorialCardData.html.progress}
                     navigateTo={tutorialCardData.html.navigateTo}
                 />
             </section>
@@ -23,8 +25,10 @@ export default function Tutorial() {
                     bodyTitle={tutorialCardData.css.bodyTitle}
                     bodyText={tutorialCardData.css.bodyText}
                     chapterCount={tutorialCardData.css.chapterCount}
-                    difficulty={tutorialCardData.css.difficulty}
+                    reward={tutorialCardData.css.reward}
                     headerColor={tutorialCardData.css.headerColor}
+                    chapters={tutorialCardData.css.chapters}
+                    progress={tutorialCardData.css.progress}
                     navigateTo={tutorialCardData.css.navigateTo}
                 />
             </section>
@@ -34,8 +38,10 @@ export default function Tutorial() {
                     bodyTitle={tutorialCardData.js.bodyTitle}
                     bodyText={tutorialCardData.js.bodyText}
                     chapterCount={tutorialCardData.js.chapterCount}
-                    difficulty={tutorialCardData.js.difficulty}
+                    reward={tutorialCardData.js.reward}
                     headerColor={tutorialCardData.js.headerColor}
+                    chapters={tutorialCardData.js.chapters}
+                    progress={tutorialCardData.js.progress}
                     navigateTo={tutorialCardData.js.navigateTo}
                 />
             </section>

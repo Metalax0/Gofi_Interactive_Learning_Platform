@@ -5,8 +5,19 @@ export const tutorialCardData = {
         bodyText:
             "Learn the basics of HTML - a markup language used for creating web pages. It defines the structure of a Web page.",
         chapterCount: 5,
-        difficulty: "Beginner Friendly",
+        reward: "Badge provided on completion",
         headerColor: "#ff907c",
+        chapters: [
+            "chapter 1",
+            "chapter 2",
+            "chapter 3",
+            "chapter 4",
+            "chapter 5",
+        ],
+        progress: {
+            progress: 0,
+            lastChapter: "NONE",
+        },
         navigateTo: "/tutorial/html",
     },
     css: {
@@ -15,8 +26,19 @@ export const tutorialCardData = {
         bodyText:
             "Learn the basics of CSS - a styling language used for making web pages presentable. It defines the appearance of elements in a Web page.",
         chapterCount: 5,
-        difficulty: "Beginner Friendly",
+        reward: "Badge provided on completion",
         headerColor: "#7cf0ff",
+        chapters: [
+            "chapter 1",
+            "chapter 2",
+            "chapter 3",
+            "chapter 4",
+            "chapter 5",
+        ],
+        progress: {
+            progress: 0,
+            lastChapter: "NONE",
+        },
         navigateTo: "/tutorial/css",
     },
     js: {
@@ -25,14 +47,25 @@ export const tutorialCardData = {
         bodyText:
             "Learn the basics of JavaScript - a scripting language used for creating web pages. It defines the structure of a Web page.",
         chapterCount: 5,
-        difficulty: "Beginner Friendly",
+        reward: "Badge provided on completion",
         headerColor: "#ffe77c",
+        chapters: [
+            "chapter 1",
+            "chapter 2",
+            "chapter 3",
+            "chapter 4",
+            "chapter 5",
+        ],
+        progress: {
+            progress: 0,
+            lastChapter: "NONE",
+        },
         navigateTo: "/tutorial/js",
     },
 };
 
-export const htmlTutorialData = {
-    ch1: {
+export const htmlTutorialData = [
+    {
         title: "INTRODUCTION TO HTML",
         body: [
             {
@@ -80,4 +113,4 @@ export const htmlTutorialData = {
             },
         ],
     },
-};
+];

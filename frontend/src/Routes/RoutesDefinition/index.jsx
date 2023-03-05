@@ -9,6 +9,7 @@ import Test from "../../Pages/Test";
 import Forum from "../../Pages/Forum";
 import Profile from "../../Pages/Profile";
 import ProtectedRoutes from "../ProtectedRoutes";
+import TutorialHTML from "../../Pages/Tutorial/HTML";
 
 export default function RoutesDefinition() {
     return (
@@ -55,6 +56,14 @@ export default function RoutesDefinition() {
                     element={
                         <ProtectedRoutes>
                             <Profile />
+                        </ProtectedRoutes>
+                    }
+                />
+                <Route
+                    path="/tutorial/html"
+                    element={
+                        <ProtectedRoutes>
+                            <TutorialHTML />
                         </ProtectedRoutes>
                     }
                 />

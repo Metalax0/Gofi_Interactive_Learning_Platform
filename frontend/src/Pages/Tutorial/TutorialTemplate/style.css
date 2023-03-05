@@ -1,0 +1,103 @@
+* {
+    /* outline: 1px solid red; */
+}
+
+.tutorial-template {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    line-height: 1.6;
+    font-size: 1.1rem;
+    text-align: justify;
+
+    background-color: rgb(207, 235, 220);
+}
+
+.tutorial-template__top {
+    height: calc(100% - 112px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tutorial-template__botton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 30px;
+    padding: 10px 10px;
+    border-top: 1px solid black;
+    background-color: white;
+}
+
+.tutorial-template__content {
+    width: 50%;
+    height: 90%;
+    padding: 5px 40px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: scroll;
+}
+
+.tutorial-template__output {
+    width: 50%;
+    height: 100%;
+
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    background-color: rgb(44, 42, 42);
+}
+
+.tutorial-template__content__list * {
+    margin: 0 0 20px 0;
+}
+
+.tutorial-template__botton button {
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    border: 2px solid yellow;
+    border-radius: 10px;
+
+    color: white;
+    background-color: rgb(51, 48, 48);
+    transition: color 0.2s, background-color 0.2s, border 0.2s;
+}
+
+.tutorial-template__botton button:hover {
+    color: rgb(31, 29, 29) !important;
+    border: 2px solid rgb(51, 48, 48) !important;
+    background-color: yellow !important;
+}
+
+.tutorial-template__output div {
+    padding: 30px;
+    outline: 3px solid white;
+}
+
+.tutorial__content__label {
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 100%;
+    color: whitesmoke;
+    background-color: #2c2a2a;
+}
+
+.tutorial-template__content__task {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

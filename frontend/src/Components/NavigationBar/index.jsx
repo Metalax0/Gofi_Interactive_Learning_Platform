@@ -13,7 +13,6 @@ const NavigationBar = () => {
     console.log("IS LOGGED IN", isLoggedIn);
     const token = cookies.get("TOKEN");
 
-    console.log("NAVIGATION BAR RENDERED");
     useEffect(() => {
         // const navDOM = document.getElementById("navigation-bar");
         // let prevScrollpos = window.pageYOffset;

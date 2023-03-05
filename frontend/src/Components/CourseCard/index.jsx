@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 export default function CourseCard({
@@ -9,14 +10,20 @@ export default function CourseCard({
     chapterCount,
     difficulty,
     headerColor,
+    navigateTo,
 }) {
     const cardHeaderRef = useRef(null);
-
+    const navigate = useNavigate();
     useEffect(() => {
         cardHeaderRef.current.style.setProperty("--bg-header", headerColor);
     }, []);
+
+    const handleCourseCardClick = () => {
+        console.log(navigateTo);
+        navigate(`${navigateTo}`);
+    };
     return (
-        <div className="course-card">
+        <div className="course-card" onClick={handleCourseCardClick}>
             <div className="course-card__header" ref={cardHeaderRef}>
                 <label>{headerText}</label>
             </div>

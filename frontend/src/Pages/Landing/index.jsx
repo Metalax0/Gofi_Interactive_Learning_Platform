@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Carousel } from "antd";
 import "./style.css";
+import FeatureCard from "../../Components/FeatureCard";
 
 const Landing = () => {
     const navigate = useNavigate();
@@ -8,6 +9,7 @@ const Landing = () => {
     const handleBttnClick = () => {
         navigate("/home");
     };
+
     return (
         <div className="landing-page">
             <div className="landing-page-section landing-page-section-1">
@@ -46,13 +48,12 @@ const Landing = () => {
                 </div>
             </div>
             <div className="landing-page-section landing-page-section-3">
-                <h1> COURSES </h1>
+                <FeatureCard title="Tutorials" />
+                <FeatureCard title="Tests" />
+                <FeatureCard title="Forum" />
             </div>
             <div className="landing-page-section landing-page-section-4">
                 <h1> TESTIMONIALS </h1>
-            </div>
-            <div className="landing-page-section landing-page-section-4">
-                <h1> Footer </h1>
             </div>
         </div>
     );

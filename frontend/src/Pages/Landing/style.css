@@ -1,3 +1,6 @@
+* {
+    /* outline: 1px solid red; */
+}
 .landing-page {
     display: flex;
     align-items: center;
@@ -20,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 105vh;
 }
 
 .landing-page-section-1 {
@@ -41,8 +44,26 @@
     background-color: wheat;
 }
 
+.landing-page-section-3 {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    background-color: #779fa8;
+}
+
+.landing-page-section-4 {
+    width: 100%;
+
+    background-color: #fa7364;
+}
+
 .landing-page-section-1 label {
     font-size: 15rem;
+
     padding-bottom: 20px;
     font-family: "Rampart One", cursive;
 }
@@ -60,7 +81,7 @@
 }
 
 .landing-page-section-1__span-4 {
-    color: #52cbd6;
+    /* color: #52cbd6; */
 }
 
 .LandingPageContent__Left {

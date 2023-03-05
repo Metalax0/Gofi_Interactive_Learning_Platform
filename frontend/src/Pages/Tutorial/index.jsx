@@ -15,6 +15,7 @@ export default function Tutorial() {
                     chapterCount={tutorialData.html.chapterCount}
                     difficulty={tutorialData.html.difficulty}
                     headerColor={tutorialData.html.headerColor}
+                    navigateTo={tutorialData.html.navigateTo}
                 />
             </section>
             <section className="tutorial-section">
@@ -25,6 +26,7 @@ export default function Tutorial() {
                     chapterCount={tutorialData.css.chapterCount}
                     difficulty={tutorialData.css.difficulty}
                     headerColor={tutorialData.css.headerColor}
+                    navigateTo={tutorialData.css.navigateTo}
                 />
             </section>
             <section className="tutorial-section">
@@ -35,6 +37,7 @@ export default function Tutorial() {
                     chapterCount={tutorialData.js.chapterCount}
                     difficulty={tutorialData.js.difficulty}
                     headerColor={tutorialData.js.headerColor}
+                    navigateTo={tutorialData.js.navigateTo}
                 />
             </section>
         </div>

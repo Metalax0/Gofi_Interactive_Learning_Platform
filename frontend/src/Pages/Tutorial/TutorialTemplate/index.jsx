@@ -5,10 +5,12 @@ import "./style.css";
 import TextArea from "antd/es/input/TextArea";
 
 const TutorialTemplate = ({ data, state, setState }) => {
+    const [browserTitle, setBrowserTitle] = useState("Title");
     const [isTaskAvailable, setisTaskAvailable] = useState(false);
     const [isAnswerCorrect, setisAnswerCorrect] = useState(false);
     const [open, setOpen] = useState(false);
 
+    const userInputRef = useRef(null);
     const userAnswerRef = useRef(null);
     const RevealAnswerRef = useRef(null);
     const PreviousRef = useRef(null);
@@ -19,22 +21,17 @@ const TutorialTemplate = ({ data, state, setState }) => {
     const browserWindowRef = useRef(null);
 
     useEffect(() => {
-        console.log(open);
-        console.log("STATE", state);
         setOpen(true);
-    }, [state]);
 
-    useEffect(() => {
         data.body.map((item) => {
             if (item.type === "task" && item.content === "") {
                 setisAnswerCorrect(true);
                 setisTaskAvailable(false);
             } else if (item.type === "task" && item.content !== "") {
-                // setisAnswerCorrect(false);
                 setisTaskAvailable(true);
             }
         });
-    });
+    }, [state, data]);
 
     const steps1 = [
         {
@@ -77,12 +74,12 @@ const TutorialTemplate = ({ data, state, setState }) => {
         {
             title: "Guide",
             description: "Answer to the tasks is written here",
-            target: () => NextRef.current,
+            target: () => userInputRef.current,
         },
         {
             title: "Guide",
             description:
-                "The output is displayed here. Red border if incorrect, green if correct answer",
+                "The output is displayed here. Red glow if incorrect, green if correct answer",
             target: () => browserWindowRef.current,
         },
     ];
@@ -109,19 +106,28 @@ const TutorialTemplate = ({ data, state, setState }) => {
         if (content.answer.pattern) {
             const regex = new RegExp(content.answer.pattern);
             if (regex.test(answer)) {
+                //
+                const startIndex = answer.indexOf("<title>") + "<title>".length;
+                const endIndex = answer.indexOf("</title>");
+                setBrowserTitle(answer.slice(startIndex, endIndex));
                 userAnswerRef.current.innerHTML = "";
                 userAnswerRef.current.innerHTML = answer;
                 setisAnswerCorrect(true);
+                browserWindowRef.current.style.boxShadow =
+                    "0px 0px 20px rgb(21, 211, 21)";
             } else {
                 userAnswerRef.current.innerHTML = "Output Will Appear Here";
                 setisAnswerCorrect(false);
+                console.log(browserWindowRef.current);
+                browserWindowRef.current.style.boxShadow =
+                    "0px 0px 20px rgb(211, 21, 21)";
             }
         }
     };
 
     return (
         <div className="tutorial-template">
-            {state === 1 ? (
+            {state === 1 || state === 2 ? (
                 <Tour
                     open={open}
                     onClose={() => setOpen(false)}
@@ -233,17 +239,25 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                         <ProfileOutlined /> {item.content.task}
                                     </label>
                                     {/* Text Area */}
-                                    <TextArea
-                                        className="tutorial-template__content__task__code-box"
-                                        placeholder="Write your answer here"
-                                        style={{
-                                            padding: "10px",
-                                        }}
-                                        onChange={(e) =>
-                                            handleInputChange(e, item.content)
-                                        }
-                                        autoSize={{ minRows: 5, maxRows: 30 }}
-                                    />
+                                    <div ref={userInputRef}>
+                                        <TextArea
+                                            className="tutorial-template__content__task__code-box"
+                                            placeholder="Write your answer here"
+                                            style={{
+                                                padding: "10px",
+                                            }}
+                                            onChange={(e) =>
+                                                handleInputChange(
+                                                    e,
+                                                    item.content
+                                                )
+                                            }
+                                            autoSize={{
+                                                minRows: 5,
+                                                maxRows: 30,
+                                            }}
+                                        />
+                                    </div>
                                 </div>
                             );
                     })}
@@ -258,14 +272,14 @@ const TutorialTemplate = ({ data, state, setState }) => {
                             ></img>
                         </div>
                     ) : (
-                        <div className="tutorial-template__output__browser">
+                        <div
+                            className="tutorial-template__output__browser"
+                            ref={browserWindowRef}
+                        >
                             <div className="tutorial-template__output__browser__top">
-                                <div
-                                    className="tutorial-template__output__browser__title"
-                                    ref={browserWindowRef}
-                                >
+                                <div className="tutorial-template__output__browser__title">
                                     <label className="titletext">
-                                        &#9822; Title
+                                        &#9822; {browserTitle}
                                     </label>
                                     <label>x</label>
                                 </div>

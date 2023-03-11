@@ -125,6 +125,7 @@
     background-color: rgb(252, 247, 247);
     border: 2px solid #2c2a2a;
     border-radius: 5px;
+    box-shadow: 0px 0px 20px rgb(211, 21, 21);
 }
 
 .tutorial-template__output__browser__top {

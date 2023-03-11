@@ -66,33 +66,60 @@ export const tutorialCardData = {
 
 export const htmlTutorialData = [
     {
-        title: "INTRODUCTION TO HTML",
+        title: "1. Introduction To HTML",
         body: [
             {
-                content: "Welcome to the first chapter of HTML tutorial. ",
-                type: "paragraph",
-            },
-            {
                 content:
-                    "So what exactly is HTML? HTML provides structure to the content appearing on a website, such as images, text, or videos. Right-click on any page on the internet, choose “Inspect,” and you’ll see HTML in a panel of your screen.",
+                    "Welcome to the first chapter of HTML tutorial. So what exactly is HTML? HTML provides structure to the content appearing on a website, such as images, text, or videos. Right-click on any page on the internet, choose “Inspect,” and you’ll see HTML in a panel of your screen. This website where you are taking your tutorial was built using HTML.",
                 type: "paragraph",
             },
             {
-                content: "HTML stands for HyperText Markup Language:",
+                content: "Key Points:",
                 type: "paragraph",
             },
             {
                 content: [
-                    "A markup language is a computer language that defines the structure and presentation of raw text.",
-                    "In HTML, the computer can interpret raw text that is wrapped in HTML elements.",
-                    "HyperText is text displayed on a computer or device that provides access to other text through links, also known as hyperlinks. You probably clicked on a couple of hyperlinks on your way to this Codecademy course.",
+                    "HTML stands for HyperText Markup Language",
+                    "It is the standard markup language for creating Web pages",
+                    "It describes the structure of a Web page",
                 ],
                 type: "list",
             },
             {
+                content: "",
+                type: "task",
+            },
+        ],
+    },
+    {
+        title: "2. Elements and Tags",
+        body: [
+            {
                 content:
-                    "Learning HTML is the first step in creating websites, but even a bit of knowledge can help you inject code snippets into newsletter, blog or website templates. As you continue learning, you can layer HTML with CSS and JavaScript to create visually compelling and dynamic websites. But for now, we’re going to focus on how to add and modify basic content on a page, like text, images, and videos. ",
+                    "HTML is made up of tags which are like containers that hold content such as text, images, videos, and links. The content inside these tags is then displayed on a web page when viewed in a web browser.",
                 type: "paragraph",
+            },
+            {
+                content:
+                    "Here's an example of what a basic HTML tag looks like:",
+                type: "paragraph",
+            },
+            {
+                content: "<p> This is a paragraph </p>",
+                type: "code",
+            },
+            {
+                content: "HTML stands for HyperText Markup Language",
+                type: "paragraph",
+            },
+            {
+                content: [
+                    "HTML stands for HyperText Markup Language",
+                    "A markup language is a computer language that defines the structure and presentation of raw text.",
+                    "In HTML, the computer can interpret raw text that is wrapped in HTML elements.",
+                    "HyperText is text displayed on a computer or device that provides access to other text through links, also known as hyperlinks. You probably clicked on a couple of hyperlinks on your way to this course.",
+                ],
+                type: "list",
             },
             {
                 content: {

@@ -4,6 +4,7 @@ import { ProfileOutlined } from "@ant-design/icons";
 import "./style.css";
 
 const TutorialTemplate = ({ data, state, setState }) => {
+    const [isTaskAvailable, setisTaskAvailable] = useState(false);
     const [isAnswerCorrect, setisAnswerCorrect] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -19,6 +20,18 @@ const TutorialTemplate = ({ data, state, setState }) => {
         setOpen(true);
     }, []);
 
+    useEffect(() => {
+        data.body.map((item) => {
+            if (item.type === "task" && item.content === "") {
+                setisAnswerCorrect(true);
+                setisTaskAvailable(false);
+            } else if (item.type === "task" && item.content !== "") {
+                setisAnswerCorrect(false);
+                setisTaskAvailable(true);
+            }
+        });
+    });
+
     const steps = [
         {
             title: "Guide",
@@ -27,12 +40,13 @@ const TutorialTemplate = ({ data, state, setState }) => {
         },
         {
             title: "Guide",
-            description: "Each pages will contain tasks like this",
-            target: () => TaskRef.current,
+            description:
+                "Some pages will contain tasks with certain instructions",
         },
         {
             title: "Guide",
-            description: "Output of the tasks is displayed here",
+            description:
+                "Output of the tasks is displayed here (if task is available)",
             target: () => OutputRef.current,
         },
         {
@@ -64,6 +78,10 @@ const TutorialTemplate = ({ data, state, setState }) => {
 
     const handleNext = () => {
         setState(state + 1);
+    };
+
+    const handleEditorChange = (e) => {
+        // console.log(e);
     };
 
     const handleInputChange = (e, content) => {
@@ -119,7 +137,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                 </ul>
                             );
                         else if (item.type === "task")
-                            return (
+                            return item.content === "" ? null : (
                                 <div
                                     className="tutorial-template__content__task"
                                     key={key}
@@ -134,6 +152,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                     <label>
                                         <ProfileOutlined /> {item.content.task}
                                     </label>
+                                    {/* Text Area */}
                                     <Input
                                         prefix="<h1>"
                                         suffix="</h1>"
@@ -152,13 +171,17 @@ const TutorialTemplate = ({ data, state, setState }) => {
                     })}
                 </div>
                 <div className="tutorial-template__output" ref={OutputRef}>
-                    <div className="html-cl1__output" ref={userAnswerRef}>
+                    <div className="html-output" ref={userAnswerRef}>
                         Output Will Appear Here
                     </div>
                 </div>
             </div>
             <div className="tutorial-template__botton">
-                <Button onClick={handleReveal} ref={RevealAnswerRef}>
+                <Button
+                    disabled={isTaskAvailable ? false : true}
+                    onClick={handleReveal}
+                    ref={RevealAnswerRef}
+                >
                     Reveal Answer
                 </Button>
                 <Button

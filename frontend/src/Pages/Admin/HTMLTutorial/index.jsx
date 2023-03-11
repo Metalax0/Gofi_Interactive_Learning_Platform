@@ -5,6 +5,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Cookies from "universal-cookie";
 import { handleAddHtmlChapter } from "../../../Functions/handleAddHtmlChapter";
+
 import "./style.css";
 
 const cookies = new Cookies();

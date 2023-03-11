@@ -227,6 +227,16 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                         })}
                                 </div>
                             );
+                        else if (item.type === "codeOutput")
+                            return (
+                                <div
+                                    className="tutorial-template__content__code-output"
+                                    key={key}
+                                    dangerouslySetInnerHTML={{
+                                        __html: item.content,
+                                    }}
+                                ></div>
+                            );
                         else if (item.type === "task") {
                             return item.content === "" ? null : (
                                 <div
@@ -243,7 +253,6 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                     <label>
                                         <ProfileOutlined /> {item.content.task}
                                     </label>
-                                    {/* Text Area */}
                                     <div ref={userInputRef}>
                                         <TextArea
                                             className="tutorial-template__content__task__code-box"
@@ -271,7 +280,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                 </div>
                 <div className="tutorial-template__output" ref={OutputRef}>
                     {data.body[data.body.length - 1].type === "outputImage" ? (
-                        <div className="html-output" ref={userAnswerRef}>
+                        <div className="html-output">
                             <img
                                 className="tutorial-template__output__img"
                                 src={data.body[data.body.length - 1].content}

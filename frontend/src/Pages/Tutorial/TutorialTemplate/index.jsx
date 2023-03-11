@@ -16,10 +16,13 @@ const TutorialTemplate = ({ data, state, setState }) => {
     const TutorialRef = useRef(null);
     const OutputRef = useRef(null);
     const TaskRef = useRef(null);
+    const browserWindowRef = useRef(null);
 
     useEffect(() => {
+        console.log(open);
+        console.log("STATE", state);
         setOpen(true);
-    }, []);
+    }, [state]);
 
     useEffect(() => {
         data.body.map((item) => {
@@ -33,16 +36,11 @@ const TutorialTemplate = ({ data, state, setState }) => {
         });
     });
 
-    const steps = [
+    const steps1 = [
         {
             title: "Guide",
             description: "Learning portion of the tutorial takes place here",
             target: () => TutorialRef.current,
-        },
-        {
-            title: "Guide",
-            description:
-                "Some pages will contain tasks with certain instructions",
         },
         {
             title: "Guide",
@@ -66,6 +64,26 @@ const TutorialTemplate = ({ data, state, setState }) => {
             description:
                 "Click this to go to next chapter. Disabled if incorrect answer",
             target: () => NextRef.current,
+        },
+    ];
+
+    const steps2 = [
+        {
+            title: "Guide",
+            description:
+                "Some pages will contain tasks with certain instructions like this",
+            target: () => TaskRef.current,
+        },
+        {
+            title: "Guide",
+            description: "Answer to the tasks is written here",
+            target: () => NextRef.current,
+        },
+        {
+            title: "Guide",
+            description:
+                "The output is displayed here. Red border if incorrect, green if correct answer",
+            target: () => browserWindowRef.current,
         },
     ];
 
@@ -94,7 +112,10 @@ const TutorialTemplate = ({ data, state, setState }) => {
                 userAnswerRef.current.innerHTML = "";
                 userAnswerRef.current.innerHTML = answer;
                 setisAnswerCorrect(true);
-            } else setisAnswerCorrect(false);
+            } else {
+                userAnswerRef.current.innerHTML = "Output Will Appear Here";
+                setisAnswerCorrect(false);
+            }
         }
     };
 
@@ -104,7 +125,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                 <Tour
                     open={open}
                     onClose={() => setOpen(false)}
-                    steps={steps}
+                    steps={state === 1 ? steps1 : steps2}
                 />
             ) : null}
 
@@ -237,12 +258,12 @@ const TutorialTemplate = ({ data, state, setState }) => {
                             ></img>
                         </div>
                     ) : (
-                        <div
-                            className="tutorial-template__output__browser"
-                            ref={userAnswerRef}
-                        >
+                        <div className="tutorial-template__output__browser">
                             <div className="tutorial-template__output__browser__top">
-                                <div className="tutorial-template__output__browser__title">
+                                <div
+                                    className="tutorial-template__output__browser__title"
+                                    ref={browserWindowRef}
+                                >
                                     <label className="titletext">
                                         &#9822; Title
                                     </label>
@@ -260,7 +281,10 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="tutorial-template__output__browser__body">
+                            <div
+                                className="tutorial-template__output__browser__body"
+                                ref={userAnswerRef}
+                            >
                                 Output Will Appear Here
                             </div>
                         </div>

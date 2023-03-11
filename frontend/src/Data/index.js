@@ -128,10 +128,10 @@ export const htmlTutorialData = [
             },
             {
                 content: {
-                    task: "Compose an HTML document that consists of a paragraph with the text 'Today I learned about elements' ",
+                    task: "Compose an HTML document that consists of a heading (<h1></h1>) with any text of your choice. ",
                     answer: {
                         pattern:
-                            "^<html>[\\s\\S]*?<head>[\\s\\S]*?<title>[\\s\\S]*?<\\/title>[\\s\\S]*?<\\/head>[\\s\\S]*?<body>[\\s\\S]*?<h1>[\\s\\S]*?<\\/h1>[\\s\\S]*?<\\/body>[\\s\\S]*?<\\/html>$",
+                            "^<!DOCTYPE html>[\\s\\S]<html>[\\s\\S]<head>[\\s\\S]<title>[\\s\\S]*?<\\/title>[\\s\\S]<\\/head>[\\s\\S]<body>[\\s\\S]*?<h1>[\\s\\S]*?<\\/h1>[\\s\\S]*?<\\/body>[\\s\\S]<\\/html>$",
                         text: `
 <!DOCTYPE html> 
 <html>

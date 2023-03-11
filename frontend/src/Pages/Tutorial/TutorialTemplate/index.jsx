@@ -5,6 +5,7 @@ import "./style.css";
 import TextArea from "antd/es/input/TextArea";
 
 const TutorialTemplate = ({ data, state, setState }) => {
+    const [textAreaValue, settextAreaValue] = useState("");
     const [browserTitle, setBrowserTitle] = useState("Title");
     const [isTaskAvailable, setisTaskAvailable] = useState(false);
     const [isAnswerCorrect, setisAnswerCorrect] = useState(false);
@@ -22,12 +23,20 @@ const TutorialTemplate = ({ data, state, setState }) => {
 
     useEffect(() => {
         setOpen(true);
-
+        if (browserWindowRef.current) {
+            browserWindowRef.current.style.boxShadow =
+                "0px 0px 20px rgb(211, 21, 21)";
+        }
+        if (userAnswerRef.current) {
+            userAnswerRef.current.innerHTML = "Output Will Appear Here";
+        }
         data.body.map((item) => {
             if (item.type === "task" && item.content === "") {
                 setisAnswerCorrect(true);
                 setisTaskAvailable(false);
             } else if (item.type === "task" && item.content !== "") {
+                settextAreaValue(item.content.answer.value);
+                setisAnswerCorrect(false);
                 setisTaskAvailable(true);
             }
         });
@@ -96,11 +105,8 @@ const TutorialTemplate = ({ data, state, setState }) => {
         setState(state + 1);
     };
 
-    const handleEditorChange = (e) => {
-        // console.log(e);
-    };
-
     const handleInputChange = (e, content) => {
+        settextAreaValue(e.target.value);
         const answer = e.target.value.replace(/[\n\r\s]+/g, " ").trim();
 
         if (content.answer.pattern) {
@@ -118,7 +124,6 @@ const TutorialTemplate = ({ data, state, setState }) => {
             } else {
                 userAnswerRef.current.innerHTML = "Output Will Appear Here";
                 setisAnswerCorrect(false);
-                console.log(browserWindowRef.current);
                 browserWindowRef.current.style.boxShadow =
                     "0px 0px 20px rgb(211, 21, 21)";
             }
@@ -222,7 +227,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                         })}
                                 </div>
                             );
-                        else if (item.type === "task")
+                        else if (item.type === "task") {
                             return item.content === "" ? null : (
                                 <div
                                     className="tutorial-template__content__task"
@@ -256,10 +261,12 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                                 minRows: 5,
                                                 maxRows: 30,
                                             }}
+                                            value={textAreaValue}
                                         />
                                     </div>
                                 </div>
                             );
+                        }
                     })}
                 </div>
                 <div className="tutorial-template__output" ref={OutputRef}>
@@ -321,7 +328,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                     Previous
                 </Button>
                 <Button
-                    disabled={isAnswerCorrect ? false : true}
+                    // disabled={isAnswerCorrect ? false : true}
                     onClick={handleNext}
                     ref={NextRef}
                 >

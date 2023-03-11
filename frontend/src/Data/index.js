@@ -127,6 +127,11 @@ export const htmlTutorialData = [
                 type: "list",
             },
             {
+                content:
+                    "We will learn about elements in the next chapter so these might not make sense at the moment.",
+                type: "paragraph",
+            },
+            {
                 content: {
                     task: "Compose an HTML document that consists of a heading (<h1></h1>) with any text of your choice. ",
                     answer: {
@@ -150,7 +155,124 @@ export const htmlTutorialData = [
         ],
     },
     {
-        title: "3. Elements",
+        title: "3. Elements - Overview",
+        body: [
+            {
+                content:
+                    "HTML is made up of elements which are like containers that hold content such as text, images, videos, and links. The content inside these elements is then displayed on a web page when viewed in a web browser. Here's an example of what a basic HTML element looks like :",
+                type: "paragraph",
+            },
+            {
+                content: "<p> Hello World </p>  ",
+                type: "code",
+            },
+            {
+                content:
+                    "An element is composed of three components - opening tag, content and closing tag. In the example above, 'Hello World' is a content, <p> and </p> are opening and closing tags respectively. Tags are enclosed inside angle brackets (<>). Some things to keep in mind : ",
+                type: "paragraph",
+            },
+            {
+                content: [
+                    "HTML has predefined collection of elements so you cannot make your own tags and elements.",
+                    "Each elements will behave differently so you cannot switch between tags and expect exact behaviour.",
+                ],
+                type: "list",
+            },
+            {
+                content:
+                    "Now that we learned about what makes up an html document, we will learn about different types of elements in the next chapter.",
+                type: "paragraph",
+            },
+            {
+                content: {
+                    task: "Compose an HTML document that consists of a paragraph (p) with the text 'Today I learned about elements' ",
+                    prefix: "<h1>",
+                    suffix: "</h1>",
+                    answer: {
+                        pattern:
+                            "^<!DOCTYPE html>[\\s\\S]<html>[\\s\\S]<head>[\\s\\S]<title>[\\s\\S]*?<\\/title>[\\s\\S]<\\/head>[\\s\\S]<body>[\\s\\S]*?<p>[\\s\\S]*?<\\/p>[\\s\\S]*?<\\/body>[\\s\\S]<\\/html>$",
+                        text: `
+<!DOCTYPE html> 
+<html>
+  <head>
+    <title>Page Title</title>
+  </head>
+  <body>
+    <h1>My first heading</h1>
+  </body>
+</html>`,
+                    },
+                },
+                type: "task",
+                width: "60%",
+            },
+        ],
+    },
+    {
+        title: "4. Elements - heading, paragraph",
+        body: [
+            {
+                content:
+                    "HTML is made up of elements which are like containers that hold content such as text, images, videos, and links. The content inside these elements is then displayed on a web page when viewed in a web browser. Here's an example of what a basic HTML element looks like :",
+                type: "paragraph",
+            },
+            {
+                content: "<p> Hello World </p>  ",
+                type: "code",
+            },
+            {
+                content:
+                    "An element is composed of three components - opening tag, content and closing tag. In the example above, 'Hello World' is a content, <p> and </p> are opening and closing tags respectively. Tags are enclosed inside angle brackets (<>). Some things to keep in mind : ",
+                type: "paragraph",
+            },
+            {
+                content: [
+                    "HTML has predefined collection of elements so you cannot make your own tags and elements.",
+                    "Each elements will behave differently so you cannot switch between tags and expect exact behaviour.",
+                ],
+                type: "list",
+            },
+            {
+                content:
+                    "Now that we learned about what makes up an html document, we will learn about different types of elements in the next chapter.",
+                type: "paragraph",
+            },
+            {
+                content: {
+                    task: "Compose an HTML document that consists of a paragraph with the text 'Today I learned about elements' ",
+                    prefix: "<h1>",
+                    suffix: "</h1>",
+                    answer: {
+                        pattern:
+                            "^<!DOCTYPE html>[\\s\\S]<html>[\\s\\S]<head>[\\s\\S]<title>[\\s\\S]*?<\\/title>[\\s\\S]<\\/head>[\\s\\S]<body>[\\s\\S]*?<p>Today I learned about elements<\\/p>[\\s\\S]*?<\\/body>[\\s\\S]<\\/html>$",
+                        text: `
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>Today I learned about elements</title>
+    </head>
+    <body>
+                                                        
+    </body>
+</html>`,
+                        value: `<!DOCTYPE html> 
+<html>
+    <head>
+        <title>Page Title</title>
+    </head>
+    <body>
+                            
+    </body>
+</html>`,
+                    },
+                },
+                type: "task",
+                width: "60%",
+            },
+        ],
+    },
+    {
+        title: "4. Elements - image, anchor",
         body: [
             {
                 content:

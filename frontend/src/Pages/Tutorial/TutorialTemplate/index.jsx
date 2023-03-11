@@ -23,6 +23,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
 
     useEffect(() => {
         setOpen(true);
+
         if (browserWindowRef.current) {
             browserWindowRef.current.style.boxShadow =
                 "0px 0px 20px rgb(211, 21, 21)";
@@ -35,11 +36,13 @@ const TutorialTemplate = ({ data, state, setState }) => {
                 setisAnswerCorrect(true);
                 setisTaskAvailable(false);
             } else if (item.type === "task" && item.content !== "") {
+                setBrowserTitle("TItle Here");
                 settextAreaValue(item.content.answer.value);
                 setisAnswerCorrect(false);
                 setisTaskAvailable(true);
             }
         });
+        if (state === 9) setisAnswerCorrect(false);
     }, [state, data]);
 
     const steps1 = [
@@ -139,7 +142,6 @@ const TutorialTemplate = ({ data, state, setState }) => {
                     steps={state === 1 ? steps1 : steps2}
                 />
             ) : null}
-
             <div className="tutorial-template__top">
                 <div className="tutorial-template__content" ref={TutorialRef}>
                     <label className="tutorial__content__label">LEARN</label>
@@ -337,7 +339,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                     Previous
                 </Button>
                 <Button
-                    // disabled={isAnswerCorrect ? false : true}
+                    disabled={isAnswerCorrect ? false : true}
                     onClick={handleNext}
                     ref={NextRef}
                 >

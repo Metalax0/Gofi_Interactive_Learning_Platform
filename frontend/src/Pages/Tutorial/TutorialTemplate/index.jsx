@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button, Input, Tour } from "antd";
 import { ProfileOutlined } from "@ant-design/icons";
 import "./style.css";
+import TextArea from "antd/es/input/TextArea";
 
 const TutorialTemplate = ({ data, state, setState }) => {
     const [isTaskAvailable, setisTaskAvailable] = useState(false);
@@ -26,7 +27,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                 setisAnswerCorrect(true);
                 setisTaskAvailable(false);
             } else if (item.type === "task" && item.content !== "") {
-                setisAnswerCorrect(false);
+                // setisAnswerCorrect(false);
                 setisTaskAvailable(true);
             }
         });
@@ -85,17 +86,15 @@ const TutorialTemplate = ({ data, state, setState }) => {
     };
 
     const handleInputChange = (e, content) => {
-        let answer = e.target.value;
-        if (content.prefix) answer = content.prefix + answer;
-        if (content.suffix) answer = answer + content.suffix;
+        const answer = e.target.value.replace(/[\n\r\s]+/g, " ").trim();
+
         if (content.answer.pattern) {
-            const pattern = new RegExp(content.answer.pattern);
-            if (pattern.test(answer)) {
+            const regex = new RegExp(content.answer.pattern);
+            if (regex.test(answer)) {
+                userAnswerRef.current.innerHTML = "";
                 userAnswerRef.current.innerHTML = answer;
                 setisAnswerCorrect(true);
             } else setisAnswerCorrect(false);
-        } else {
-            userAnswerRef.current.innerHTML = answer;
         }
     };
 
@@ -136,6 +135,66 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                     })}
                                 </ul>
                             );
+                        else if (item.type === "code")
+                            return (
+                                <div
+                                    className="tutorial-template__content__code"
+                                    key={key}
+                                >
+                                    {item.content
+                                        .split("\n")
+                                        .map((line, index) => {
+                                            if (line.trim().startsWith("<")) {
+                                                const parts =
+                                                    line.split(/(<.*?>)/);
+                                                return (
+                                                    <span key={index}>
+                                                        {parts.map(
+                                                            (part, i) => {
+                                                                if (
+                                                                    part.match(
+                                                                        /(<.*?>)/
+                                                                    )
+                                                                ) {
+                                                                    return (
+                                                                        <span
+                                                                            key={
+                                                                                i
+                                                                            }
+                                                                            style={{
+                                                                                color: "#eb4034",
+                                                                            }}
+                                                                        >
+                                                                            {
+                                                                                part
+                                                                            }
+                                                                        </span>
+                                                                    );
+                                                                } else {
+                                                                    return part.replace(
+                                                                        /\t/g,
+                                                                        "\u00a0\u00a0\u00a0\u00a0"
+                                                                    );
+                                                                }
+                                                            }
+                                                        )}
+                                                        <br />
+                                                    </span>
+                                                );
+                                            } else {
+                                                return (
+                                                    <React.Fragment key={index}>
+                                                        {line.replace(
+                                                            /\t/g,
+                                                            "\u00a0\u00a0\u00a0\u00a0"
+                                                        )}
+                                                        <br />
+                                                    </React.Fragment>
+                                                );
+                                            }
+                                        })}
+                                </div>
+                            );
                         else if (item.type === "task")
                             return item.content === "" ? null : (
                                 <div
@@ -153,27 +212,59 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                         <ProfileOutlined /> {item.content.task}
                                     </label>
                                     {/* Text Area */}
-                                    <Input
-                                        prefix="<h1>"
-                                        suffix="</h1>"
-                                        placeholder=" Write Something Here"
+                                    <TextArea
+                                        className="tutorial-template__content__task__code-box"
+                                        placeholder="Write your answer here"
+                                        style={{
+                                            padding: "10px",
+                                        }}
                                         onChange={(e) =>
                                             handleInputChange(e, item.content)
                                         }
-                                        allowClear
-                                        style={{
-                                            width: item.width,
-                                            padding: "5px",
-                                        }}
+                                        autoSize={{ minRows: 5, maxRows: 30 }}
                                     />
                                 </div>
                             );
                     })}
                 </div>
                 <div className="tutorial-template__output" ref={OutputRef}>
-                    <div className="html-output" ref={userAnswerRef}>
-                        Output Will Appear Here
-                    </div>
+                    {data.body[data.body.length - 1].type === "outputImage" ? (
+                        <div className="html-output" ref={userAnswerRef}>
+                            <img
+                                className="tutorial-template__output__img"
+                                src={data.body[data.body.length - 1].content}
+                                alt="html img"
+                            ></img>
+                        </div>
+                    ) : (
+                        <div
+                            className="tutorial-template__output__browser"
+                            ref={userAnswerRef}
+                        >
+                            <div className="tutorial-template__output__browser__top">
+                                <div className="tutorial-template__output__browser__title">
+                                    <label className="titletext">
+                                        &#9822; Title
+                                    </label>
+                                    <label>x</label>
+                                </div>
+                                <div className="tutorial-template__output__browser__buttons">
+                                    <div className="tutorial-template__output__browser__output__browser__item">
+                                        -
+                                    </div>
+                                    <div className="tutorial-template__output__browser__output__browser__item">
+                                        &#10064;
+                                    </div>
+                                    <div className="tutorial-template__output__browser__output__browser__item">
+                                        x
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="tutorial-template__output__browser__body">
+                                Output Will Appear Here
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="tutorial-template__botton">

@@ -89,36 +89,149 @@ export const htmlTutorialData = [
                 content: "",
                 type: "task",
             },
+            {
+                content:
+                    "https://blog.stackfindover.com/wp-content/uploads/2021/02/what-is-html.jpg",
+                type: "outputImage",
+            },
         ],
     },
     {
-        title: "2. Elements and Tags",
+        title: "2. Document Structure",
         body: [
             {
                 content:
-                    "HTML is made up of tags which are like containers that hold content such as text, images, videos, and links. The content inside these tags is then displayed on a web page when viewed in a web browser.",
+                    "Every html document follows certain structure. An example of HTML document is as follows :",
                 type: "paragraph",
             },
             {
-                content:
-                    "Here's an example of what a basic HTML tag looks like:",
-                type: "paragraph",
-            },
-            {
-                content: "<p> This is a paragraph </p>",
+                content: `<!DOCTYPE html> 
+<html>
+  <head>
+    <title>Page Title</title>
+  </head>
+  <body>
+    <h1>Heading 1</h1>
+  </body>
+</html>`,
                 type: "code",
             },
             {
-                content: "HTML stands for HyperText Markup Language",
+                content: [
+                    "<!DOCTYPE html> - Notifies browser that the document / code is HTML",
+                    "<html> - root element of the document, and all other elements will be contained within it.",
+                    "<head> - contains page title, keywords, and other information that is not displayed on the webpage itself.",
+                    "<title> sets the title of the webpage, which is displayed in the browser's title bar.",
+                    "<body> contains the content of the webpage that will be displayed in the browser.",
+                ],
+                type: "list",
+            },
+            {
+                content: {
+                    task: "Compose an HTML document that consists of a paragraph with the text 'Today I learned about elements' ",
+                    answer: {
+                        pattern:
+                            "^<html>[\\s\\S]*?<head>[\\s\\S]*?<title>[\\s\\S]*?<\\/title>[\\s\\S]*?<\\/head>[\\s\\S]*?<body>[\\s\\S]*?<h1>[\\s\\S]*?<\\/h1>[\\s\\S]*?<\\/body>[\\s\\S]*?<\\/html>$",
+                        text: `
+<!DOCTYPE html> 
+<html>
+  <head>
+    <title>Page Title</title>
+  </head>
+  <body>
+    <h1>My first heading</h1>
+  </body>
+</html>`,
+                    },
+                },
+                type: "task",
+                width: "60%",
+            },
+        ],
+    },
+    {
+        title: "3. Elements",
+        body: [
+            {
+                content:
+                    "HTML is made up of elements which are like containers that hold content such as text, images, videos, and links. The content inside these elements is then displayed on a web page when viewed in a web browser. Here's an example of what a basic HTML element looks like :",
+                type: "paragraph",
+            },
+            {
+                content: "<p> Hello World </p>  ",
+                type: "code",
+            },
+            {
+                content:
+                    "An element is composed of three components - opening tag, content and closing tag. In the example above, 'Hello World' is a content, <p> and </p> are opening and closing tags respectively. Tags are enclosed inside angle brackets (<>). Some things to keep in mind : ",
                 type: "paragraph",
             },
             {
                 content: [
-                    "HTML stands for HyperText Markup Language",
-                    "A markup language is a computer language that defines the structure and presentation of raw text.",
-                    "In HTML, the computer can interpret raw text that is wrapped in HTML elements.",
-                    "HyperText is text displayed on a computer or device that provides access to other text through links, also known as hyperlinks. You probably clicked on a couple of hyperlinks on your way to this course.",
+                    "HTML has predefined collection of elements so you cannot make your own tags and elements.",
+                    "Each elements will behave differently so you cannot switch between tags and expect exact behaviour.",
                 ],
+                type: "list",
+            },
+            {
+                content:
+                    "Now that we learned about what makes up an html document, we will learn about different types of elements in the next chapter.",
+                type: "paragraph",
+            },
+            {
+                content: {
+                    task: "Compose an HTML document that consists of a paragraph with the text 'Today I learned about elements' ",
+                    prefix: "<h1>",
+                    suffix: "</h1>",
+                    answer: {
+                        pattern: "<h1>([a-zA-Z0-9\\s]+)</h1>",
+                        text: "Sampanna Pokharel",
+                    },
+                },
+                type: "task",
+                width: "60%",
+            },
+        ],
+    },
+    {
+        title: "5. Nesting",
+        body: [
+            {
+                content:
+                    "When an element is contained inside another element, it is considered the child of that element. This is known as Element Nesting. Since there can be multiple levels of nesting, this analogy can be extended to grandchildren, great-grandchildren, and beyond. ",
+                type: "paragraph",
+            },
+            {
+                content: "asdf",
+                type: "paragraph",
+            },
+            {
+                content: "",
+                type: "code",
+            },
+            {
+                content: [" ", " "],
+                type: "list",
+            },
+        ],
+    },
+    {
+        title: "NA. Template",
+        body: [
+            {
+                content: "",
+                type: "paragraph",
+            },
+            {
+                content: "",
+                type: "code",
+            },
+            {
+                content: "",
+                type: "paragraph",
+            },
+            {
+                content: [" ", " ", " "],
                 type: "list",
             },
             {

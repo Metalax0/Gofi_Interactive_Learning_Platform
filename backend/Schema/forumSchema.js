@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const validCategories = ["General", "HTML", "CSS", "JavaScript"];
+
 // This code will create a table/collection if table with that name does not exist
 const forumSchema = new mongoose.Schema({
     title: { type: String, required: true },
@@ -13,6 +15,12 @@ const forumSchema = new mongoose.Schema({
         fullName: { type: String, required: true },
     },
     tag: { type: String, required: true },
+    category: {
+        type: String,
+        enum: validCategories,
+        required: true,
+        default: "General",
+    },
     comments: [
         {
             author_id: {

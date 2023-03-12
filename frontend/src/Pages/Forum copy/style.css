@@ -1,0 +1,35 @@
+* {
+    /* outline: 1px solid red; */
+}
+
+.forum-page {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.forum-page__left {
+    flex-basis: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10% 0px;
+    gap: 20px;
+}
+
+.forum-page__right {
+    border: 1px solid black;
+    flex-basis: 75%;
+    height: 700px;
+    overflow-y: auto;
+    overflow-x: none;
+    box-shadow: 3px 3px 10px #888888;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

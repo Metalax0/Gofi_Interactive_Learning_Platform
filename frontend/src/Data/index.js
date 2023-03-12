@@ -68,6 +68,46 @@ export const tutorialCardData = {
     },
 };
 
+export const forumCardData = {
+    create: {
+        headerText: "Create",
+        bodyTitle: "Ask the community",
+        bodyText:
+            "Stuck in a problem? Got any questions related to the tutorials or programming in general? Click on this card to ask questions to the community and clear your doubts.",
+        chapterCount: 5,
+        reward: "Badges and points provided on post creation",
+        headerColor: "#ff907c",
+        navigateTo: "/forum/create",
+    },
+    browse: {
+        headerText: "Browse",
+        bodyTitle: "See what others are saying",
+        bodyText:
+            "Dive into community forum and view posts made by others. Search for posts based on several categories, tags and title. You can answer others questions as well",
+        chapterCount: 5,
+        reward: "Badges and points provided on interraction",
+        headerColor: "#7cf0ff",
+        progress: {
+            postsCount: 1,
+        },
+        navigateTo: "/forum/browse",
+    },
+    view: {
+        headerText: "View",
+        bodyTitle: "My Posts",
+        bodyText:
+            "Asked a question a while ago but can't seem to find it? Click here to view all of your post details. You can also delete posts.",
+        chapterCount: 5,
+        reward: "No Badges or points",
+        headerColor: "#ffe77c",
+        progress: {
+            totalPosts: 1,
+            totalComments: 1,
+        },
+        navigateTo: "/forum/view",
+    },
+};
+
 export const htmlTutorialData = [
     {
         title: "1. Introduction To HTML",
@@ -637,6 +677,7 @@ export const cssTutorialData = [
                     },
                 },
                 type: "task",
+                width: "60%",
             },
         ],
     },

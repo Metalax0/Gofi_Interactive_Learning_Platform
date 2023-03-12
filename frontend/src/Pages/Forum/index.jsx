@@ -1,52 +1,47 @@
-import { Button, Radio, Space, Tabs } from "antd";
-import React, { useState } from "react";
-import CreatePost from "./CreatePost";
-import ViewAllPost from "./ViewAllPost";
+import React from "react";
+import ForumCard from "../../Components/ForumCard";
+import { forumCardData } from "../../Data";
 import "./style.css";
 
 export default function Forum() {
-    const [activeTab, setactiveTab] = useState(0);
-    const tabList = [<ViewAllPost />, <CreatePost />];
-
-    const useEffect =
-        (() => {
-            //
-        },
-        []);
-
-    const handleCreatePost = () => {
-        console.log("create");
-    };
-
-    const handleViewAll = () => {
-        console.log("view");
-    };
-
-    const handleDeletePost = () => {
-        console.log("delete");
-    };
-
     return (
         <div className="forum-page">
-            <div className="forum-page__left">
-                <Button
-                    type="primary"
-                    size="large"
-                    block
-                    onClick={() => setactiveTab(0)}
-                >
-                    View All
-                </Button>
-                <Button
-                    type="default"
-                    size="large"
-                    block
-                    onClick={() => setactiveTab(1)}
-                >
-                    Create Post
-                </Button>
-            </div>
-            <div className="forum-page__right">{tabList[activeTab]}</div>
+            <section className="forum-section">
+                <ForumCard
+                    headerText={forumCardData.create.headerText}
+                    bodyTitle={forumCardData.create.bodyTitle}
+                    bodyText={forumCardData.create.bodyText}
+                    chapterCount={forumCardData.create.chapterCount}
+                    reward={forumCardData.create.reward}
+                    headerColor={forumCardData.create.headerColor}
+                    progress={forumCardData.create.progress}
+                    navigateTo={forumCardData.create.navigateTo}
+                />
+            </section>
+            <section className="forum-section">
+                <ForumCard
+                    headerText={forumCardData.browse.headerText}
+                    bodyTitle={forumCardData.browse.bodyTitle}
+                    bodyText={forumCardData.browse.bodyText}
+                    chapterCount={forumCardData.browse.chapterCount}
+                    reward={forumCardData.browse.reward}
+                    headerColor={forumCardData.browse.headerColor}
+                    progress={forumCardData.browse.progress}
+                    navigateTo={forumCardData.browse.navigateTo}
+                />
+            </section>
+            <section className="forum-section">
+                <ForumCard
+                    headerText={forumCardData.view.headerText}
+                    bodyTitle={forumCardData.view.bodyTitle}
+                    bodyText={forumCardData.view.bodyText}
+                    chapterCount={forumCardData.view.chapterCount}
+                    reward={forumCardData.view.reward}
+                    headerColor={forumCardData.view.headerColor}
+                    progress={forumCardData.view.progress}
+                    navigateTo={forumCardData.view.navigateTo}
+                />
+            </section>
         </div>
     );
 }

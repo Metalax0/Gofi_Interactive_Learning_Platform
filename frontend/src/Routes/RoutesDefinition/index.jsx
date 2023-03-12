@@ -15,6 +15,8 @@ import AdminHTMLTutorial from "../../Pages/Admin/HTMLTutorial";
 import TutorialHTML from "../../Pages/Tutorial/HTML";
 import TutorialCSS from "../../Pages/Tutorial/CSS";
 import TutorialJS from "../../Pages/Tutorial/JS";
+import CreatePost from "../../Pages/Forum/CreatePost";
+import ViewAllPost from "../../Pages/Forum/ViewAllPost";
 
 export default function RoutesDefinition() {
     return (
@@ -50,7 +52,31 @@ export default function RoutesDefinition() {
                     }
                 />
                 <Route
-                    path="/Forum"
+                    path="/forum"
+                    element={
+                        <ProtectedRoutes>
+                            <Forum />
+                        </ProtectedRoutes>
+                    }
+                />
+                <Route
+                    path="/forum/create"
+                    element={
+                        <ProtectedRoutes>
+                            <CreatePost />
+                        </ProtectedRoutes>
+                    }
+                />
+                <Route
+                    path="/forum/browse"
+                    element={
+                        <ProtectedRoutes>
+                            <ViewAllPost />
+                        </ProtectedRoutes>
+                    }
+                />
+                <Route
+                    path="/forum/view"
                     element={
                         <ProtectedRoutes>
                             <Forum />

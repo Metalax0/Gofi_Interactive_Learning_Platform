@@ -28,6 +28,8 @@ export default function ViewAllPost() {
         handleGetAllPost(config).then((res) => setallPostData(res.data));
     };
 
+    console.log("ALL POST DATA", allPostData);
+
     const handleCommentSubmit = async (i) => {
         const postID = allPostData[i]._id;
         const authorName = JSON.parse(
@@ -50,79 +52,84 @@ export default function ViewAllPost() {
         if (isCommentAdded) getAllPostData();
     };
 
-    return allPostData.map((post, i) => {
-        const totalComments = post.comments.length;
-        const totalPoints = post.likes.length;
-        return (
-            <Collapse className="view-all-post" key={i}>
-                <Panel
-                    header={
-                        <ForumPostCard
-                            key={i}
-                            post={post}
-                            totalComments={totalComments}
-                            totalPoints={totalPoints}
-                        />
-                    }
-                >
-                    <div className="view-all-post__comments">
-                        <div className="view-all-post__comments__write">
-                            <Input
-                                size="large"
-                                placeholder="Write Your Comment"
-                                prefix={<CommentOutlined />}
-                                onChange={(e) =>
-                                    setcommentInput(e.target.value)
-                                }
-                            />
-                            <Button
-                                type="primary"
-                                onClick={() => handleCommentSubmit(i)}
-                            >
-                                Comment
-                            </Button>
-                        </div>
-                        <div className="view-all-post__comments__view">
-                            {post.comments
-                                ? [...post.comments]
-                                      .reverse()
-                                      .map((comment, j) => (
-                                          <div
-                                              className="view-all-post__comments__view__comment"
-                                              key={j}
-                                          >
-                                              <small>
-                                                  {new Date(
-                                                      comment.datePublished
-                                                  )
-                                                      .toISOString()
-                                                      .substring(0, 10)}
-                                              </small>
-                                              <img
-                                                  src={
-                                                      comment.author_id
-                                                          .profileImg
-                                                  }
-                                                  alt="user Img"
-                                              ></img>
-                                              <label>
-                                                  <i>
-                                                      {
-                                                          comment.authorName.split(
-                                                              " "
-                                                          )[0]
-                                                      }
-                                                  </i>{" "}
-                                                  -{" "}
-                                              </label>
-                                              <p>{comment.body}</p>
-                                          </div>
-                                      ))
-                                : null}
-                        </div>
-                    </div>
-                </Panel>
-            </Collapse>
-        );
-    });
+    return (
+        <div className="view-all-post">
+            {allPostData.map((post, i) => {
+                const totalComments = post.comments.length;
+                const totalPoints = post.likes.length;
+                return (
+                    <Collapse className="view-all-post-collapse" key={i}>
+                        <Panel
+                            header={
+                                <ForumPostCard
+                                    key={i}
+                                    post={post}
+                                    totalComments={totalComments}
+                                    totalPoints={totalPoints}
+                                    category={post.category}
+                                />
+                            }
+                        >
+                            <div className="view-all-post__comments">
+                                <div className="view-all-post__comments__write">
+                                    <Input
+                                        size="large"
+                                        placeholder="Write Your Comment"
+                                        prefix={<CommentOutlined />}
+                                        onChange={(e) =>
+                                            setcommentInput(e.target.value)
+                                        }
+                                    />
+                                    <Button
+                                        type="primary"
+                                        onClick={() => handleCommentSubmit(i)}
+                                    >
+                                        Comment
+                                    </Button>
+                                </div>
+                                <div className="view-all-post__comments__view">
+                                    {post.comments
+                                        ? [...post.comments]
+                                              .reverse()
+                                              .map((comment, j) => (
+                                                  <div
+                                                      className="view-all-post__comments__view__comment"
+                                                      key={j}
+                                                  >
+                                                      <small>
+                                                          {new Date(
+                                                              comment.datePublished
+                                                          )
+                                                              .toISOString()
+                                                              .substring(0, 10)}
+                                                      </small>
+                                                      <img
+                                                          src={
+                                                              comment.author_id
+                                                                  .profileImg
+                                                          }
+                                                          alt="user Img"
+                                                      ></img>
+                                                      <label>
+                                                          <i>
+                                                              {
+                                                                  comment.authorName.split(
+                                                                      " "
+                                                                  )[0]
+                                                              }
+                                                          </i>{" "}
+                                                          -{" "}
+                                                      </label>
+                                                      <p>{comment.body}</p>
+                                                  </div>
+                                              ))
+                                        : null}
+                                </div>
+                            </div>
+                        </Panel>
+                    </Collapse>
+                );
+            })}
+        </div>
+    );
 }

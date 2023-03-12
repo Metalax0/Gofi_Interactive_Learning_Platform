@@ -103,7 +103,7 @@ img {
 }
 
 ::placeholder {
-    color: wheat !important;
+    color: wheat;
 }
 
 .tutorial-template__content__task__code-box {

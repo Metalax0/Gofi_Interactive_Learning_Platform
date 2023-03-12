@@ -2,7 +2,7 @@ const forum = require("../Schema/forumSchema");
 
 // Create a new forum post
 exports.createPost = async (request, response) => {
-    const { title, body, authorName, tag, userID } = request.body;
+    const { title, body, authorName, tag, category, userID } = request.body;
 
     try {
         const post = new forum({
@@ -12,6 +12,7 @@ exports.createPost = async (request, response) => {
                 user_id: userID,
                 fullName: authorName,
             },
+            category: category,
             tag: tag,
         });
 

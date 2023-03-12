@@ -2,14 +2,6 @@
     /* outline: 1px solid red; */
 }
 
-.view-all-post {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* align-items: center; */
-}
-
 .view-all-post__comments {
     display: flex;
     flex-direction: column;
@@ -20,7 +12,7 @@
 .view-all-post__comments__write {
     /* width: 100%; */
     display: flex;
-    justify-content: space-etween;
+    justify-content: space-between;
     align-items: center;
     gap: 20px;
     padding: 0px 5px 0px 20px;

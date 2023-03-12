@@ -1,7 +1,12 @@
 import React from "react";
 import "./style.css";
 
-export default function ForumPostCard({ post, totalComments, totalPoints }) {
+export default function ForumPostCard({
+    post,
+    totalComments,
+    totalPoints,
+    category,
+}) {
     const dateObj = new Date(post.datePosted);
     const formattedDate = dateObj.toISOString().substring(0, 10);
     return (
@@ -18,6 +23,7 @@ export default function ForumPostCard({ post, totalComments, totalPoints }) {
                 </label>
                 <label>{totalComments} Comments</label>
                 <label>{totalPoints} Points</label>
+                <label>{category}</label>
             </div>
             <div className="all-post__content">
                 <div className="all-post__content_top">
@@ -26,7 +32,6 @@ export default function ForumPostCard({ post, totalComments, totalPoints }) {
                     </label>
                     <label>{post.body}</label>
                 </div>
-
                 <label>#{post.tag}</label>
             </div>
         </div>

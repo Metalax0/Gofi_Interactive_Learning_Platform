@@ -339,7 +339,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                     Previous
                 </Button>
                 <Button
-                    disabled={isAnswerCorrect ? false : true}
+                    // disabled={isAnswerCorrect ? false : true}
                     onClick={handleNext}
                     ref={NextRef}
                 >

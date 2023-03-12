@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import { jsTutorialData } from "../../../Data";
+import TutorialTemplate from "../TutorialTemplate";
 import "./style.css";
+const TutorialJS = () => {
+    const [activeChapter, setactiveChapter] = useState(1);
+    // TRACK WHAT PAGE TO SHOW (1 or continue )
 
-export default function TutorialJS() {
     return (
         <div className="tutorial-js">
-            <h1> Tutorial JS Page</h1>
+            <TutorialTemplate
+                state={activeChapter}
+                setState={setactiveChapter}
+                data={jsTutorialData[activeChapter - 1]}
+            />
         </div>
     );
-}
+};
+
+export default TutorialJS;

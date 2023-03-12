@@ -8,11 +8,15 @@ export const tutorialCardData = {
         reward: "Badge provided on completion",
         headerColor: "#ff907c",
         chapters: [
-            "chapter 1",
-            "chapter 2",
-            "chapter 3",
-            "chapter 4",
-            "chapter 5",
+            "1. Introduction To HTML",
+            "2. Document Structure",
+            "3. Element - Overview",
+            "4. Element - Paragraph",
+            "5. Element - Heading",
+            "6. Attributes",
+            "7. Element - Image",
+            "8. Element - Hyperlink",
+            "9. Element - Nesting",
         ],
         progress: {
             progress: 0,
@@ -556,6 +560,74 @@ export const htmlTutorialData = [
                 },
                 type: "task",
                 width: "60%",
+            },
+        ],
+    },
+];
+
+export const cssTutorialData = [
+    {
+        title: "1. Introduction To CSS",
+        body: [
+            {
+                content:
+                    "Welcome to the first chapter of CSS tutorial. So what exactly is CSS? HTML provides structure to the content appearing on a website, such as images, text, or videos. Right-click on any page on the internet, choose “Inspect,” and you’ll see HTML in a panel of your screen. This website where you are taking your tutorial was built using HTML.",
+                type: "paragraph",
+            },
+            {
+                content: "Key Points:",
+                type: "paragraph",
+            },
+            {
+                content: [
+                    "HTML stands for HyperText Markup Language",
+                    "It is the standard markup language for creating Web pages",
+                    "It describes the structure of a Web page",
+                ],
+                type: "list",
+            },
+            {
+                content: "",
+                type: "task",
+            },
+            {
+                content:
+                    "https://blog.stackfindover.com/wp-content/uploads/2021/02/what-is-html.jpg",
+                type: "outputImage",
+            },
+        ],
+    },
+];
+
+export const jsTutorialData = [
+    {
+        title: "1. Introduction To JS",
+        body: [
+            {
+                content:
+                    "Welcome to the first chapter of JS tutorial. So what exactly is JS? HTML provides structure to the content appearing on a website, such as images, text, or videos. Right-click on any page on the internet, choose “Inspect,” and you’ll see HTML in a panel of your screen. This website where you are taking your tutorial was built using HTML.",
+                type: "paragraph",
+            },
+            {
+                content: "Key Points:",
+                type: "paragraph",
+            },
+            {
+                content: [
+                    "HTML stands for HyperText Markup Language",
+                    "It is the standard markup language for creating Web pages",
+                    "It describes the structure of a Web page",
+                ],
+                type: "list",
+            },
+            {
+                content: "",
+                type: "task",
+            },
+            {
+                content:
+                    "https://blog.stackfindover.com/wp-content/uploads/2021/02/what-is-html.jpg",
+                type: "outputImage",
             },
         ],
     },

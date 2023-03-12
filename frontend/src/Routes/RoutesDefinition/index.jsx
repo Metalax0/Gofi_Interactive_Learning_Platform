@@ -13,6 +13,7 @@ import Forum from "../../Pages/Forum";
 import Profile from "../../Pages/Profile";
 import TutorialHTML from "../../Pages/Tutorial/HTML";
 import AdminHTMLTutorial from "../../Pages/Admin/HTMLTutorial";
+import TutorialCSS from "../../Pages/Tutorial/CSS";
 
 export default function RoutesDefinition() {
     return (
@@ -68,6 +69,14 @@ export default function RoutesDefinition() {
                     element={
                         <ProtectedRoutes>
                             <TutorialHTML />
+                        </ProtectedRoutes>
+                    }
+                />
+                <Route
+                    path="/tutorial/css"
+                    element={
+                        <ProtectedRoutes>
+                            <TutorialCSS />
                         </ProtectedRoutes>
                     }
                 />

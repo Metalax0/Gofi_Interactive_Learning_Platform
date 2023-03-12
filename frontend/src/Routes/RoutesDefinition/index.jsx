@@ -11,9 +11,10 @@ import Tutorial from "../../Pages/Tutorial";
 import Test from "../../Pages/Test";
 import Forum from "../../Pages/Forum";
 import Profile from "../../Pages/Profile";
-import TutorialHTML from "../../Pages/Tutorial/HTML";
 import AdminHTMLTutorial from "../../Pages/Admin/HTMLTutorial";
+import TutorialHTML from "../../Pages/Tutorial/HTML";
 import TutorialCSS from "../../Pages/Tutorial/CSS";
+import TutorialJS from "../../Pages/Tutorial/JS";
 
 export default function RoutesDefinition() {
     return (
@@ -77,6 +78,14 @@ export default function RoutesDefinition() {
                     element={
                         <ProtectedRoutes>
                             <TutorialCSS />
+                        </ProtectedRoutes>
+                    }
+                />
+                <Route
+                    path="/tutorial/js"
+                    element={
+                        <ProtectedRoutes>
+                            <TutorialJS />
                         </ProtectedRoutes>
                     }
                 />

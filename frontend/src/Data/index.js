@@ -571,18 +571,14 @@ export const cssTutorialData = [
         body: [
             {
                 content:
-                    "Welcome to the first chapter of CSS tutorial. So what exactly is CSS? HTML provides structure to the content appearing on a website, such as images, text, or videos. Right-click on any page on the internet, choose “Inspect,” and you’ll see HTML in a panel of your screen. This website where you are taking your tutorial was built using HTML.",
-                type: "paragraph",
-            },
-            {
-                content: "Key Points:",
+                    "Welcome to the first chapter of CSS tutorial. So what exactly is CSS? CSS stands for Cascading Style Sheets, and it is a language used to describe the visual appearance of a webpage. It is one of the three main technologies used to create web pages, along with HTML and JavaScript. ",
                 type: "paragraph",
             },
             {
                 content: [
-                    "HTML stands for HyperText Markup Language",
-                    "It is the standard markup language for creating Web pages",
-                    "It describes the structure of a Web page",
+                    "CSS allows you to control the layout, colors, fonts, and other visual elements of a webpage.",
+                    "You can apply CSS styles to specific elements on a webpage, such as headings, paragraphs, images,",
+                    "CSS can be written in a separate file and linked to your HTML document, or it can be included directly in your HTML code using the style tag.",
                 ],
                 type: "list",
             },
@@ -592,8 +588,55 @@ export const cssTutorialData = [
             },
             {
                 content:
-                    "https://blog.stackfindover.com/wp-content/uploads/2021/02/what-is-html.jpg",
+                    "https://cronuts.digital/wp-content/uploads/2020/04/Artboard-11-1024x724.png",
                 type: "outputImage",
+            },
+        ],
+    },
+    {
+        title: "2. Elements - Paragraph",
+        body: [
+            {
+                content:
+                    "A paragraph is a block of text that starts on a new line. They are defined with <p> tag.",
+                type: "paragraph",
+            },
+            {
+                content:
+                    "You have somewhat already used <p> element in previous chapters. In fact all the descriptions like this one are written using <p> tag",
+                type: "paragraph",
+            },
+            {
+                content: {
+                    task: "Compose an HTML document that consists of two paragraphs each with content 'I have a pet cat. It is named billy' and 'I also have a pet dog. It is named timmy",
+                    prefix: "<h1>",
+                    suffix: "</h1>",
+                    answer: {
+                        pattern:
+                            "^<!DOCTYPE html>[\\s\\S]<html>[\\s\\S]<head>[\\s\\S]<title>[\\s\\S]*?<\\/title>[\\s\\S]<\\/head>[\\s\\S]<body>[\\s\\S]*?<p>I have a pet cat. It is named billy<\\/p>[\\s\\S]<p>I also have a pet dog. It is named timmy<\\/p>[\\s\\S]*?<\\/body>[\\s\\S]<\\/html>$",
+                        text: `
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>Paragraph</title>
+    </head>
+    <body>
+        <p>I have a pet cat. It is named billy</p>                                           
+        <p>I also have a pet dog. It is named timmy</p>                                           
+    </body>
+</html>`,
+                        value: `<!DOCTYPE html> 
+<html>
+    <head>
+        <title>Paragraph</title>
+    </head>
+    <body>
+                  
+    </body>
+</html>`,
+                    },
+                },
+                type: "task",
             },
         ],
     },

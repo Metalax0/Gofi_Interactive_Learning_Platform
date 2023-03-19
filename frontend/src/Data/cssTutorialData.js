@@ -35,6 +35,10 @@ export const cssTutorialData = [
                 type: "paragraph",
             },
             {
+                content: `<h1> my heading </h1>`,
+                type: "code",
+            },
+            {
                 content: `h1{
     color:blue;
 }`,
@@ -79,44 +83,225 @@ p{
         title: "3. Selectors",
         body: [
             {
-                content: "CSS ",
+                content:
+                    "Selectors are used to target specific HTML element on the webpage. Some of the basic selectors are class, id, tag name. There are others as well but for now we will look into the basics only.",
                 type: "paragraph",
             },
             {
                 content:
-                    "You have somewhat already used <p> element in previous chapters. In fact all the descriptions like this one are written using <p> tag",
+                    "Let us consider the following html for examples below:",
                 type: "paragraph",
             },
             {
+                content: `<p> I prefer tv series over movies. </p>`,
+                type: "code",
+            },
+            {
+                content:
+                    "The different ways to select and apply css are as follow:",
+                type: "paragraph",
+            },
+            {
+                content: `p{
+    color: blue;
+}`,
+                type: "code",
+            },
+            {
+                content:
+                    "<p style='color:blue'> I prefer tv series over movies. </p> <br />",
+                type: "codeOutput",
+            },
+
+            {
+                content: `#movieSeriesParagraph{
+    color: red;
+}`,
+                type: "code",
+            },
+            {
+                content:
+                    "<p style='color:red'> I prefer tv series over movies. </p> <br />",
+                type: "codeOutput",
+            },
+
+            {
+                content: `.myParagraph{
+    color: brown;
+}`,
+                type: "code",
+            },
+            {
+                content:
+                    "<p style='color:brown'> I prefer tv series over movies. </p> <br />",
+                type: "codeOutput",
+            },
+
+            {
+                content: [
+                    "p = Tag Selector. Applies css to all tags.",
+                    ".para = Class Selector. Applies css to all elements containing that class.",
+                    "#aboutPara = ID Selector. Applies css to tag containing that id",
+                ],
+                type: "list",
+            },
+            {
                 content: {
-                    task: "Compose an HTML document that consists of two paragraphs each with content 'I have a pet cat. It is named billy' and 'I also have a pet dog. It is named timmy",
+                    task: "Write a css rule that targets the heading 3 element having class of 'myHeading' and change the color to red(<h3 class='myHeading>)",
                     answer: {
                         pattern:
-                            "^<!DOCTYPE html>[\\s\\S]<html>[\\s\\S]<head>[\\s\\S]<title>[\\s\\S]*?<\\/title>[\\s\\S]<\\/head>[\\s\\S]<body>[\\s\\S]*?<p>I have a pet cat. It is named billy<\\/p>[\\s\\S]<p>I also have a pet dog. It is named timmy<\\/p>[\\s\\S]*?<\\/body>[\\s\\S]<\\/html>$",
+                            "^\\s*.myHeading\\s*{\\s*color\\s*:\\s*red\\s*;\\s*}\\s*$",
                         text: `
-<!DOCTYPE html> 
-<html>
-    <head>
-        <title>Paragraph</title>
-    </head>
-    <body>
-        <p>I have a pet cat. It is named billy</p>                                           
-        <p>I also have a pet dog. It is named timmy</p>                                           
-    </body>
-</html>`,
-                        value: `<!DOCTYPE html> 
-<html>
-    <head>
-        <title>Paragraph</title>
-    </head>
-    <body>
-                  
-    </body>
-</html>`,
+.myHeading{
+    color: red;
+}`,
                     },
                 },
                 type: "task",
                 width: "60%",
+            },
+            {
+                code: "<h3 class='myHeading'>Artists that I like</h3><p>I like the following artists <ul><li>Vance Joy</li><li>Rainbow Kitten Suprise</li><li>Tribe Called Quest</li></ul></p>",
+                type: "output",
+            },
+        ],
+    },
+    {
+        title: "3. Colors",
+        body: [
+            {
+                content:
+                    "Colors are specified using predefined color names, RGB, HEX, HSL, RGBA and HSLA values. In the previous two chapters, you have already used colors by predefined values ('red', 'blue', etc). In this tutorial we will be looking into colors by name, rgb and hex values.",
+                type: "paragraph",
+            },
+            {
+                content: `<label id='name'> Name </label> `,
+                type: "code",
+            },
+            {
+                content: `<label id='rgb'> RGB </label> `,
+                type: "code",
+            },
+            {
+                content: `<label id='hex'> Hex </label> `,
+                type: "code",
+            },
+            {
+                content: `#name{
+    color:blue;
+}
+#rgb{
+    color: rgb(255,0,0);
+}
+#hex{
+    color: #964B00;
+}`,
+                type: "code",
+            },
+            {
+                content:
+                    "<label style='color: blue'> Name </label> <label style='color: rgb(255,0,0)'> RGB </label> <label style='color: #964B00'> Hex </label>",
+                type: "codeOutput",
+            },
+            {
+                content: [
+                    "Name = Color Name. However, the color name must be selected from predefined set of colors. (that color name must exist)",
+                    "RGB = An RGB value of a color (red, green, blue). It is written as rgb(red, green, blue). Values must be between 0 and 255.",
+                    "Hex = An Hexadecimal value of a color. It is written as # followed by six values. Each two values represent red, green and blue.",
+                ],
+                type: "list",
+            },
+            {
+                content:
+                    "You can search for rgb values or hex values of a color by searching it on the internet. You can try google's color picker which will give you these data. Click <a target='_blank' href='https://www.google.com/search?q=google+color+picker&sxsrf=AJOqlzUKQM8mDD5Q-HjksULm_EzM4tBrLg%3A1679205970179&ei=UqYWZMDJCqyN3LUPhoWGyA8&ved=0ahUKEwjAuu3aqef9AhWsBrcAHYaCAfkQ4dUDCA8&uact=5&oq=google+color+picker&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAzINCAAQDRCABBCxAxCDATIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgcIABANEIAEMgcIABANEIAEOgoIABBHENYEELADOgcIABCwAxBDOg0IABDkAhDWBBCwAxgBOg8ILhDUAhDIAxCwAxBDGAJKBAhBGABQmwVY0AlgjQxoAXABeACAAagBiAG5CJIBAzAuN5gBAKABAcgBEcABAdoBBggBEAEYCdoBBggCEAEYCA&sclient=gws-wiz-serp'>here</a> for google's color picker.",
+                type: "codeOutput",
+            },
+            {
+                content: {
+                    task: "Write a css rule that targets the paragraph element (<p> tag) and make the color to red. This must be done using hexadecimal(hex) value of the color.",
+                    answer: {
+                        pattern:
+                            "^\\s*p\\s*{\\s*color\\s*:\\s*#FF0000\\s*;\\s*}\\s*$",
+
+                        text: `
+p{
+    color: #FF0000;
+}`,
+                    },
+                },
+                type: "task",
+                width: "60%",
+            },
+            {
+                code: "<h1>Cow</h1><p>Cow goes moo.</p>",
+                type: "output",
+            },
+        ],
+    },
+    {
+        title: "4. Background",
+        body: [
+            {
+                content:
+                    "The background properties in css are used to add background effects for an element. These effects inclde addign an background image or color to an element. We will only be focusing on these properies in this tutorial.",
+                type: "paragraph",
+            },
+            {
+                content: `<h2> This is heading two </h2>`,
+                type: "code",
+            },
+            {
+                content: `h2{
+    color: orange;
+    background-color: grey;
+}`,
+                type: "code",
+            },
+            {
+                content:
+                    "<h2 style='color:orange; background-color: grey'>This is heading two</h2>",
+                type: "codeOutput",
+            },
+            {
+                content:
+                    "Background color is similar to color property. Color changes the text/font color wheras background-color changes the background color of an element.",
+                type: "paragraph",
+            },
+            {
+                content: `h2{
+    color: white;
+    background-image: url('image url here');
+}`,
+                type: "code",
+            },
+            {
+                content:
+                    "<h2 style='color:white; background-image: url(https://freedesignfile.com/upload/2012/09/00229887_medium62.jpg)'>This is heading two</h2>",
+                type: "codeOutput",
+            },
+            {
+                content:
+                    'Background-image changes the background image of an element. The url/path of the image must be valid in order for image to appear and must be enclosed within quotes(" ")',
+                type: "paragraph",
+            },
+            {
+                content: {
+                    task: "Write a css rule that targets the paragraph element (<p> tag) and make the background color red and text color to black. ",
+                    answer: {
+                        pattern:
+                            "^\\s*p\\s*{\\s*color\\s*:\\s*white\\s*;\\s*background-color\\s*:\\s*grey\\s*;\\s*}\\s*$",
+                        text: `p {
+    color: white;
+    background-color: grey;
+}`,
+                    },
+                },
+                type: "task",
+                width: "60%",
+            },
+            {
+                code: "<h1>My Favourite Pet</h1><p>My favourite pet is a cat called billy. Actually, it's not called billy and I don't have a cat.</p>",
+                type: "output",
             },
         ],
     },

@@ -112,6 +112,7 @@ img {
 }
 
 .tutorial-template__content__code {
+    margin-bottom: 10px;
     white-space: pre;
 }
 

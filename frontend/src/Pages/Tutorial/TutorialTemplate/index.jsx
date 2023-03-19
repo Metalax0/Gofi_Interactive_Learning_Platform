@@ -136,8 +136,11 @@ const TutorialTemplate = ({ data, state, setState }) => {
         } else answer = content.answer.text.replace(/[\n\r\s]+/g, " ").trim();
 
         if (content.answer.pattern) {
+            console.log(answer);
+            console.log(content.answer.pattern);
             const regex = new RegExp(content.answer.pattern);
             if (regex.test(answer)) {
+                console.log("TRUE");
                 //Right Answer
                 const startIndex = answer.indexOf("<title>") + "<title>".length;
                 const endIndex = answer.indexOf("</title>");
@@ -154,6 +157,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                 browserWindowRef.current.style.boxShadow =
                     "0px 0px 20px rgb(21, 211, 21)";
             } else {
+                console.log("FALSE");
                 // Wrong Answer
                 userAnswerRef.current.innerHTML = "Output Will Appear Here";
                 if (data.body[data.body.length - 1].type === "output") {

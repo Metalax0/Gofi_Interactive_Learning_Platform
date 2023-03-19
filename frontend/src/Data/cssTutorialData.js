@@ -56,13 +56,13 @@ export const cssTutorialData = [
             },
             {
                 content: {
-                    task: "Write a css rule that targets the paragraph element (<p> tag) and make the color to green. (note: don't forget to include a semi color ; at the end of declaration",
+                    task: "Write a css rule that targets the paragraph element (<p> tag) and make the color to red. (note: don't forget to include a semi color ; at the end of declaration",
                     answer: {
                         pattern:
-                            "^\\s*p\\s*{\\s*color\\s*:\\s*green\\s*;\\s*}\\s*$",
+                            "^\\s*p\\s*{\\s*color\\s*:\\s*red\\s*;\\s*}\\s*$",
                         text: `
 p{
-    color: green;
+    color: red;
 }`,
                     },
                 },

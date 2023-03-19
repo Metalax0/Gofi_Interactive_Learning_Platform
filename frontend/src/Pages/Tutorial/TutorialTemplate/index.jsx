@@ -40,7 +40,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                 setisAnswerCorrect(true);
                 setisTaskAvailable(false);
             } else if (item.type === "task" && item.content !== "") {
-                setBrowserTitle("TItle Here");
+                setBrowserTitle("TItle");
                 settextAreaValue(item.content.answer.value);
                 setisAnswerCorrect(false);
                 setisTaskAvailable(true);
@@ -141,7 +141,8 @@ const TutorialTemplate = ({ data, state, setState }) => {
                 //Right Answer
                 const startIndex = answer.indexOf("<title>") + "<title>".length;
                 const endIndex = answer.indexOf("</title>");
-                setBrowserTitle(answer.slice(startIndex, endIndex));
+                if (answer.includes("title"))
+                    setBrowserTitle(answer.slice(startIndex, endIndex));
                 userAnswerRef.current.innerHTML = "";
                 userAnswerRef.current.innerHTML = answer;
                 if (data.body[data.body.length - 1].type === "output") {

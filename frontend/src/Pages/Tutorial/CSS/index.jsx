@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { cssTutorialData } from "../../../Data";
+import { cssTutorialData } from "../../../Data/cssTutorialData";
 import TutorialTemplate from "../TutorialTemplate";
 import "./style.css";
 const TutorialCSS = () => {

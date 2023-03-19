@@ -1,113 +1,3 @@
-export const tutorialCardData = {
-    html: {
-        headerText: "Structure",
-        bodyTitle: "Learn HTML",
-        bodyText:
-            "Learn the basics of HTML - a markup language used for creating web pages. It defines the structure of a Web page.",
-        chapterCount: 5,
-        reward: "Badge provided on completion",
-        headerColor: "#ff907c",
-        chapters: [
-            "1. Introduction To HTML",
-            "2. Document Structure",
-            "3. Element - Overview",
-            "4. Element - Paragraph",
-            "5. Element - Heading",
-            "6. Attributes",
-            "7. Element - Image",
-            "8. Element - Hyperlink",
-            "9. Element - Nesting",
-        ],
-        progress: {
-            progress: 0,
-            lastChapter: "NONE",
-        },
-        navigateTo: "/tutorial/html",
-    },
-    css: {
-        headerText: "Style",
-        bodyTitle: "Learn CSS",
-        bodyText:
-            "Learn the basics of CSS - a styling language used for making web pages presentable. It defines the appearance of elements in a Web page.",
-        chapterCount: 5,
-        reward: "Badge provided on completion",
-        headerColor: "#7cf0ff",
-        chapters: [
-            "chapter 1",
-            "chapter 2",
-            "chapter 3",
-            "chapter 4",
-            "chapter 5",
-        ],
-        progress: {
-            progress: 0,
-            lastChapter: "NONE",
-        },
-        navigateTo: "/tutorial/css",
-    },
-    js: {
-        headerText: "Functionality",
-        bodyTitle: "Learn JavaScript",
-        bodyText:
-            "Learn the basics of JavaScript - a scripting language used for creating web pages. It defines the structure of a Web page.",
-        chapterCount: 5,
-        reward: "Badge provided on completion",
-        headerColor: "#ffe77c",
-        chapters: [
-            "chapter 1",
-            "chapter 2",
-            "chapter 3",
-            "chapter 4",
-            "chapter 5",
-        ],
-        progress: {
-            progress: 0,
-            lastChapter: "NONE",
-        },
-        navigateTo: "/tutorial/js",
-    },
-};
-
-export const forumCardData = {
-    create: {
-        headerText: "Create",
-        bodyTitle: "Ask the community",
-        bodyText:
-            "Stuck in a problem? Got any questions related to the tutorials or programming in general? Click on this card to ask questions to the community and clear your doubts.",
-        chapterCount: 5,
-        reward: "Badges and points provided on post creation",
-        headerColor: "#ff907c",
-        navigateTo: "/forum/create",
-    },
-    browse: {
-        headerText: "Browse",
-        bodyTitle: "See what others are saying",
-        bodyText:
-            "Dive into community forum and view posts made by others. Search for posts based on several categories, tags and title. You can answer others questions as well",
-        chapterCount: 5,
-        reward: "Badges and points provided on interraction",
-        headerColor: "#7cf0ff",
-        progress: {
-            postsCount: 1,
-        },
-        navigateTo: "/forum/browse",
-    },
-    view: {
-        headerText: "View",
-        bodyTitle: "My Posts",
-        bodyText:
-            "Asked a question a while ago but can't seem to find it? Click here to view all of your post details. You can also delete posts.",
-        chapterCount: 5,
-        reward: "No Badges or points",
-        headerColor: "#ffe77c",
-        progress: {
-            totalPosts: 1,
-            totalComments: 1,
-        },
-        navigateTo: "/forum/view",
-    },
-};
-
 export const htmlTutorialData = [
     {
         title: "1. Introduction To HTML",
@@ -181,8 +71,7 @@ export const htmlTutorialData = [
                     answer: {
                         pattern:
                             "^<!DOCTYPE html>[\\s\\S]<html>[\\s\\S]<head>[\\s\\S]<title>[\\s\\S]*?<\\/title>[\\s\\S]<\\/head>[\\s\\S]<body>[\\s\\S]*?<h1>[\\s\\S]*?<\\/h1>[\\s\\S]*?<\\/body>[\\s\\S]<\\/html>$",
-                        text: `
-<!DOCTYPE html> 
+                        text: `<!DOCTYPE html> 
 <html>
   <head>
     <title>Page Title</title>
@@ -230,8 +119,6 @@ export const htmlTutorialData = [
             {
                 content: {
                     task: "Compose an HTML document that consists of a paragraph with the text 'Today I learned about elements' ",
-                    prefix: "<h1>",
-                    suffix: "</h1>",
                     answer: {
                         pattern:
                             "^<!DOCTYPE html>[\\s\\S]<html>[\\s\\S]<head>[\\s\\S]<title>[\\s\\S]*?<\\/title>[\\s\\S]<\\/head>[\\s\\S]<body>[\\s\\S]*?<p>Today I learned about elements<\\/p>[\\s\\S]*?<\\/body>[\\s\\S]<\\/html>$",
@@ -242,7 +129,7 @@ export const htmlTutorialData = [
         <title>Overview</title>
     </head>
     <body>
-                                                        
+                             <p>Today I learned about elements</p>                           
     </body>
 </html>`,
                         value: `<!DOCTYPE html> 
@@ -277,8 +164,6 @@ export const htmlTutorialData = [
             {
                 content: {
                     task: "Compose an HTML document that consists of two paragraphs each with content 'I have a pet cat. It is named billy' and 'I also have a pet dog. It is named timmy",
-                    prefix: "<h1>",
-                    suffix: "</h1>",
                     answer: {
                         pattern:
                             "^<!DOCTYPE html>[\\s\\S]<html>[\\s\\S]<head>[\\s\\S]<title>[\\s\\S]*?<\\/title>[\\s\\S]<\\/head>[\\s\\S]<body>[\\s\\S]*?<p>I have a pet cat. It is named billy<\\/p>[\\s\\S]<p>I also have a pet dog. It is named timmy<\\/p>[\\s\\S]*?<\\/body>[\\s\\S]<\\/html>$",
@@ -335,8 +220,7 @@ export const htmlTutorialData = [
             {
                 content: {
                     task: "Compose an HTML document that consists of two headings (size 3) and (size 2). The heading should have text of 'My Pet Cat' and 'My Pet Dog' ",
-                    prefix: "<h1>",
-                    suffix: "</h1>",
+
                     answer: {
                         pattern:
                             "^<!DOCTYPE html>[\\s\\S]<html>[\\s\\S]<head>[\\s\\S]<title>[\\s\\S]*?<\\/title>[\\s\\S]<\\/head>[\\s\\S]<body>[\\s\\S]*?<h3>My Pet Cat<\\/h3>[\\s\\S]<h2>My Pet Dog<\\/h2>[\\s\\S]*?<\\/body>[\\s\\S]<\\/html>$",
@@ -392,8 +276,6 @@ export const htmlTutorialData = [
             {
                 content: {
                     task: "Compose an HTML document that consists of a heading (size 2) with content 'Chapter Size'. Additionally, add an attribute of class with value 'my-heading' ",
-                    prefix: "<h1>",
-                    suffix: "</h1>",
                     answer: {
                         pattern:
                             "^<!DOCTYPE html>[\\s\\S]<html>[\\s\\S]<head>[\\s\\S]<title>[\\s\\S]*?<\\/title>[\\s\\S]<\\/head>[\\s\\S]<body>[\\s\\S]*?<h2 class='my-heading'>Chapter Six<\\/h2>[\\s\\S]<\\/body>[\\s\\S]<\\/html>$",
@@ -456,8 +338,6 @@ export const htmlTutorialData = [
             {
                 content: {
                     task: "Compose an HTML document that consists of a image of any of your choice ",
-                    prefix: "<h1>",
-                    suffix: "</h1>",
                     answer: {
                         pattern:
                             "^<!DOCTYPE html>[\\s\\S]*?<html>[\\s\\S]*?<head>[\\s\\S]*?<title>[\\s\\S]*?<\\/title>[\\s\\S]*?<\\/head>[\\s\\S]*?<body>[\\s\\S]*?<img\\s+src=['\"]([^'\"]*)['\"]\\s+alt=['\"]([^'\"]*)['\"]\\s*\\/?>(?![^<]*>)?[\\s\\S]*?<\\/body>[\\s\\S]*?<\\/html>$",
@@ -513,8 +393,6 @@ export const htmlTutorialData = [
             {
                 content: {
                     task: "Compose an HTML document that consists of a hyperlink that points to Youtube(https://www.youtube.com/). It should have text of 'Click me to go to youtube' ",
-                    prefix: "<h1>",
-                    suffix: "</h1>",
                     answer: {
                         pattern:
                             "^<!DOCTYPE html>[\\s\\S]*?<html>[\\s\\S]*?<head>[\\s\\S]*?<title>[\\s\\S]*?<\\/title>[\\s\\S]*?<\\/head>[\\s\\S]*?<body>[\\s\\S]*?<a\\s+href=['\"]([^'\"]*)['\"]\\s+target='_blank'>Click me to go to youtube</a>[\\s\\S]<\\/body>[\\s\\S]*?<\\/html>$",
@@ -570,8 +448,6 @@ export const htmlTutorialData = [
             {
                 content: {
                     task: "Compose an HTML document that consists of a hyperlink that has a paragraph of text with content 'I like watching youtube videos'. The link should point to Youtube(https://www.youtube.com/).",
-                    prefix: "<h1>",
-                    suffix: "</h1>",
                     answer: {
                         pattern:
                             "^<!DOCTYPE html>[\\s\\S]*?<html>[\\s\\S]*?<head>[\\s\\S]*?<title>[\\s\\S]*?<\\/title>[\\s\\S]*?<\\/head>[\\s\\S]*?<body>[\\s\\S]*?<a\\s+href=['\"]([^'\"]*)['\"]\\s+target='_blank'>[\\s\\S]*?<\\/p>[\\s\\S]*?<\\/a>[\\s\\S]*?<\\/body>[\\s\\S]*?<\\/html>$",
@@ -600,118 +476,6 @@ export const htmlTutorialData = [
                 },
                 type: "task",
                 width: "60%",
-            },
-        ],
-    },
-];
-
-export const cssTutorialData = [
-    {
-        title: "1. Introduction To CSS",
-        body: [
-            {
-                content:
-                    "Welcome to the first chapter of CSS tutorial. So what exactly is CSS? CSS stands for Cascading Style Sheets, and it is a language used to describe the visual appearance of a webpage. It is one of the three main technologies used to create web pages, along with HTML and JavaScript. ",
-                type: "paragraph",
-            },
-            {
-                content: [
-                    "CSS allows you to control the layout, colors, fonts, and other visual elements of a webpage.",
-                    "You can apply CSS styles to specific elements on a webpage, such as headings, paragraphs, images,",
-                    "CSS can be written in a separate file and linked to your HTML document, or it can be included directly in your HTML code using the style tag.",
-                ],
-                type: "list",
-            },
-            {
-                content: "",
-                type: "task",
-            },
-            {
-                content:
-                    "https://cronuts.digital/wp-content/uploads/2020/04/Artboard-11-1024x724.png",
-                type: "outputImage",
-            },
-        ],
-    },
-    {
-        title: "2. Elements - Paragraph",
-        body: [
-            {
-                content:
-                    "A paragraph is a block of text that starts on a new line. They are defined with <p> tag.",
-                type: "paragraph",
-            },
-            {
-                content:
-                    "You have somewhat already used <p> element in previous chapters. In fact all the descriptions like this one are written using <p> tag",
-                type: "paragraph",
-            },
-            {
-                content: {
-                    task: "Compose an HTML document that consists of two paragraphs each with content 'I have a pet cat. It is named billy' and 'I also have a pet dog. It is named timmy",
-                    prefix: "<h1>",
-                    suffix: "</h1>",
-                    answer: {
-                        pattern:
-                            "^<!DOCTYPE html>[\\s\\S]<html>[\\s\\S]<head>[\\s\\S]<title>[\\s\\S]*?<\\/title>[\\s\\S]<\\/head>[\\s\\S]<body>[\\s\\S]*?<p>I have a pet cat. It is named billy<\\/p>[\\s\\S]<p>I also have a pet dog. It is named timmy<\\/p>[\\s\\S]*?<\\/body>[\\s\\S]<\\/html>$",
-                        text: `
-<!DOCTYPE html> 
-<html>
-    <head>
-        <title>Paragraph</title>
-    </head>
-    <body>
-        <p>I have a pet cat. It is named billy</p>                                           
-        <p>I also have a pet dog. It is named timmy</p>                                           
-    </body>
-</html>`,
-                        value: `<!DOCTYPE html> 
-<html>
-    <head>
-        <title>Paragraph</title>
-    </head>
-    <body>
-                  
-    </body>
-</html>`,
-                    },
-                },
-                type: "task",
-                width: "60%",
-            },
-        ],
-    },
-];
-
-export const jsTutorialData = [
-    {
-        title: "1. Introduction To JS",
-        body: [
-            {
-                content:
-                    "Welcome to the first chapter of JS tutorial. So what exactly is JS? HTML provides structure to the content appearing on a website, such as images, text, or videos. Right-click on any page on the internet, choose “Inspect,” and you’ll see HTML in a panel of your screen. This website where you are taking your tutorial was built using HTML.",
-                type: "paragraph",
-            },
-            {
-                content: "Key Points:",
-                type: "paragraph",
-            },
-            {
-                content: [
-                    "HTML stands for HyperText Markup Language",
-                    "It is the standard markup language for creating Web pages",
-                    "It describes the structure of a Web page",
-                ],
-                type: "list",
-            },
-            {
-                content: "",
-                type: "task",
-            },
-            {
-                content:
-                    "https://blog.stackfindover.com/wp-content/uploads/2021/02/what-is-html.jpg",
-                type: "outputImage",
             },
         ],
     },

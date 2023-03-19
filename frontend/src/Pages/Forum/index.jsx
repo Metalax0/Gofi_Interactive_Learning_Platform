@@ -1,6 +1,6 @@
 import React from "react";
 import ForumCard from "../../Components/ForumCard";
-import { forumCardData } from "../../Data";
+import { forumCardData } from "../../Data/cardData";
 import "./style.css";
 
 export default function Forum() {

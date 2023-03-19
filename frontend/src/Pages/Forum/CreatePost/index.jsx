@@ -25,6 +25,7 @@ export default function CreatePost() {
                 tag,
                 authorName,
                 userID,
+                category,
             },
         };
 
@@ -87,7 +88,7 @@ export default function CreatePost() {
                     >
                         <TextArea
                             showCount
-                            maxLength={100}
+                            maxLength={300}
                             style={{
                                 height: 120,
                                 resize: "none",

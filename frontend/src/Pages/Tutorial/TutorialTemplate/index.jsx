@@ -30,6 +30,10 @@ const TutorialTemplate = ({ data, state, setState }) => {
         }
         if (userAnswerRef.current) {
             userAnswerRef.current.innerHTML = "Output Will Appear Here";
+            data.body[data.body.length - 1].type === "output"
+                ? (userAnswerRef.current.innerHTML =
+                      data.body[data.body.length - 1].code)
+                : (userAnswerRef.current.innerHTML = "Output Will Appear Here");
         }
         data.body.map((item) => {
             if (item.type === "task" && item.content === "") {
@@ -44,6 +48,17 @@ const TutorialTemplate = ({ data, state, setState }) => {
         });
         if (state === 9) setisAnswerCorrect(false);
     }, [state, data]);
+
+    const addStyle = (add, answer = "") => {
+        const style = document.querySelector("#tutorial-output-style");
+        if (data.body[data.body.length - 1].type === "output") {
+            if (add) {
+                style.innerHTML = `#tutorial-output ${answer}`;
+            } else {
+                style.innerHTML = "";
+            }
+        }
+    };
 
     const steps1 = [
         {
@@ -97,7 +112,12 @@ const TutorialTemplate = ({ data, state, setState }) => {
     ];
 
     const handleReveal = () => {
-        // console.log(data.);
+        data.body.map((item) => {
+            if (item.type === "task") {
+                settextAreaValue(item.content.answer.text);
+                handleInputChange(item.content);
+            }
+        });
     };
 
     const handlePrevious = () => {
@@ -108,24 +128,38 @@ const TutorialTemplate = ({ data, state, setState }) => {
         setState(state + 1);
     };
 
-    const handleInputChange = (e, content) => {
-        settextAreaValue(e.target.value);
-        const answer = e.target.value.replace(/[\n\r\s]+/g, " ").trim();
+    const handleInputChange = (content, e = null) => {
+        let answer = "";
+        if (e) {
+            settextAreaValue(e.target.value);
+            answer = e.target.value.replace(/[\n\r\s]+/g, " ").trim();
+        } else answer = content.answer.text.replace(/[\n\r\s]+/g, " ").trim();
 
         if (content.answer.pattern) {
             const regex = new RegExp(content.answer.pattern);
             if (regex.test(answer)) {
-                //
+                //Right Answer
                 const startIndex = answer.indexOf("<title>") + "<title>".length;
                 const endIndex = answer.indexOf("</title>");
                 setBrowserTitle(answer.slice(startIndex, endIndex));
                 userAnswerRef.current.innerHTML = "";
                 userAnswerRef.current.innerHTML = answer;
+                if (data.body[data.body.length - 1].type === "output") {
+                    userAnswerRef.current.innerHTML =
+                        data.body[data.body.length - 1].code;
+                    addStyle(true, answer);
+                }
                 setisAnswerCorrect(true);
                 browserWindowRef.current.style.boxShadow =
                     "0px 0px 20px rgb(21, 211, 21)";
             } else {
+                // Wrong Answer
                 userAnswerRef.current.innerHTML = "Output Will Appear Here";
+                if (data.body[data.body.length - 1].type === "output") {
+                    userAnswerRef.current.innerHTML =
+                        data.body[data.body.length - 1].code;
+                    addStyle(false);
+                }
                 setisAnswerCorrect(false);
                 browserWindowRef.current.style.boxShadow =
                     "0px 0px 20px rgb(211, 21, 21)";
@@ -240,6 +274,9 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                 ></div>
                             );
                         else if (item.type === "task") {
+                            if (item.category === "css") {
+                                return <h1></h1>;
+                            }
                             return item.content === "" ? null : (
                                 <div
                                     className="tutorial-template__content__task"
@@ -264,8 +301,8 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                             }}
                                             onChange={(e) =>
                                                 handleInputChange(
-                                                    e,
-                                                    item.content
+                                                    item.content,
+                                                    e
                                                 )
                                             }
                                             autoSize={{
@@ -314,6 +351,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                                 </div>
                             </div>
                             <div
+                                id="tutorial-output"
                                 className="tutorial-template__output__browser__body"
                                 ref={userAnswerRef}
                             >

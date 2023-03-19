@@ -1,50 +1,103 @@
-.all-post {
-    display: flex;
-    justify-content: flex-start;
+* {
+    /* outline: 1px solid red; */
+}
 
-    background-color: bisque;
-    border: 3px solid rgb(255, 205, 144);
-    border-radius: 10px;
-    padding: 20px;
+.forum-post {
+    padding: 30px;
+    border-bottom: 2px solid #e6e6e6;
+    display: flex;
+
+    /* background-color: bisque; */
     gap: 30px;
 }
 
-.all-post:hover {
-    box-shadow: 3px 3px 10px #888888;
-}
-
-.all-post:hover,
-.all-post *:hover {
-    cursor: pointer;
-}
-
-.all-post__stats {
+.forum-post__likes {
     display: flex;
-    justify-content: flex-start;
     flex-direction: column;
-    text-align: flex-start;
-
+    justify-content: center;
+    align-items: center;
     gap: 5px;
-    padding-right: 10px;
-    border-right: 1px solid rgb(170, 170, 170);
 }
 
-.all-post__content {
+.forum-post__likes button {
+    padding: 7px;
+    border-radius: 10px;
+    border: none;
+    background-color: #f1f0f0;
+    transition: background-color 0.3s;
+}
+
+.forum-post__likes button:hover {
+    background-color: #bebebe;
+}
+
+.forum-post__likes-count {
+    color: #e85252;
+}
+
+.forum-post__content__category {
     display: flex;
-    justify-content: flex-start;
+    justify-items: center;
+    align-items: center;
+    padding: 0px 10px;
+    border: 1px solid #bebebe;
+    border-radius: 5px;
+}
+
+.forum-post__content {
+    width: 100%;
+    text-align: justify;
+    display: flex;
     flex-direction: column;
-    text-align: flex-start;
-
-    gap: 20px;
+    /* align-items: flex-start;
+    justify-content: flex-start; */
+    gap: 5px;
+    padding: 0px 40px 0px 10px;
 }
 
-.all-post__stats__author {
-    margin-bottom: 10px;
+/*  */
+
+.forum-post__content__title label {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
-.all-post__content_top {
+.forum-post__content__comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.forum-post__content__comments__write {
+    width: 100%;
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    align-items: center;
     gap: 10px;
+}
+
+.forum-post__content__comments__collapse {
+    width: 100%;
+    margin-left: -1%;
+    margin-right: -1%;
+}
+
+/*  */
+
+.view-all-post__comments__view__comment {
+    border-bottom: 1px solid #bebebe;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: -1%;
+    margin-right: -1%;
+}
+
+.view-all-post__comments__view__comment img {
+    width: 30px;
+}
+
+.view-all-post__comments__view__comment small {
+    padding-left: 20px;
 }

@@ -3,48 +3,29 @@
 }
 
 .view-all-post {
+    background-color: #e6e6e6;
     height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
-}
-
-.view-all-post__comments {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
-}
-
-.view-all-post__comments__write {
-    /* width: 100%; */
-    display: flex;
-    justify-content: space-etween;
     align-items: center;
-    gap: 20px;
-    padding: 0px 5px 0px 20px;
 }
 
-.view-all-post__comments__view {
-    padding: 0px 5px 0px 20px;
+.view-all-post__container {
+    margin-top: 3%;
+    background-color: white;
+    height: 88%;
+    width: 60%;
+    border: 2px solid black;
+}
+
+.view-all-post__top {
+    padding: 1%;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    border-bottom: 2px solid #e6e6e6;
 }
 
-.view-all-post__comments__view__comment {
-    border: 1px solid black;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-radius: 10px;
-}
-
-.view-all-post__comments__view__comment img {
-    width: 30px;
-}
-
-.view-all-post__comments__view__comment small {
-    padding-left: 20px;
+.view-all-post__post-collection {
+    height: 90%;
+    overflow-y: auto;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import CourseCard from "../../Components/CourseCard";
-import { tutorialCardData } from "../../Data";
+import { tutorialCardData } from "../../Data/cardData";
 import "./style.css";
 
 export default function Tutorial() {

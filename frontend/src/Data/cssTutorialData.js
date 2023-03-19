@@ -300,7 +300,59 @@ p{
                 width: "60%",
             },
             {
-                code: "<h1>My Favourite Pet</h1><p>My favourite pet is a cat called billy. Actually, it's not called billy and I don't have a cat.</p>",
+                code: "<h1>Duck</h1><p>I like ducks. Ducks go 'quack quack'.</p>",
+                type: "output",
+            },
+        ],
+    },
+
+    {
+        title: "4. Width, Height",
+        body: [
+            {
+                content:
+                    "In CSS, the width property is used to define the width of an element, and the height property is used to define the height of an element. Both properties can be set in various units, such as pixels (px), percentages (%), ems (em), and viewport units (vw and vh).",
+                type: "paragraph",
+            },
+            {
+                content: `<h2> Heading 2 </h2>`,
+                type: "code",
+            },
+            {
+                content: `label{
+    background-color: grey;
+    width: 200px;
+    height: 100px;
+}`,
+                type: "code",
+            },
+            {
+                content:
+                    "<h2 style='color:orange; background-color: grey; width: 200px; height: 100px'; >Heading 2</h2>",
+                type: "codeOutput",
+            },
+            {
+                content:
+                    "As you might have noticed, the dimentions of the heading (h2) have been changed. Using width and height properties, dimention was manipulated.",
+                type: "paragraph",
+            },
+            {
+                content: {
+                    task: "Write a css rule that changes the dimention of an image to 100x100 pixels (100px x 100px). Use the image tag selector (img). ",
+                    answer: {
+                        pattern:
+                            "^\\s*img\\s*{\\s*width\\s*:\\s*250px\\s*;\\s*height\\s*:\\s*250px\\s*;\\s*}\\s*$",
+                        text: `img {
+    width: 250px;
+    height: 250px;
+}`,
+                    },
+                },
+                type: "task",
+                width: "60%",
+            },
+            {
+                code: "<img src='https://rb.gy/jrlbdd' alt='A beautiful landscape' />",
                 type: "output",
             },
         ],

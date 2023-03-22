@@ -1,24 +1,38 @@
 import { Button, Collapse, Input } from "antd";
 import { handleAddComment } from "../../Functions/handleAddComment";
 import { CommentOutlined } from "@ant-design/icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
+import { useSelector } from "react-redux";
+import { handleAddLikeToPost } from "../../Functions/handleAddLikeToPost";
 
 const { Panel } = Collapse;
 
-export default function ForumPostCard({
-    post,
-    totalComments,
-    totalPoints,
-    getAllPostData,
-    addCommentURL,
-}) {
-    const [commentInput, setcommentInput] = useState("");
-    const { title, body, category, datePosted, comments } = post;
+export default function ForumPostCard({ post, getAllPostData, addCommentURL }) {
+    const addLikeToPostURL = useSelector(
+        (state) => state.global.addLikeToPostURL
+    );
 
+    const [commentInput, setcommentInput] = useState("");
+    const [likeBttnColor, setlikeBttnColor] = useState("grey");
+
+    const { title, body, category, datePosted, comments, author, likes } = post;
     const dateObj = new Date(datePosted);
     const formattedDate = dateObj.toISOString().substring(0, 10);
     const categoryStyle = { backgroundColor: "" };
+
+    useEffect(() => {
+        const userID = JSON.parse(localStorage.getItem("activeUser")).userID;
+        if (post.likes.length === 0) setlikeBttnColor("grey");
+        else
+            post.likes.map((data) => {
+                if (data._id === userID) {
+                    setlikeBttnColor("red");
+                } else {
+                    setlikeBttnColor("grey");
+                }
+            });
+    }, [post.likes]);
 
     switch (post.category) {
         case "General":
@@ -63,12 +77,35 @@ export default function ForumPostCard({
         if (isCommentAdded) getAllPostData();
     };
 
+    const handleAddLike = async () => {
+        const postID = post._id;
+        const userID = JSON.parse(localStorage.getItem("activeUser")).userID;
+
+        const config = {
+            method: "post",
+            url: addLikeToPostURL,
+            data: {
+                postID,
+                userID,
+            },
+        };
+
+        await handleAddLikeToPost(config);
+        getAllPostData();
+    };
+
     return (
         <div className="forum-post">
             <div className="forum-post__likes">
-                <button>&#8593;</button>
-                <label className="forum-post__likes-count">{totalPoints}</label>
-                <button>&#8595;</button>
+                <button
+                    style={{ color: likeBttnColor }}
+                    onClick={handleAddLike}
+                >
+                    &#10084;
+                </button>
+                <label className="forum-post__likes-count">
+                    {post.likes.length}
+                </label>
             </div>
             <div className="forum-post__content">
                 <label
@@ -144,104 +181,8 @@ export default function ForumPostCard({
                                 : null}
                         </Panel>
                     </Collapse>
-                    {/* <Collapse className="view-all-post-collapse" key={i}>
-                        <Panel
-                            header={
-                                <ForumPostCard
-                                    key={i}
-                                    post={post}
-                                    totalComments={totalComments}
-                                    totalPoints={totalPoints}
-                                    category={post.category}
-                                />
-                            }
-                        >
-                            <div className="view-all-post__comments">
-                                <div className="view-all-post__comments__write">
-                                    <Input
-                                        size="large"
-                                        placeholder="Write Your Comment"
-                                        prefix={<CommentOutlined />}
-                                        onChange={(e) =>
-                                            setcommentInput(e.target.value)
-                                        }
-                                    />
-                                    <Button
-                                        type="primary"
-                                        onClick={() => handleCommentSubmit(i)}
-                                    >
-                                        Comment
-                                    </Button>
-                                </div>
-                                <div className="view-all-post__comments__view">
-                                    {post.comments
-                                        ? [...post.comments]
-                                              .reverse()
-                                              .map((comment, j) => (
-                                                  <div
-                                                      className="view-all-post__comments__view__comment"
-                                                      key={j}
-                                                  >
-                                                      <small>
-                                                          {new Date(
-                                                              comment.datePublished
-                                                          )
-                                                              .toISOString()
-                                                              .substring(0, 10)}
-                                                      </small>
-                                                      <img
-                                                          src={
-                                                              comment.author_id
-                                                                  .profileImg
-                                                          }
-                                                          alt="user Img"
-                                                      ></img>
-                                                      <label>
-                                                          <i>
-                                                              {
-                                                                  comment.authorName.split(
-                                                                      " "
-                                                                  )[0]
-                                                              }
-                                                          </i>{" "}
-                                                          -{" "}
-                                                      </label>
-                                                      <p>{comment.body}</p>
-                                                  </div>
-                                              ))
-                                        : null}
-                                </div>
-                            </div>
-                        </Panel>
-                    </Collapse> */}
                 </div>
             </div>
         </div>
-        //
-        // <div className="all-post">
-        //     <div className="all-post__stats">
-        //         <label className="all-post__stats__author">
-        //             <small>
-        //                 <i>{post.author.fullName.split(" ")[0]}</i>
-        //             </small>
-        //             <br></br>
-        //             <small>
-        //                 <i>{formattedDate}</i>
-        //             </small>
-        //         </label>
-        //         <label>{totalComments} Comments</label>
-        //         <label>{totalPoints} Points</label>
-        //         <label>{category}</label>
-        //     </div>
-        //     <div className="all-post__content">
-        //         <div className="all-post__content_top">
-        //             <label>
-        //                 <b>{post.title}</b>
-        //             </label>
-        //             <label>{post.body}</label>
-        //         </div>
-        //         <label>#{post.tag}</label>
-        //     </div>
-        // </div>
     );
 }

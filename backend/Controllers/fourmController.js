@@ -1,4 +1,5 @@
 const forum = require("../Schema/forumSchema");
+const mongoose = require("mongoose");
 
 // Create a new forum post
 exports.createPost = async (request, response) => {
@@ -131,5 +132,34 @@ exports.addCommentToPost = async (request, response) => {
     } catch (err) {
         console.error(err);
         response.status(500).json({ message: "Server Error" });
+    }
+};
+
+exports.likePost = async (req, res) => {
+    const { postID, userID } = req.body;
+
+    try {
+        const post = await forum.findById(postID);
+
+        if (!post) {
+            return res.status(404).json({ message: "Post not found" });
+        }
+
+        const alreadyLiked = post.likes.includes(userID);
+
+        if (alreadyLiked) {
+            post.likes = post.likes.filter((id) => {
+                return id.toString() !== userID;
+            });
+        } else {
+            post.likes.push(userID);
+        }
+
+        await post.save();
+
+        res.status(200).json({ liked: !alreadyLiked });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server Error" });
     }
 };

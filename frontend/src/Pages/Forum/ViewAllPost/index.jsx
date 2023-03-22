@@ -22,11 +22,8 @@ export default function ViewAllPost() {
             method: "get",
             url: getAllPostURL,
         };
-
         handleGetAllPost(config).then((res) => setallPostData(res.data));
     };
-
-    console.log("ALL POST DATA", allPostData);
 
     const onSearch = (value) => {
         console.log("search value", value);
@@ -66,13 +63,11 @@ export default function ViewAllPost() {
                 <div className="view-all-post__post-collection">
                     {allPostData.map((post, i) => {
                         const totalComments = post.comments.length;
-                        const totalPoints = post.likes.length;
                         return (
                             <ForumPostCard
                                 key={i}
                                 post={post}
                                 totalComments={totalComments}
-                                totalPoints={totalPoints}
                                 getAllPostData={getAllPostData}
                                 addCommentURL={addCommentURL}
                             />

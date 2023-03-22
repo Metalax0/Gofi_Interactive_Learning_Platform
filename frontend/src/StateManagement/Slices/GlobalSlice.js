@@ -1,17 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    baseURL: "http://localhost:8000",
-    signupURL: "http://localhost:8000/api/signup",
-    loginURL: "http://localhost:8000/api/login",
-    userDataURL: "http://localhost:8000/api/userdata",
-    createPostURL: "http://localhost:8000/api/createpost",
-    getAllPostURL: "http://localhost:8000/api/getallpost",
-    addCommentURL: "http://localhost:8000/api/addcomment",
-    addhtmlchapter: "http://localhost:8000/api/addhtmlchapter",
-    gethtmlchapter: "http://localhost:8000/api/gethtmlchapter",
+const baseURL = "http://localhost:8000";
 
-    isLoggedIn: "false",
+const initialState = {
+    baseURL: baseURL,
+    signupURL: `${baseURL}/api/signup`,
+    loginURL: `${baseURL}/api/login`,
+    userDataURL: `${baseURL}/api/userdata`,
+    createPostURL: `${baseURL}/api/createpost`,
+    getAllPostURL: `${baseURL}/api/getallpost`,
+    addLikeToPostURL: `${baseURL}/api/likepost`,
+    addCommentURL: `${baseURL}/api/addcomment`,
+    addhtmlchapter: `${baseURL}/api/addhtmlchapter`,
+    gethtmlchapter: `${baseURL}/api/gethtmlchapter`,
+    isLoggedIn: false,
 };
 
 const globalOptions = {

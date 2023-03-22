@@ -20,6 +20,8 @@
 }
 
 .forum-post__likes button {
+    color: grey;
+    color: red;
     padding: 7px;
     border-radius: 10px;
     border: none;

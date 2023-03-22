@@ -307,7 +307,7 @@ p{
     },
 
     {
-        title: "4. Width, Height",
+        title: "5. Width, Height",
         body: [
             {
                 content:

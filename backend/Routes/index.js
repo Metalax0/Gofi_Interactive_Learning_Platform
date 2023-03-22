@@ -16,6 +16,7 @@ router.get("/gethtmlchapter", htmlTutorialController.getAllData);
 
 router.post("/createpost", forumController.createPost);
 router.post("/addcomment", forumController.addCommentToPost);
+router.post("/likepost", forumController.likePost);
 router.get("/getallpost", forumController.getAllPosts);
 
 router.get("/userdata", userDataController.userData);

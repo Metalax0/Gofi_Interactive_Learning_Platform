@@ -1,6 +1,6 @@
 import { Button, Collapse, Input } from "antd";
 import { handleAddComment } from "../../Functions/handleAddComment";
-import { CommentOutlined } from "@ant-design/icons";
+import { CommentOutlined, DeleteFilled } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { useSelector } from "react-redux";
@@ -8,10 +8,17 @@ import { handleAddLikeToPost } from "../../Functions/handleAddLikeToPost";
 
 const { Panel } = Collapse;
 
-export default function ForumPostCard({ post, getAllPostData, addCommentURL }) {
+export default function ForumPostCard({
+    post,
+    getAllPostData,
+    addCommentURL,
+    enablePostDelete = false,
+}) {
     const addLikeToPostURL = useSelector(
         (state) => state.global.addLikeToPostURL
     );
+
+    const deletePostURL = useSelector((state) => state.global.deletePostURL);
 
     const [commentInput, setcommentInput] = useState("");
     const [likeBttnColor, setlikeBttnColor] = useState("grey");
@@ -62,6 +69,7 @@ export default function ForumPostCard({ post, getAllPostData, addCommentURL }) {
         ).fullName;
         const authorID = JSON.parse(localStorage.getItem("activeUser")).userID;
         // axios call
+
         const config = {
             method: "post",
             url: addCommentURL,
@@ -94,9 +102,31 @@ export default function ForumPostCard({ post, getAllPostData, addCommentURL }) {
         getAllPostData();
     };
 
+    const handleDeletePost = async () => {
+        console.log("delete post");
+        const postID = post._id;
+
+        const config = {
+            method: "post",
+            url: deletePostURL,
+            data: {
+                postID,
+            },
+        };
+
+        await handleAddLikeToPost(config);
+        getAllPostData();
+    };
+
     return (
         <div className="forum-post">
             <div className="forum-post__likes">
+                <button
+                    onClick={handleDeletePost}
+                    style={{ backgroundColor: "#eb664b", color: "black" }}
+                >
+                    <DeleteFilled style={{ fontSize: "0.9rem" }} />
+                </button>
                 <button
                     style={{ color: likeBttnColor }}
                     onClick={handleAddLike}
@@ -121,8 +151,25 @@ export default function ForumPostCard({ post, getAllPostData, addCommentURL }) {
                     <p>{body}</p>
                 </div>
                 <div className="forum-post__content__info">
-                    <div className="forum-post__content__info"></div>
+                    <div className="forum-post-info__tags">
+                        {post.tag.split(" ").map((tag, i) => (
+                            <i key={i}>#{tag} &nbsp;</i>
+                        ))}
+                    </div>
+                    <div className="forum-post-info__stats">
+                        <div className="forum-post-info__author_details">
+                            <img
+                                src={post.author.user_id.profileImg}
+                                alt="user Img"
+                            ></img>
+                            <label>{post.author.fullName.split(" ")[0]}</label>
+                        </div>
+                        <div className="forum-post-info__date">
+                            <small>{formattedDate}</small>
+                        </div>
+                    </div>
                 </div>
+                <br />
                 <div className="forum-post__content__comments">
                     <Collapse
                         className="forum-post__content__comments__collapse"
@@ -130,7 +177,7 @@ export default function ForumPostCard({ post, getAllPostData, addCommentURL }) {
                     >
                         <Panel
                             className="forum-post__content__comments__collapse-header"
-                            header="Comments"
+                            header={"Comments (" + comments.length + ")"}
                             size="small"
                         >
                             <div className="forum-post__content__comments__write">
@@ -166,14 +213,15 @@ export default function ForumPostCard({ post, getAllPostData, addCommentURL }) {
                                               alt="user Img"
                                           ></img>
                                           <label>
-                                              <i>
-                                                  {
-                                                      comment.authorName.split(
-                                                          " "
-                                                      )[0]
-                                                  }
-                                              </i>{" "}
-                                              -{" "}
+                                              <b>
+                                                  <i>
+                                                      {
+                                                          comment.authorName.split(
+                                                              " "
+                                                          )[0]
+                                                      }
+                                                  </i>{" "}
+                                              </b>
                                           </label>
                                           <p>{comment.body}</p>
                                       </div>

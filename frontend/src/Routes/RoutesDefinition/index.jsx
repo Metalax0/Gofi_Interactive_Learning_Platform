@@ -17,6 +17,7 @@ import TutorialCSS from "../../Pages/Tutorial/CSS";
 import TutorialJS from "../../Pages/Tutorial/JS";
 import CreatePost from "../../Pages/Forum/CreatePost";
 import ViewAllPost from "../../Pages/Forum/ViewAllPost";
+import MyPosts from "../../Pages/Forum/MyPosts";
 
 export default function RoutesDefinition() {
     return (
@@ -79,7 +80,7 @@ export default function RoutesDefinition() {
                     path="/forum/view"
                     element={
                         <ProtectedRoutes>
-                            <Forum />
+                            <MyPosts />
                         </ProtectedRoutes>
                     }
                 />

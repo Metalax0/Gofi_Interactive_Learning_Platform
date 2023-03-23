@@ -22,6 +22,8 @@ export default function ForumCard({
         cardHeaderRef.current.style.setProperty("--bg-header", headerColor);
     }, []);
 
+    useEffect(() => {});
+
     const handleChapterOneClick = () => {
         console.log(navigateTo);
         navigate(`${navigateTo}`);
@@ -42,11 +44,11 @@ export default function ForumCard({
                 </div>
                 <div className="forum-card__footer__chapter-count">
                     {progress ? (
-                        progress.postsCount ? (
+                        progress.postCount ? (
                             <>
                                 <label>Total Posts - </label>
                                 <label className="forum-card__progress__last-chapter">
-                                    {progress.postsCount}
+                                    {progress.postCount}
                                 </label>
                             </>
                         ) : (

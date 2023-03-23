@@ -1,0 +1,31 @@
+.forum-sidebar {
+    height: 100%;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.forum-sidebar-items {
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.forum-sidebar-items button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    gap: 10px;
+    text-align: left;
+    padding: 0.8rem 5rem 0.8rem 1.5rem;
+}
+
+#form-sidebar-item-active {
+    color: rgba(50, 50, 255, 1);
+    background-color: rgba(3, 150, 255, 0.2);
+    border-left: 10px solid rgba(50, 50, 255, 1);
+    padding-left: 1.3rem;
+}

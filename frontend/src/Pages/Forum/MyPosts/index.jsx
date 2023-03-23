@@ -1,31 +1,38 @@
-import { Button, Collapse, Input, Select } from "antd";
+import { Input, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Cookies from "universal-cookie";
 import ForumPostCard from "../../../Components/ForumPostCard";
 import ForumSidebar from "../../../Components/ForumSidebar";
-import { handleGetAllPost } from "../../../Functions/handleGetAllPost";
+import { handleGetAllAuthorPost } from "../../../Functions/handleGetAllAuthorPost";
 import "./style.css";
 
-const { Panel } = Collapse;
 const { Search } = Input;
+const cookies = new Cookies();
 
-export default function ViewAllPost() {
+export default function MyPosts() {
     const [allPostData, setallPostData] = useState([]);
     const [allPostDataFiltered, setallPostDataFiltered] = useState([]);
 
-    const getAllPostURL = useSelector((state) => state.global.getAllPostURL);
+    const getAllAuthorPostDataURL = useSelector(
+        (state) => state.global.getAllAuthorPostURL
+    );
     const addCommentURL = useSelector((state) => state.global.addCommentURL);
 
     useEffect(() => {
-        getAllPostData();
+        getAllAuthorPostData();
     }, []);
 
-    const getAllPostData = () => {
+    const getAllAuthorPostData = () => {
+        const userID = cookies.get("USERID");
+
         const config = {
             method: "get",
-            url: getAllPostURL,
+            url: getAllAuthorPostDataURL,
+            params: { authorID: userID },
         };
-        handleGetAllPost(config).then((res) => {
+
+        handleGetAllAuthorPost(config).then((res) => {
             setallPostData(res.data);
             setallPostDataFiltered(res.data);
         });
@@ -57,7 +64,7 @@ export default function ViewAllPost() {
 
     return (
         <div className="view-all-post">
-            <ForumSidebar activeSidebar={1} />
+            <ForumSidebar activeSidebar={2} />
             <div className="view-all-post__container">
                 <div className="view-all-post__top">
                     <Search
@@ -96,8 +103,9 @@ export default function ViewAllPost() {
                                 key={i}
                                 post={post}
                                 totalComments={totalComments}
-                                getAllPostData={getAllPostData}
+                                getAllPostData={getAllAuthorPostData}
                                 addCommentURL={addCommentURL}
+                                enablePostDelete={true}
                             />
                         );
                     })}

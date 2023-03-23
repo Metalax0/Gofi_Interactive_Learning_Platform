@@ -3,6 +3,7 @@ import { Button, Form, Input, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React from "react";
 import { useSelector } from "react-redux";
+import ForumSidebar from "../../../Components/ForumSidebar";
 import { handleCreatePost } from "../../../Functions/handleCreatePost";
 import "./style.css";
 
@@ -38,6 +39,9 @@ export default function CreatePost() {
 
     return (
         <div className="create-post">
+            <div className="forum-sidebar-container-create">
+                <ForumSidebar activeSidebar={0} />
+            </div>
             <div className="create-post__container">
                 <h2>Create Post</h2>
                 <Form

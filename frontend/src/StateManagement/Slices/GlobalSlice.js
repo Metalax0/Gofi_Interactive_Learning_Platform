@@ -8,11 +8,14 @@ const initialState = {
     loginURL: `${baseURL}/api/login`,
     userDataURL: `${baseURL}/api/userdata`,
     createPostURL: `${baseURL}/api/createpost`,
+    deletePostURL: `${baseURL}/api/deletepost`,
     getAllPostURL: `${baseURL}/api/getallpost`,
+    getAllAuthorPostURL: `${baseURL}/api/getallauthorpost`,
     addLikeToPostURL: `${baseURL}/api/likepost`,
     addCommentURL: `${baseURL}/api/addcomment`,
     addhtmlchapter: `${baseURL}/api/addhtmlchapter`,
     gethtmlchapter: `${baseURL}/api/gethtmlchapter`,
+
     isLoggedIn: false,
 };
 

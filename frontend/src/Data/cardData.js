@@ -96,7 +96,7 @@ export const forumCardData = {
         headerText: "View",
         bodyTitle: "My Posts",
         bodyText:
-            "Asked a question a while ago but can't seem to find it? Click here to view all of your post details. You can also delete posts.",
+            "Asked a question a while ago but can't seem to find it? Click here to view all of your post details. You can also manage your posts (delete).",
         chapterCount: 5,
         reward: "No Badges or points",
         headerColor: "#ffe77c",

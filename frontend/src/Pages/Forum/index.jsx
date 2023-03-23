@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import ForumCard from "../../Components/ForumCard";
 import { forumCardData } from "../../Data/cardData";
+import { handleGetAllPost } from "../../Functions/handleGetAllPost";
 import "./style.css";
 
 export default function Forum() {
+    const getAllPostURL = useSelector((state) => state.global.getAllPostURL);
+    const [totalPosts, setTotalPosts] = useState({ postCount: 0 });
+
+    useEffect(() => {
+        getAllPostData();
+    }, []);
+
+    const getAllPostData = () => {
+        const config = {
+            method: "get",
+            url: getAllPostURL,
+        };
+        handleGetAllPost(config).then((res) => {
+            setTotalPosts({ postCount: res.data.length });
+        });
+    };
+
     return (
         <div className="forum-page">
             <section className="forum-section">
@@ -26,7 +45,7 @@ export default function Forum() {
                     chapterCount={forumCardData.browse.chapterCount}
                     reward={forumCardData.browse.reward}
                     headerColor={forumCardData.browse.headerColor}
-                    progress={forumCardData.browse.progress}
+                    progress={totalPosts}
                     navigateTo={forumCardData.browse.navigateTo}
                 />
             </section>

@@ -6,7 +6,6 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     text-align: center;
 }
 
@@ -19,7 +18,10 @@
     align-items: center;
 }
 
-#signup-form {
+#create-post-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 30px;
     border: 1px solid #888888;
     border-radius: 20px;

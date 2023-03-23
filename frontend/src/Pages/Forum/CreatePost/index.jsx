@@ -45,7 +45,7 @@ export default function CreatePost() {
             <div className="create-post__container">
                 <h2>Create Post</h2>
                 <Form
-                    id="signup-form"
+                    id="create-post-form"
                     name="createpost"
                     wrapperCol={{
                         span: 24,

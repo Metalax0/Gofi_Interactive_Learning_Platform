@@ -1,4 +1,4 @@
-import { Button, Collapse, Input } from "antd";
+import { Button, Collapse, Input, message, Popconfirm } from "antd";
 import { handleAddComment } from "../../Functions/handleAddComment";
 import { CommentOutlined, DeleteFilled } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
@@ -102,7 +102,7 @@ export default function ForumPostCard({
         getAllPostData();
     };
 
-    const handleDeletePost = async () => {
+    const confirm = async (e) => {
         console.log("delete post");
         const postID = post._id;
 
@@ -116,17 +116,32 @@ export default function ForumPostCard({
 
         await handleAddLikeToPost(config);
         getAllPostData();
+        message.success("Post Deleted Successfully");
+    };
+    const cancel = (e) => {
+        console.log(e);
+        message.error("Post Deletion Was Canceled");
     };
 
     return (
         <div className="forum-post">
             <div className="forum-post__likes">
-                <button
-                    onClick={handleDeletePost}
-                    style={{ backgroundColor: "#eb664b", color: "black" }}
-                >
-                    <DeleteFilled style={{ fontSize: "0.9rem" }} />
-                </button>
+                {enablePostDelete && (
+                    <button
+                        style={{ backgroundColor: "#eb664b", color: "black" }}
+                    >
+                        <Popconfirm
+                            title="Delete the task"
+                            description="Are you sure to delete this post?"
+                            onConfirm={confirm}
+                            onCancel={cancel}
+                            okText="Yes"
+                            cancelText="No"
+                        >
+                            <DeleteFilled style={{ fontSize: "0.9rem" }} />
+                        </Popconfirm>
+                    </button>
+                )}
                 <button
                     style={{ color: likeBttnColor }}
                     onClick={handleAddLike}

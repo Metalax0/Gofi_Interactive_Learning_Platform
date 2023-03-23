@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import Cookies from "universal-cookie";
 import ForumCard from "../../Components/ForumCard";
 import { forumCardData } from "../../Data/cardData";
+import { handleGetAllAuthorPost } from "../../Functions/handleGetAllAuthorPost";
 import { handleGetAllPost } from "../../Functions/handleGetAllPost";
 import "./style.css";
 
+const cookies = new Cookies();
+
 export default function Forum() {
     const getAllPostURL = useSelector((state) => state.global.getAllPostURL);
+    const getAllAuthorPostDataURL = useSelector(
+        (state) => state.global.getAllAuthorPostURL
+    );
     const [totalPosts, setTotalPosts] = useState({ postCount: 0 });
+    const [totalUserPosts, settotalUserPosts] = useState({ postCount: 0 });
 
     useEffect(() => {
         getAllPostData();
+        getAllAuthorPostData();
     }, []);
 
     const getAllPostData = () => {
@@ -20,6 +29,21 @@ export default function Forum() {
         };
         handleGetAllPost(config).then((res) => {
             setTotalPosts({ postCount: res.data.length });
+        });
+    };
+
+    const getAllAuthorPostData = () => {
+        const userID = cookies.get("USERID");
+
+        const config = {
+            method: "get",
+            url: getAllAuthorPostDataURL,
+            params: { authorID: userID },
+        };
+
+        handleGetAllAuthorPost(config).then((res) => {
+            settotalUserPosts({ postCount: res.data.length });
+            console.log(res.data.length);
         });
     };
 
@@ -57,7 +81,7 @@ export default function Forum() {
                     chapterCount={forumCardData.view.chapterCount}
                     reward={forumCardData.view.reward}
                     headerColor={forumCardData.view.headerColor}
-                    progress={forumCardData.view.progress}
+                    progress={totalUserPosts}
                     navigateTo={forumCardData.view.navigateTo}
                 />
             </section>

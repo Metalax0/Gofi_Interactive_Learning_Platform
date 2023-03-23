@@ -131,7 +131,7 @@ export default function ForumPostCard({
                         style={{ backgroundColor: "#eb664b", color: "black" }}
                     >
                         <Popconfirm
-                            title="Delete the task"
+                            title="Delete Post?"
                             description="Are you sure to delete this post?"
                             onConfirm={confirm}
                             onCancel={cancel}

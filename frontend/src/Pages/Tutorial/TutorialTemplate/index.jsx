@@ -30,17 +30,21 @@ const TutorialTemplate = ({ data, state, setState }) => {
         }
         if (userAnswerRef.current) {
             userAnswerRef.current.innerHTML = "Output Will Appear Here";
-            data.body[data.body.length - 1].type === "output"
-                ? (userAnswerRef.current.innerHTML =
-                      data.body[data.body.length - 1].code)
-                : (userAnswerRef.current.innerHTML = "Output Will Appear Here");
+
+            if (data.body[data.body.length - 1].type === "output")
+                userAnswerRef.current.innerHTML =
+                    data.body[data.body.length - 1].code;
+            else {
+                userAnswerRef.current.innerHTML = "Output Will Appear Here";
+            }
         }
+
         data.body.map((item) => {
             if (item.type === "task" && item.content === "") {
                 setisAnswerCorrect(true);
                 setisTaskAvailable(false);
             } else if (item.type === "task" && item.content !== "") {
-                setBrowserTitle("TItle");
+                setBrowserTitle("Title");
                 settextAreaValue(item.content.answer.value);
                 setisAnswerCorrect(false);
                 setisTaskAvailable(true);
@@ -56,6 +60,17 @@ const TutorialTemplate = ({ data, state, setState }) => {
                 style.innerHTML = `#tutorial-output ${answer}`;
             } else {
                 style.innerHTML = "";
+            }
+        }
+    };
+
+    const addScript = (add, answer = "") => {
+        const script = document.querySelector("#tutorial-output-script");
+        if (data.body[data.body.length - 1].type === "output") {
+            if (add) {
+                script.innerHTML = answer;
+            } else {
+                script.innerHTML = "";
             }
         }
     };
@@ -130,17 +145,15 @@ const TutorialTemplate = ({ data, state, setState }) => {
 
     const handleInputChange = (content, e = null) => {
         let answer = "";
+
         if (e) {
             settextAreaValue(e.target.value);
             answer = e.target.value.replace(/[\n\r\s]+/g, " ").trim();
         } else answer = content.answer.text.replace(/[\n\r\s]+/g, " ").trim();
 
         if (content.answer.pattern) {
-            console.log(answer);
-            console.log(content.answer.pattern);
             const regex = new RegExp(content.answer.pattern);
             if (regex.test(answer)) {
-                console.log("TRUE");
                 //Right Answer
                 const startIndex = answer.indexOf("<title>") + "<title>".length;
                 const endIndex = answer.indexOf("</title>");
@@ -151,19 +164,22 @@ const TutorialTemplate = ({ data, state, setState }) => {
                 if (data.body[data.body.length - 1].type === "output") {
                     userAnswerRef.current.innerHTML =
                         data.body[data.body.length - 1].code;
-                    addStyle(true, answer);
+                    if (data.body[data.body.length - 1].language === "js")
+                        addScript(true, answer);
+                    else addStyle(true, answer);
                 }
                 setisAnswerCorrect(true);
                 browserWindowRef.current.style.boxShadow =
                     "0px 0px 20px rgb(21, 211, 21)";
             } else {
-                console.log("FALSE");
                 // Wrong Answer
                 userAnswerRef.current.innerHTML = "Output Will Appear Here";
                 if (data.body[data.body.length - 1].type === "output") {
                     userAnswerRef.current.innerHTML =
                         data.body[data.body.length - 1].code;
-                    addStyle(false);
+                    if (data.body[data.body.length - 1].language === "js")
+                        addScript(false);
+                    else addStyle(false);
                 }
                 setisAnswerCorrect(false);
                 browserWindowRef.current.style.boxShadow =

@@ -70,9 +70,8 @@ const TutorialTemplate = ({ data, state, setState }) => {
     const addScript = (add, answer = "") => {
         const script = document.createElement("script");
         if (add) {
-            script.innerHTML = "";
             consoleNewProxy();
-            script.innerHTML = answer;
+            script.innerHTML = `(() => {${answer}})()`;
             document.head.appendChild(script);
             document.head.removeChild(script);
             consoleOldProxy();

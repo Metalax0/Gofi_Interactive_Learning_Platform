@@ -130,7 +130,7 @@ let age = 22;`,
                     task: "Create a variable in JavaScript which will store the value of 'Nepal' to variable with any name of your choice",
                     answer: {
                         pattern:
-                            "^let\\s*(\\w+)\\s*=\\s*['\"](Nepal)['\"];?\\n?\\s*console\\.log\\(\\1\\);$",
+                            "^let\\s*(\\w+)\\s*=\\s*['\"](Nepal)['\"];\\n?\\s*console\\.log\\(\\1\\);$",
                         text: "let country = 'Nepal';console.log(country);",
                     },
                 },

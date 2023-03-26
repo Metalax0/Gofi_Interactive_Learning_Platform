@@ -70,6 +70,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
     const addScript = (add, answer = "") => {
         const script = document.createElement("script");
         if (add) {
+            script.innerHTML = "";
             consoleNewProxy();
             script.innerHTML = answer;
             document.head.appendChild(script);
@@ -77,6 +78,9 @@ const TutorialTemplate = ({ data, state, setState }) => {
             consoleOldProxy();
         } else {
             script.innerHTML = "";
+            try {
+                document.head.removeChild(script);
+            } catch {}
         }
     };
 

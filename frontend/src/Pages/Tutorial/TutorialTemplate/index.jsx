@@ -7,6 +7,9 @@ import {
     consoleNewProxy,
     consoleOldProxy,
 } from "../../../Functions/consoleProxy";
+
+import { handleUpdateTutorialProgress } from "../../../Functions/handleUpdateTutorialProgress";
+import { useSelector } from "react-redux";
 // import console from "../../../Functions/consoleOverride";
 
 const TutorialTemplate = ({ data, state, setState }) => {
@@ -26,7 +29,13 @@ const TutorialTemplate = ({ data, state, setState }) => {
     const TaskRef = useRef(null);
     const browserWindowRef = useRef(null);
 
+    const updatetutorialprogressURL = useSelector(
+        (state) => state.global.updatetutorialprogressURL
+    );
+
     useEffect(() => {
+        console.log("CURRENT CHAPTER", state);
+
         setOpen(true);
 
         if (browserWindowRef.current) {
@@ -148,6 +157,23 @@ const TutorialTemplate = ({ data, state, setState }) => {
     };
 
     const handleNext = () => {
+        //
+        // call api and update tutorial progress to 1
+        const userID = JSON.parse(localStorage.getItem("activeUser")).userID;
+        const tutorial = "html";
+        const chaptersCompleted = state;
+        const config = {
+            method: "post",
+            url: updatetutorialprogressURL,
+            data: {
+                userID,
+                tutorial,
+                chaptersCompleted,
+            },
+        };
+
+        handleUpdateTutorialProgress(config);
+        //
         setState(state + 1);
     };
 

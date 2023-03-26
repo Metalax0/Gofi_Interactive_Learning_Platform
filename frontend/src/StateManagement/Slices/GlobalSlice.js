@@ -6,6 +6,7 @@ const initialState = {
     baseURL: baseURL,
     signupURL: `${baseURL}/api/signup`,
     loginURL: `${baseURL}/api/login`,
+    updatetutorialprogressURL: `${baseURL}/api/updatetutorialprogress`,
     userDataURL: `${baseURL}/api/userdata`,
     createPostURL: `${baseURL}/api/createpost`,
     deletePostURL: `${baseURL}/api/deletepost`,

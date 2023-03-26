@@ -27,14 +27,27 @@ const userStatisticsSchema = new mongoose.Schema({
         type: [
             {
                 tutorial: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: "Tutorial",
+                    type: String,
+                    enum: ["html", "css", "js"],
                     required: true,
                 },
                 chaptersCompleted: { type: Number, required: true, default: 0 },
             },
         ],
-        default: [],
+        default: [
+            {
+                tutorial: "html",
+                chaptersCompleted: 0,
+            },
+            {
+                tutorial: "css",
+                chaptersCompleted: 0,
+            },
+            {
+                tutorial: "js",
+                chaptersCompleted: 0,
+            },
+        ],
     },
     testDetails: {
         type: [
@@ -58,7 +71,7 @@ const userStatisticsSchema = new mongoose.Schema({
     },
 });
 
-// This code will create a table/collection if table with that name does not exist
+// UserSchema
 const UserSchema = new mongoose.Schema({
     fullName: {
         type: String,

@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../Schema/userSchema");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 
 exports.login = (request, response) => {
     // check if email exists
@@ -97,4 +98,27 @@ exports.signup = (request, response) => {
                 e,
             });
         });
+};
+
+exports.updateUserTutorialProgress = async (req, res) => {
+    try {
+        const { userID, tutorial, chaptersCompleted } = req.body; // Get the input values from request body
+        console.log(req.body);
+        const user = await User.findById(userID); // Find the user by ID
+        // Update the tutorial progress
+        const tutorialIndex = user.statistics.tutorialProgress.findIndex(
+            (item) => item.tutorial === tutorial
+        ); // Get the index of the tutorial in the array
+        user.statistics.tutorialProgress[tutorialIndex].chaptersCompleted =
+            chaptersCompleted;
+
+        // Save the updated user statistics to the database
+        await user.save();
+
+        // Return the updated user object
+        res.json(user);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server Error" });
+    }
 };

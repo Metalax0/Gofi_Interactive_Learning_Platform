@@ -10,6 +10,10 @@ const htmlTutorialController = require("../Controllers/htmlTutorialController");
 // Define routes here
 router.post("/login", userController.login);
 router.post("/signup", userController.signup);
+router.post(
+    "/updatetutorialprogress",
+    userController.updateUserTutorialProgress
+);
 
 router.post("/addhtmlchapter", htmlTutorialController.addChapter);
 router.get("/gethtmlchapter", htmlTutorialController.getAllData);

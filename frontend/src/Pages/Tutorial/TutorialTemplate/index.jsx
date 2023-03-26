@@ -3,6 +3,11 @@ import { Button, Input, Tour } from "antd";
 import { ProfileOutlined } from "@ant-design/icons";
 import "./style.css";
 import TextArea from "antd/es/input/TextArea";
+import {
+    consoleNewProxy,
+    consoleOldProxy,
+} from "../../../Functions/consoleProxy";
+// import console from "../../../Functions/consoleOverride";
 
 const TutorialTemplate = ({ data, state, setState }) => {
     const [textAreaValue, settextAreaValue] = useState("");
@@ -55,23 +60,23 @@ const TutorialTemplate = ({ data, state, setState }) => {
 
     const addStyle = (add, answer = "") => {
         const style = document.querySelector("#tutorial-output-style");
-        if (data.body[data.body.length - 1].type === "output") {
-            if (add) {
-                style.innerHTML = `#tutorial-output ${answer}`;
-            } else {
-                style.innerHTML = "";
-            }
+        if (add) {
+            style.innerHTML = `#tutorial-output ${answer}`;
+        } else {
+            style.innerHTML = "";
         }
     };
 
     const addScript = (add, answer = "") => {
-        const script = document.querySelector("#tutorial-output-script");
-        if (data.body[data.body.length - 1].type === "output") {
-            if (add) {
-                script.innerHTML = answer;
-            } else {
-                script.innerHTML = "";
-            }
+        const script = document.createElement("script");
+        if (add) {
+            consoleNewProxy();
+            script.innerHTML = answer;
+            document.head.appendChild(script);
+            document.head.removeChild(script);
+            consoleOldProxy();
+        } else {
+            script.innerHTML = "";
         }
     };
 
@@ -164,9 +169,9 @@ const TutorialTemplate = ({ data, state, setState }) => {
                 if (data.body[data.body.length - 1].type === "output") {
                     userAnswerRef.current.innerHTML =
                         data.body[data.body.length - 1].code;
-                    if (data.body[data.body.length - 1].language === "js")
+                    if (data.body[data.body.length - 1].language === "js") {
                         addScript(true, answer);
-                    else addStyle(true, answer);
+                    } else addStyle(true, answer);
                 }
                 setisAnswerCorrect(true);
                 browserWindowRef.current.style.boxShadow =
@@ -398,7 +403,7 @@ const TutorialTemplate = ({ data, state, setState }) => {
                     Previous
                 </Button>
                 <Button
-                    // disabled={isAnswerCorrect ? false : true}
+                    disabled={isAnswerCorrect ? false : true}
                     onClick={handleNext}
                     ref={NextRef}
                 >

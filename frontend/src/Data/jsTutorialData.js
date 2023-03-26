@@ -35,7 +35,7 @@ export const jsTutorialData = [
             },
             {
                 content:
-                    "Note: Javascript will most of the time not have any visible changes so for this tutorial, the output will be the code itself.",
+                    "Note: Javascript will most of the time not have any visible changes so for this tutorial, We will be using console.log(). More about it on next chapter",
                 type: "paragraph",
             },
             {
@@ -127,15 +127,20 @@ let age = 22;`,
             },
             {
                 content: {
-                    task: "Create a variable in JavaScript which will store the value of 'Nepal' to the variable country",
+                    task: "Create a variable in JavaScript which will store the value of 'Nepal' to variable with any name of your choice",
                     answer: {
                         pattern:
-                            "^\\s*let\\s+[a-zA-Z]+\\s*=\\s*['\"]Nepal['\"]\\s*;?\\s*$",
-                        text: "let country = 'Nepal';",
+                            "^let\\s*(\\w+)\\s*=\\s*['\"](Nepal)['\"];?\\n?\\s*console\\.log\\(\\1\\);$",
+                        text: "let country = 'Nepal';console.log(country);",
                     },
                 },
                 type: "task",
                 width: "60%",
+            },
+            {
+                code: "<label>The output to console.log will appear below : </label> <br /><hr/>",
+                type: "output",
+                language: "js",
             },
         ],
     },

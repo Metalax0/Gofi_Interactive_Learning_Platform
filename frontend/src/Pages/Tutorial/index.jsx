@@ -17,6 +17,7 @@ export default function Tutorial() {
                     chapters={tutorialCardData.html.chapters}
                     progress={tutorialCardData.html.progress}
                     navigateTo={tutorialCardData.html.navigateTo}
+                    tutorial="html"
                 />
             </section>
             <section className="tutorial-section">
@@ -30,6 +31,7 @@ export default function Tutorial() {
                     chapters={tutorialCardData.css.chapters}
                     progress={tutorialCardData.css.progress}
                     navigateTo={tutorialCardData.css.navigateTo}
+                    tutorial="css"
                 />
             </section>
             <section className="tutorial-section">
@@ -43,6 +45,7 @@ export default function Tutorial() {
                     chapters={tutorialCardData.js.chapters}
                     progress={tutorialCardData.js.progress}
                     navigateTo={tutorialCardData.js.navigateTo}
+                    tutorial="js"
                 />
             </section>
         </div>

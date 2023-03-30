@@ -1,10 +1,14 @@
 import { Button, Collapse, Progress } from "antd";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
+import { handleGetUserStatistics } from "../../Functions/handleGetUserStatistics";
 import "./style.css";
 
 const { Panel } = Collapse;
+const cookies = new Cookies();
 
 export default function CourseCard({
     headerText,
@@ -14,19 +18,54 @@ export default function CourseCard({
     reward,
     headerColor,
     chapters,
-    progress,
     navigateTo,
+    tutorial,
 }) {
+    const [tutorialProgress, settutorialProgress] = useState({
+        percent: 0,
+        lastchapter: 0,
+    });
     const cardHeaderRef = useRef(null);
     const navigate = useNavigate();
     useEffect(() => {
         cardHeaderRef.current.style.setProperty("--bg-header", headerColor);
+        getUserStatistics();
     }, []);
 
     const handleChapterOneClick = () => {
         console.log(navigateTo);
         navigate(`${navigateTo}`);
     };
+
+    const getUserStatisticsURL = useSelector(
+        (state) => state.global.getUserStatisticsURL
+    );
+
+    const getUserStatistics = () => {
+        const userID = cookies.get("USERID");
+        const config = {
+            method: "get",
+            url: getUserStatisticsURL,
+            params: { userID: userID },
+        };
+        handleGetUserStatistics(config).then((res) => {
+            const lastChapter = res.data.tutorialProgress.filter(
+                (item) => item.tutorial === tutorial
+            )[0].chaptersCompleted;
+
+            // x % of chapterCount is lastChapter
+            // x/100 x chapter = last chapter
+            // x * chapter = last chapter * 100
+            // x = (lastCh * 100 ) / ch
+
+            const percentCompleted = (lastChapter * 100) / chapterCount;
+            settutorialProgress({
+                percent: percentCompleted,
+                lastchapter: lastChapter,
+            });
+        });
+    };
+
     return (
         <div className="course-card">
             <div className="course-card__header" ref={cardHeaderRef}>
@@ -51,10 +90,10 @@ export default function CourseCard({
                 <label>
                     <b>Progress</b>
                 </label>
-                <Progress percent={progress.progress} />
-                <label>Last chapter viewed - </label>{" "}
+                <Progress percent={tutorialProgress.percent} />
+                <label>Last chapter viewed - </label>
                 <label className="course-card__progress__last-chapter">
-                    {progress.lastChapter}
+                    {tutorialProgress.lastchapter}
                 </label>
             </div>
 
@@ -68,8 +107,8 @@ export default function CourseCard({
                     key="1"
                 >
                     <div className="course-card__syllabus">
-                        {chapters.map((chapter) => (
-                            <label>{chapter}</label>
+                        {chapters.map((chapter, id) => (
+                            <label key={id}>{chapter}</label>
                         ))}
                     </div>
                 </Panel>

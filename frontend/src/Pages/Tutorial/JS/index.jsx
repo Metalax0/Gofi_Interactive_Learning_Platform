@@ -12,6 +12,7 @@ const TutorialJS = () => {
                 state={activeChapter}
                 setState={setactiveChapter}
                 data={jsTutorialData[activeChapter - 1]}
+                tutorial="js"
             />
         </div>
     );

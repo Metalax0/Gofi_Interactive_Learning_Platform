@@ -16,6 +16,7 @@ const initialState = {
     addCommentURL: `${baseURL}/api/addcomment`,
     addhtmlchapter: `${baseURL}/api/addhtmlchapter`,
     gethtmlchapter: `${baseURL}/api/gethtmlchapter`,
+    getUserStatisticsURL: `${baseURL}/api/getUserStatistics`,
 
     isLoggedIn: false,
 };

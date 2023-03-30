@@ -11,6 +11,7 @@ const TutorialHTML = () => {
                 state={activeChapter}
                 setState={setactiveChapter}
                 data={htmlTutorialData[activeChapter - 1]}
+                tutorial="html"
             />
         </div>
     );

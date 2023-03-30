@@ -12,7 +12,7 @@ import { handleUpdateTutorialProgress } from "../../../Functions/handleUpdateTut
 import { useSelector } from "react-redux";
 // import console from "../../../Functions/consoleOverride";
 
-const TutorialTemplate = ({ data, state, setState }) => {
+const TutorialTemplate = ({ data, state, setState, tutorial }) => {
     const [textAreaValue, settextAreaValue] = useState("");
     const [browserTitle, setBrowserTitle] = useState("Title");
     const [isTaskAvailable, setisTaskAvailable] = useState(false);
@@ -157,10 +157,8 @@ const TutorialTemplate = ({ data, state, setState }) => {
     };
 
     const handleNext = () => {
-        //
         // call api and update tutorial progress to 1
         const userID = JSON.parse(localStorage.getItem("activeUser")).userID;
-        const tutorial = "html";
         const chaptersCompleted = state;
         const config = {
             method: "post",
@@ -173,7 +171,6 @@ const TutorialTemplate = ({ data, state, setState }) => {
         };
 
         handleUpdateTutorialProgress(config);
-        //
         setState(state + 1);
     };
 

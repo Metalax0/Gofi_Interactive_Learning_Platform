@@ -26,5 +26,6 @@ router.get("/getallpost", forumController.getAllPosts);
 router.get("/getallauthorpost", forumController.getAllAuthorPost);
 
 router.get("/userdata", userDataController.userData);
+router.get("/getUserStatistics", userDataController.getUserStatistics);
 
 module.exports = router;

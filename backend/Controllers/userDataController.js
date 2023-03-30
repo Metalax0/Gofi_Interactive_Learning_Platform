@@ -20,3 +20,21 @@ exports.userData = (request, response) => {
             });
         });
 };
+
+// Get user statistics by of a user by their ID
+exports.getUserStatistics = async (req, res) => {
+    const { userID } = req.query;
+
+    try {
+        const user = await User.findById(userID);
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+
+        const userStatistics = user.statistics;
+        return res.json(userStatistics);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};

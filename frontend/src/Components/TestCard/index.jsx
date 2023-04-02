@@ -17,16 +17,21 @@ export default function TestCard({
     testCount,
     reward,
     headerColor,
-    score,
     navigateTo,
     test,
 }) {
-    const [scorePercent, setscorePercent] = useState(0);
+    const [testProgress, settestProgress] = useState({
+        highScore: 0,
+        lastScore: 0,
+        attempts: 0,
+        dateTaken: "NULL",
+    });
+
     const cardHeaderRef = useRef(null);
     const navigate = useNavigate();
     useEffect(() => {
         cardHeaderRef.current.style.setProperty("--bg-header", headerColor);
-        // getUserStatistics();
+        getUserStatistics();
     }, []);
 
     const handleTestStart = () => {
@@ -34,29 +39,44 @@ export default function TestCard({
         navigate(`${navigateTo}`);
     };
 
-    // const getUserStatisticsURL = useSelector(
-    //     (state) => state.global.getUserStatisticsURL
-    // );
+    const getUserStatisticsURL = useSelector(
+        (state) => state.global.getUserStatisticsURL
+    );
 
-    // const getUserStatistics = () => {
-    //     const userID = cookies.get("USERID");
-    //     const config = {
-    //         method: "get",
-    //         url: getUserStatisticsURL,
-    //         params: { userID: userID },
-    //     };
-    //     handleGetUserStatistics(config).then((res) => {
-    //         const lastChapter = res.data.tutorialProgress.filter(
-    //             (item) => item.tutorial === tutorial
-    //         )[0].chaptersCompleted;
+    const getUserStatistics = () => {
+        const userID = cookies.get("USERID");
+        const config = {
+            method: "get",
+            url: getUserStatisticsURL,
+            params: { userID: userID },
+        };
+        handleGetUserStatistics(config).then((res) => {
+            const highScore = res.data.testProgress.filter(
+                (item) => item.test === test
+            )[0].highScore;
 
-    //         const percentCompleted = (lastChapter * 100) / chapterCount;
-    //         settutorialProgress({
-    //             percent: percentCompleted,
-    //             lastchapter: lastChapter,
-    //         });
-    //     });
-    // };
+            const lastScore = res.data.testProgress.filter(
+                (item) => item.test === test
+            )[0].score;
+
+            const attempts = res.data.testProgress.filter(
+                (item) => item.test === test
+            )[0].attempts;
+
+            const dateTaken = res.data.testProgress.filter(
+                (item) => item.test === test
+            )[0].dateTaken;
+
+            const percentCompleted = Math.floor((highScore * 100) / testCount);
+
+            settestProgress({
+                highScore: percentCompleted,
+                lastScore: lastScore,
+                attempts: attempts,
+                dateTaken: dateTaken,
+            });
+        });
+    };
 
     return (
         <div className="test-card">
@@ -82,13 +102,23 @@ export default function TestCard({
                 <label>
                     <b>Personal High Score</b>
                 </label>
-                <Progress percent={scorePercent} />
-                <label>Last High Score - </label>
-                <label className="test-card__progress__last-chapter">0</label>
+                <Progress percent={testProgress.highScore} />
+                <label>Last Score - </label>
+                <label className="test-card__progress__last-chapter">
+                    {testProgress.lastScore}
+                </label>
                 <br />
                 <br />
                 <label>Number of attempts - </label>
-                <label className="test-card__progress__last-chapter">0</label>
+                <label className="test-card__progress__last-chapter">
+                    {testProgress.attempts}
+                </label>
+                <br />
+                <br />
+                <label>Last Taken </label>
+                <label className="test-card__progress__last-chapter">
+                    {testProgress.dateTaken.slice(0, 10)}
+                </label>
             </div>
 
             <div className="test-card__buttons">

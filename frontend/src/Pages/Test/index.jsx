@@ -2,6 +2,9 @@ import React from "react";
 import { testCardData } from "../../Data/cardData";
 import "./style.css";
 import TestCard from "../../Components/TestCard";
+import { htmlTestData } from "../../Data/htmlTestData";
+import { cssTestData } from "../../Data/cssTestData";
+import { jsTestData } from "../../Data/jsTestData";
 
 export default function Test() {
     return (
@@ -11,10 +14,9 @@ export default function Test() {
                     headerText={testCardData.html.headerText}
                     bodyTitle={testCardData.html.bodyTitle}
                     bodyText={testCardData.html.bodyText}
-                    testCount={testCardData.html.testCount}
+                    testCount={htmlTestData.length}
                     reward={testCardData.html.reward}
                     headerColor={testCardData.html.headerColor}
-                    score={testCardData.html.score}
                     navigateTo={testCardData.html.navigateTo}
                     test="html"
                 />
@@ -24,10 +26,9 @@ export default function Test() {
                     headerText={testCardData.css.headerText}
                     bodyTitle={testCardData.css.bodyTitle}
                     bodyText={testCardData.css.bodyText}
-                    testCount={testCardData.css.testCount}
+                    testCount={cssTestData.length}
                     reward={testCardData.css.reward}
                     headerColor={testCardData.css.headerColor}
-                    score={testCardData.css.score}
                     navigateTo={testCardData.css.navigateTo}
                     test="css"
                 />
@@ -37,10 +38,9 @@ export default function Test() {
                     headerText={testCardData.js.headerText}
                     bodyTitle={testCardData.js.bodyTitle}
                     bodyText={testCardData.js.bodyText}
-                    testCount={testCardData.js.testCount}
+                    testCount={jsTestData.length}
                     reward={testCardData.js.reward}
                     headerColor={testCardData.js.headerColor}
-                    score={testCardData.js.score}
                     navigateTo={testCardData.js.navigateTo}
                     test="js"
                 />

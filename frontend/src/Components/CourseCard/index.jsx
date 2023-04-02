@@ -58,7 +58,9 @@ export default function CourseCard({
             // x * chapter = last chapter * 100
             // x = (lastCh * 100 ) / ch
 
-            const percentCompleted = (lastChapter * 100) / chapterCount;
+            const percentCompleted = Math.floor(
+                (lastChapter * 100) / chapterCount
+            );
             settutorialProgress({
                 percent: percentCompleted,
                 lastchapter: lastChapter,

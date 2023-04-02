@@ -1,6 +1,9 @@
 import React from "react";
 import CourseCard from "../../Components/CourseCard";
 import { tutorialCardData } from "../../Data/cardData";
+import { htmlTutorialData } from "../../Data/htmlTutorialData";
+import { cssTutorialData } from "../../Data/cssTutorialData";
+import { jsTutorialData } from "../../Data/jsTutorialData";
 import "./style.css";
 
 export default function Tutorial() {
@@ -11,7 +14,7 @@ export default function Tutorial() {
                     headerText={tutorialCardData.html.headerText}
                     bodyTitle={tutorialCardData.html.bodyTitle}
                     bodyText={tutorialCardData.html.bodyText}
-                    chapterCount={tutorialCardData.html.chapterCount}
+                    chapterCount={htmlTutorialData.length}
                     reward={tutorialCardData.html.reward}
                     headerColor={tutorialCardData.html.headerColor}
                     chapters={tutorialCardData.html.chapters}
@@ -25,7 +28,7 @@ export default function Tutorial() {
                     headerText={tutorialCardData.css.headerText}
                     bodyTitle={tutorialCardData.css.bodyTitle}
                     bodyText={tutorialCardData.css.bodyText}
-                    chapterCount={tutorialCardData.css.chapterCount}
+                    chapterCount={cssTutorialData.length}
                     reward={tutorialCardData.css.reward}
                     headerColor={tutorialCardData.css.headerColor}
                     chapters={tutorialCardData.css.chapters}
@@ -39,7 +42,7 @@ export default function Tutorial() {
                     headerText={tutorialCardData.js.headerText}
                     bodyTitle={tutorialCardData.js.bodyTitle}
                     bodyText={tutorialCardData.js.bodyText}
-                    chapterCount={tutorialCardData.js.chapterCount}
+                    chapterCount={jsTutorialData.length}
                     reward={tutorialCardData.js.reward}
                     headerColor={tutorialCardData.js.headerColor}
                     chapters={tutorialCardData.js.chapters}

@@ -124,25 +124,3 @@
     padding: 7px 20px;
     transition: all 0.3s;
 }
-
-/* .test-template-answers Button {
-    padding: 3% 10%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 1rem;
-    color: wheat;
-    background-color: rgb(46, 46, 46);
-
-    border: 5px solid wheat;
-    border-radius: 100px;
-    transition: all 0.3s !important;
-} */
-
-/* .test-template-answers Button:hover {
-    border: 5px solid rgb(46, 46, 46) !important;
-    color: rgb(46, 46, 46) !important;
-    background-color: wheat;
-} */

@@ -10,7 +10,6 @@ import {
 
 import { handleUpdateTutorialProgress } from "../../../Functions/handleUpdateTutorialProgress";
 import { useSelector } from "react-redux";
-// import console from "../../../Functions/consoleOverride";
 
 const TutorialTemplate = ({ data, state, setState, tutorial }) => {
     const [textAreaValue, settextAreaValue] = useState("");
@@ -29,8 +28,8 @@ const TutorialTemplate = ({ data, state, setState, tutorial }) => {
     const TaskRef = useRef(null);
     const browserWindowRef = useRef(null);
 
-    const updatetutorialprogressURL = useSelector(
-        (state) => state.global.updatetutorialprogressURL
+    const updateTutorialProgressURL = useSelector(
+        (state) => state.global.updateTutorialProgressURL
     );
 
     useEffect(() => {
@@ -162,7 +161,7 @@ const TutorialTemplate = ({ data, state, setState, tutorial }) => {
         const chaptersCompleted = state;
         const config = {
             method: "post",
-            url: updatetutorialprogressURL,
+            url: updateTutorialProgressURL,
             data: {
                 userID,
                 tutorial,

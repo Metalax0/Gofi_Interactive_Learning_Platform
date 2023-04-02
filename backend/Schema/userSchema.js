@@ -49,7 +49,7 @@ const userStatisticsSchema = new mongoose.Schema({
             },
         ],
     },
-    testDetails: {
+    testProgress: {
         type: [
             {
                 test: {
@@ -59,13 +59,14 @@ const userStatisticsSchema = new mongoose.Schema({
                 },
                 attempts: { type: Number, required: true, default: 0 },
                 score: { type: Number, required: true, default: 0 },
+                highScore: { type: Number, required: true, default: 0 },
                 dateTaken: { type: Date, required: true, default: Date.now },
             },
         ],
         default: [
-            { test: "html", attempts: 0, score: 0, dataTaken: Date.now() },
-            { test: "css", attempts: 0, score: 0, dataTaken: Date.now() },
-            { test: "js", attempts: 0, score: 0, dataTaken: Date.now() },
+            { test: "html", attempts: 0, score: 0, dateTaken: new Date() },
+            { test: "css", attempts: 0, score: 0, dateTaken: new Date() },
+            { test: "js", attempts: 0, score: 0, dateTaken: new Date() },
         ],
     },
     communityStats: {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { htmlTestData } from "../../../Data/htmlTestData";
+import { htmlTestData } from "../../../Data/htmlTestData.js";
 import TestTemplate from "../TestTemplate";
 
 export const TestHTML = () => {
@@ -10,7 +10,8 @@ export const TestHTML = () => {
             <TestTemplate
                 state={activeTest}
                 setState={setactiveTest}
-                // data={htmlTestData[activeTest - 1]}
+                data={htmlTestData[activeTest - 1]}
+                testCount={htmlTestData.length}
                 test="html"
             />
         </div>

@@ -102,15 +102,52 @@ exports.signup = (request, response) => {
 
 exports.updateUserTutorialProgress = async (req, res) => {
     try {
-        const { userID, tutorial, chaptersCompleted } = req.body; // Get the input values from request body
-        console.log(req.body);
-        const user = await User.findById(userID); // Find the user by ID
+        const { userID, tutorial, chaptersCompleted } = req.body;
+        // Find the user by ID
+        const user = await User.findById(userID);
         // Update the tutorial progress
         const tutorialIndex = user.statistics.tutorialProgress.findIndex(
             (item) => item.tutorial === tutorial
         ); // Get the index of the tutorial in the array
         user.statistics.tutorialProgress[tutorialIndex].chaptersCompleted =
             chaptersCompleted;
+
+        // Save the updated user statistics to the database
+        await user.save();
+
+        // Return the updated user object
+        res.json(user);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server Error" });
+    }
+};
+
+exports.updateUserTestProgress = async (req, res) => {
+    try {
+        const { userID, test, score } = req.body;
+        // Find the user by ID
+        const user = await User.findById(userID);
+
+        // Get the index of the test in the arra
+        const testIndex = user.statistics.testProgress.findIndex(
+            (item) => item.test === test
+        );
+
+        // Update Attempts
+        if (score === 1)
+            user.statistics.testProgress[testIndex].attempts =
+                user.statistics.testProgress[testIndex].attempts + 1;
+
+        // Updating High Score
+        if (score > user.statistics.testProgress[testIndex].highScore)
+            user.statistics.testProgress[testIndex].highScore = score;
+
+        // Update Score
+        user.statistics.testProgress[testIndex].score = score;
+
+        // Update Date
+        user.statistics.testProgress[testIndex].dateTaken = Date.now();
 
         // Save the updated user statistics to the database
         await user.save();

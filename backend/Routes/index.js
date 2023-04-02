@@ -14,6 +14,7 @@ router.post(
     "/updatetutorialprogress",
     userController.updateUserTutorialProgress
 );
+router.post("/updateTestProgress", userController.updateUserTestProgress);
 
 router.post("/addhtmlchapter", htmlTutorialController.addChapter);
 router.get("/gethtmlchapter", htmlTutorialController.getAllData);

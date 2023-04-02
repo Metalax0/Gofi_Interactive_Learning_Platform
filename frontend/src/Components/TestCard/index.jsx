@@ -68,10 +68,11 @@ export default function TestCard({
             )[0].dateTaken;
 
             const percentCompleted = Math.floor((highScore * 100) / testCount);
+            const lastScorePercent = Math.floor((lastScore * 100) / testCount);
 
             settestProgress({
                 highScore: percentCompleted,
-                lastScore: lastScore,
+                lastScore: lastScorePercent,
                 attempts: attempts,
                 dateTaken: dateTaken,
             });
@@ -105,7 +106,7 @@ export default function TestCard({
                 <Progress percent={testProgress.highScore} />
                 <label>Last Score - </label>
                 <label className="test-card__progress__last-chapter">
-                    {testProgress.lastScore}
+                    {testProgress.lastScore} %
                 </label>
                 <br />
                 <br />

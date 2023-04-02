@@ -19,6 +19,16 @@ const Landing = () => {
                     <span className="landing-page-section-1__span-3">F</span>
                     <span className="landing-page-section-1__span-4">I</span>
                 </label>
+                <div id="mouse-scroll">
+                    <div class="mouse">
+                        <div class="mouse-in"></div>
+                    </div>
+                    <div>
+                        <span class="down-arrow-1"></span>
+                        <span class="down-arrow-2"></span>
+                        <span class="down-arrow-3"></span>
+                    </div>
+                </div>
             </div>
             <div className="landing-page-section landing-page-section-2">
                 <div className="LandingPageContent__Left">

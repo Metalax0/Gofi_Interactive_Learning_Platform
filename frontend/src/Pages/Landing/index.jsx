@@ -6,10 +6,6 @@ import FeatureCard from "../../Components/FeatureCard";
 const Landing = () => {
     const navigate = useNavigate();
 
-    const handleBttnClick = () => {
-        navigate("/home");
-    };
-
     return (
         <div className="landing-page">
             <div className="landing-page-section landing-page-section-1">
@@ -19,6 +15,8 @@ const Landing = () => {
                     <span className="landing-page-section-1__span-3">F</span>
                     <span className="landing-page-section-1__span-4">I</span>
                 </label>
+                <br />
+                <br />
                 <div id="mouse-scroll">
                     <div class="mouse">
                         <div class="mouse-in"></div>
@@ -44,26 +42,102 @@ const Landing = () => {
                     </p>
                     <button
                         className="LandingPageContent__Left__button"
-                        onClick={handleBttnClick}
+                        onClick={() => navigate("/home")}
                     >
                         Start Your Journey
                     </button>
                 </div>
                 <div className="LandingPageContent__Right">
                     <img
-                        // src="/images/landingPage/landing_right_1.png"
                         src="/images/landingPage/landing_right_4.png"
                         alt="vector art of a boy"
                     />
                 </div>
             </div>
+
             <div className="landing-page-section landing-page-section-3">
-                <FeatureCard title="Tutorials" />
-                <FeatureCard title="Tests" />
-                <FeatureCard title="Forum" />
+                <div className="LandingPageContent__Left">
+                    <label className="LandingPageContent__Left__label">
+                        TUTORIALS
+                    </label>
+                    <h2 className="LandingPageContent__Left__heading">
+                        Tutorials on HTML CSS and JavaScript
+                    </h2>
+                    <p className="LandingPageContent__Left__paragraph">
+                        Gofi offers its users three sets of tutorials each
+                        containing several chapters.
+                    </p>
+                    <button
+                        className="LandingPageContent__Left__button"
+                        onClick={() => navigate("/tutorial")}
+                    >
+                        Go to tutorials
+                    </button>
+                </div>
+
+                <div className="LandingPageContent__image">
+                    <img
+                        src="/images/landingPage/html.png"
+                        alt="vector art of a boy"
+                    />
+                </div>
             </div>
+
             <div className="landing-page-section landing-page-section-4">
-                <h1> TESTIMONIALS </h1>
+                <div className="LandingPageContent__image">
+                    <img
+                        src="/images/landingPage/test.png"
+                        alt="vector art of a boy"
+                    />
+                </div>
+                <div className="LandingPageContent__Left">
+                    <label className="LandingPageContent__Left__label">
+                        TESTS
+                    </label>
+                    <h2 className="LandingPageContent__Left__heading">
+                        Practice your skills with tests
+                    </h2>
+                    <p className="LandingPageContent__Left__paragraph">
+                        Gofi offers its users several multiple choice themed
+                        questions to polish their skills and challenge
+                        themselves.
+                    </p>
+                    <button
+                        className="LandingPageContent__Left__button"
+                        onClick={() => navigate("/test")}
+                    >
+                        Go to tests
+                    </button>
+                </div>
+            </div>
+
+            <div className="landing-page-section landing-page-section-5">
+                <div className="LandingPageContent__Left">
+                    <label className="LandingPageContent__Left__label">
+                        FORUM
+                    </label>
+                    <h2 className="LandingPageContent__Left__heading">
+                        Connect with other learners and mentors
+                    </h2>
+                    <p className="LandingPageContent__Left__paragraph">
+                        Gofi offers its users a dedicated community forum to
+                        interract with other learners and mentors. Ask
+                        questions, see what others are saying, interract with
+                        the posts.
+                    </p>
+                    <button
+                        className="LandingPageContent__Left__button"
+                        onClick={() => navigate("/forum")}
+                    >
+                        Go to tests
+                    </button>
+                </div>
+                <div className="LandingPageContent__image">
+                    <img
+                        src="/images/landingPage/forum.png"
+                        alt="vector art of a boy"
+                    />
+                </div>
             </div>
         </div>
     );

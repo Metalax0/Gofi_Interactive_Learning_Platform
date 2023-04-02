@@ -68,6 +68,39 @@ export const tutorialCardData = {
     },
 };
 
+export const testCardData = {
+    html: {
+        headerText: "Structure",
+        bodyTitle: "HTML test",
+        bodyText: "Practice your structural skills and challenge yourself",
+        testCount: 5,
+        reward: "Badge provided on reaching score milestone",
+        headerColor: "#ff907c",
+        score: 0,
+        navigateTo: "/test/html",
+    },
+    css: {
+        headerText: "Style",
+        bodyTitle: "CSS test",
+        bodyText: "Practice your design skills and challenge yourself",
+        testCount: 5,
+        reward: "Badge provided on reaching score milestone",
+        headerColor: "#7cf0ff",
+        score: 0,
+        navigateTo: "/test/css",
+    },
+    js: {
+        headerText: "Functionality",
+        bodyTitle: "JavaScript test",
+        bodyText: "Practice your functional skills and challenge yourself",
+        testCount: 5,
+        reward: "Badge provided on reaching score milestone",
+        headerColor: "#ffe77c",
+        score: 0,
+        navigateTo: "/test/js",
+    },
+};
+
 export const forumCardData = {
     create: {
         headerText: "Create",

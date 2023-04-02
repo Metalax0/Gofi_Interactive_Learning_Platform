@@ -1,0 +1,98 @@
+.test-card {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* gap: 5px; */
+
+    overflow: hidden;
+    border: 1px solid #888888;
+    border-radius: 5px;
+    box-shadow: -10px 10px 1px #888888;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.test-card:hover {
+    transform: translate(10px, -10px);
+    box-shadow: -20px 20px 1px #252525;
+}
+
+.test-card:hover * {
+    /* cursor: pointer; */
+}
+
+.test-card:hover .tutorial-page {
+    background-color: red;
+}
+
+.test-card__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.test-card__header {
+    background-color: var(--bg-header);
+    padding: 5px 10px;
+}
+
+.test-card__body__title {
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.test-card__body__text {
+    padding: 5px 10px;
+}
+
+.test-card__footer {
+    padding: 10px 10px;
+}
+
+.test-card__footer div {
+    padding: 5px;
+    border-top: 1px dashed black;
+}
+
+.test-card__syllabus {
+    height: 120px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.test-card__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.test-card__progress {
+    padding: 19px 15px;
+    border-top: 1px solid #252525;
+    border-bottom: 1px solid #252525;
+}
+
+#test-card__buttons-1 {
+    background-color: #252525;
+    border: none;
+    transition: outline 0.2s;
+    padding: 0px 50px;
+}
+
+#test-card__buttons-1:hover,
+#test-card__buttons-2:hover {
+    color: #252525;
+    border: none;
+    outline: 1px solid black;
+    background-color: rgb(99, 187, 158);
+}
+
+.test-card__progress__last-chapter {
+    color: white;
+    border-radius: 3px;
+    padding: 2px 10px;
+    background-color: #252525;
+}

@@ -18,6 +18,7 @@ import TutorialJS from "../../Pages/Tutorial/JS";
 import CreatePost from "../../Pages/Forum/CreatePost";
 import ViewAllPost from "../../Pages/Forum/ViewAllPost";
 import MyPosts from "../../Pages/Forum/MyPosts";
+import { TestHTML } from "../../Pages/Test/HTML";
 
 export default function RoutesDefinition() {
     return (
@@ -116,7 +117,30 @@ export default function RoutesDefinition() {
                         </ProtectedRoutes>
                     }
                 />
-
+                <Route
+                    path="/test/html"
+                    element={
+                        <ProtectedRoutes>
+                            <TestHTML />
+                        </ProtectedRoutes>
+                    }
+                />
+                {/* <Route
+                    path="/test/css"
+                    element={
+                        <ProtectedRoutes>
+                            <TestHTML />
+                        </ProtectedRoutes>
+                    }
+                />
+                <Route
+                    path="/test/js"
+                    element={
+                        <ProtectedRoutes>
+                            <TestHTML />
+                        </ProtectedRoutes>
+                    }
+                /> */}
                 {/* ADMIN ROUTES */}
                 <Route
                     path="/admin/htmltutorial"
@@ -126,7 +150,6 @@ export default function RoutesDefinition() {
                         </AdminRoutes>
                     }
                 />
-
                 {/* ERROR/INVALID ROUTES */}
                 <Route
                     path="*"

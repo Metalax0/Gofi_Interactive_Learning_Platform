@@ -53,8 +53,8 @@ const userStatisticsSchema = new mongoose.Schema({
         type: [
             {
                 test: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: "Test",
+                    type: String,
+                    enum: ["html", "css", "js"],
                     required: true,
                 },
                 attempts: { type: Number, required: true, default: 0 },
@@ -62,12 +62,21 @@ const userStatisticsSchema = new mongoose.Schema({
                 dateTaken: { type: Date, required: true, default: Date.now },
             },
         ],
-        default: [],
+        default: [
+            { test: "html", attempts: 0, score: 0, dataTaken: Date.now() },
+            { test: "css", attempts: 0, score: 0, dataTaken: Date.now() },
+            { test: "js", attempts: 0, score: 0, dataTaken: Date.now() },
+        ],
     },
     communityStats: {
         communityPoints: { type: Number, default: 0 },
         totalPosts: { type: Number, default: 0 },
         totalComments: { type: Number, default: 0 },
+    },
+    default: {
+        communityPoints: 0,
+        totalPosts: 0,
+        totalComments: 0,
     },
 });
 
@@ -124,16 +133,6 @@ const UserSchema = new mongoose.Schema({
 
     statistics: {
         type: userStatisticsSchema,
-        default: {
-            badges: [],
-            tutorialProgress: [],
-            testDetails: [],
-            communityStats: {
-                communityPoints: 0,
-                totalPosts: 0,
-                totalComments: 0,
-            },
-        },
     },
 });
 

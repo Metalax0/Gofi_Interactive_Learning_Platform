@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { jsTutorialData } from "../../../Data/jsTutorialData";
 import TutorialTemplate from "../TutorialTemplate";
-import "./style.css";
+
 const TutorialJS = () => {
     const [activeChapter, setactiveChapter] = useState(1);
     // TRACK WHAT PAGE TO SHOW (1 or continue )

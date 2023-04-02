@@ -19,6 +19,8 @@ import CreatePost from "../../Pages/Forum/CreatePost";
 import ViewAllPost from "../../Pages/Forum/ViewAllPost";
 import MyPosts from "../../Pages/Forum/MyPosts";
 import { TestHTML } from "../../Pages/Test/HTML";
+import { TestCSS } from "../../Pages/Test/CSS";
+import { TestJS } from "../../Pages/Test/JS";
 
 export default function RoutesDefinition() {
     return (
@@ -125,11 +127,11 @@ export default function RoutesDefinition() {
                         </ProtectedRoutes>
                     }
                 />
-                {/* <Route
+                <Route
                     path="/test/css"
                     element={
                         <ProtectedRoutes>
-                            <TestHTML />
+                            <TestCSS />
                         </ProtectedRoutes>
                     }
                 />
@@ -137,10 +139,11 @@ export default function RoutesDefinition() {
                     path="/test/js"
                     element={
                         <ProtectedRoutes>
-                            <TestHTML />
+                            <TestJS />
                         </ProtectedRoutes>
                     }
-                /> */}
+                />
+
                 {/* ADMIN ROUTES */}
                 <Route
                     path="/admin/htmltutorial"

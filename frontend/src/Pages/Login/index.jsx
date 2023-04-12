@@ -1,13 +1,16 @@
 import { KeyOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, notification } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { handleLogin } from "../../Functions/handleLogin";
 import { setisLoggedIn } from "../../StateManagement/Slices/GlobalSlice";
 import "./style.css";
+import { useContext } from "react";
+import { NotificationContext } from "../../App";
 
 const Login = () => {
     const loginURL = useSelector((state) => state.global.loginURL);
+    const { openNotification } = useContext(NotificationContext);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -24,10 +27,22 @@ const Login = () => {
         };
 
         const loginStatus = await handleLogin(loginConfig, dispatch, navigate);
-        if (loginStatus) dispatch(setisLoggedIn("true"));
-        else
+        if (loginStatus) {
+            openNotification(
+                "Login Successful",
+                "You are successfully logged in",
+                "success"
+            );
+            dispatch(setisLoggedIn("true"));
+        } else {
+            openNotification(
+                "Login Failed",
+                "Your credentials could not be verified",
+                "success"
+            );
             document.getElementById("login-error").innerHTML =
                 "ERROR: Failed to Login";
+        }
     };
 
     const onFinishFailed = (errorInfo) => {

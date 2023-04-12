@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const User = require("../Schema/userSchema");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
+const { sendEmail } = require("../Functions/sendEmail");
 
 exports.login = (request, response) => {
     // check if email exists
@@ -82,6 +83,11 @@ exports.signup = (request, response) => {
                         message: "User Created Successfully",
                         result,
                     });
+                    // Email notifying user that account has been created
+                    sendEmail(
+                        request.body.fullName.split(" ")[0],
+                        request.body.email
+                    );
                 })
                 // Failure Case : New user not added to database
                 .catch((error) => {

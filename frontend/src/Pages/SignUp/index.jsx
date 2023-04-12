@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Inpu, Input } from "antd";
 import {
     UserOutlined,
     KeyOutlined,
@@ -11,10 +11,12 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { handleSignup } from "../../Functions/handleSignUp";
 import "./style.css";
+import { NotificationContext } from "../../App";
 
 const SignUp = () => {
     const [fullName, setFullname] = useState("");
     const [email, setEmail] = useState("");
+    const { openNotification } = useContext(NotificationContext);
     const signupURL = useSelector((state) => state.global.signupURL);
     let drag = false;
 
@@ -34,6 +36,8 @@ const SignUp = () => {
             canvas.removeEventListener("mousedown", () => (drag = true));
             canvas.removeEventListener("mouseup", () => (drag = false));
         };
+
+        //
     }, []);
 
     const drawPixel = (e, ctx, canvas) => {
@@ -74,12 +78,23 @@ const SignUp = () => {
 
         const signupStatus = await handleSignup(registerConfig);
 
-        if (signupStatus)
+        if (signupStatus) {
+            openNotification(
+                "Signup Successful",
+                "Successfully created new account.",
+                "success"
+            );
             document.getElementById("signup-error").innerHTML =
                 "Registered Successfully";
-        else
+        } else {
+            openNotification(
+                "Signup Failed",
+                "Your account was not created",
+                "error"
+            );
             document.getElementById("signup-error").innerHTML =
                 "ERROR: Failed to signup";
+        }
     };
 
     return (

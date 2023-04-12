@@ -19,7 +19,7 @@ export default function NavigationbarOne() {
                 <Link to="/signup" className="btn btn--primary">
                     Sign Up
                 </Link>
-                <Link to="/login" className="btn btn--secondary">
+                <Link to="/guest" className="btn btn--secondary">
                     <b>Continue As Guest</b>
                 </Link>
             </div>

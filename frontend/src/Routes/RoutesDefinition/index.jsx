@@ -21,6 +21,7 @@ import MyPosts from "../../Pages/Forum/MyPosts";
 import { TestHTML } from "../../Pages/Test/HTML";
 import { TestCSS } from "../../Pages/Test/CSS";
 import { TestJS } from "../../Pages/Test/JS";
+import Guest from "../../Pages/Guest";
 
 export default function RoutesDefinition() {
     return (
@@ -153,6 +154,10 @@ export default function RoutesDefinition() {
                         </AdminRoutes>
                     }
                 />
+
+                {/* GUEST ROUTES */}
+                <Route path="/guest" element={<Guest />} />
+
                 {/* ERROR/INVALID ROUTES */}
                 <Route
                     path="*"

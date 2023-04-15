@@ -5,6 +5,7 @@ import ForumPostCard from "../../../Components/ForumPostCard";
 import ForumSidebar from "../../../Components/ForumSidebar";
 import { handleGetAllPost } from "../../../Functions/handleGetAllPost";
 import "./style.css";
+import Cookies from "universal-cookie";
 
 const { Panel } = Collapse;
 const { Search } = Input;
@@ -12,7 +13,6 @@ const { Search } = Input;
 export default function ViewAllPost() {
     const [allPostData, setallPostData] = useState([]);
     const [allPostDataFiltered, setallPostDataFiltered] = useState([]);
-
     const getAllPostURL = useSelector((state) => state.global.getAllPostURL);
     const addCommentURL = useSelector((state) => state.global.addCommentURL);
 

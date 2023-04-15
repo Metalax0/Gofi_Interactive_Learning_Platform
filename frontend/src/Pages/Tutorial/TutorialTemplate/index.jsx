@@ -7,9 +7,11 @@ import {
     consoleNewProxy,
     consoleOldProxy,
 } from "../../../Functions/consoleProxy";
-
+import Cookies from "universal-cookie";
 import { handleUpdateTutorialProgress } from "../../../Functions/handleUpdateTutorialProgress";
 import { useSelector } from "react-redux";
+
+const cookies = new Cookies();
 
 const TutorialTemplate = ({ data, state, setState, tutorial }) => {
     const [textAreaValue, settextAreaValue] = useState("");
@@ -27,6 +29,8 @@ const TutorialTemplate = ({ data, state, setState, tutorial }) => {
     const OutputRef = useRef(null);
     const TaskRef = useRef(null);
     const browserWindowRef = useRef(null);
+
+    const userType = cookies.get("USERTYPE");
 
     const updateTutorialProgressURL = useSelector(
         (state) => state.global.updateTutorialProgressURL
@@ -220,7 +224,7 @@ const TutorialTemplate = ({ data, state, setState, tutorial }) => {
 
     return (
         <div className="tutorial-template">
-            {state === 1 || state === 2 ? (
+            {(state === 1 || state === 2) && userType !== "guest" ? (
                 <Tour
                     open={open}
                     onClose={() => setOpen(false)}

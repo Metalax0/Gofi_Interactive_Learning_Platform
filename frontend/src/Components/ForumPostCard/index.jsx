@@ -5,8 +5,10 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import { useSelector } from "react-redux";
 import { handleAddLikeToPost } from "../../Functions/handleAddLikeToPost";
+import Cookies from "universal-cookie";
 
 const { Panel } = Collapse;
+const cookies = new Cookies();
 
 export default function ForumPostCard({
     post,
@@ -27,6 +29,8 @@ export default function ForumPostCard({
     const dateObj = new Date(datePosted);
     const formattedDate = dateObj.toISOString().substring(0, 10);
     const categoryStyle = { backgroundColor: "" };
+    const userType = cookies.get("USERTYPE");
+    console.log(userType);
 
     useEffect(() => {
         const userID = JSON.parse(localStorage.getItem("activeUser")).userID;
@@ -145,6 +149,7 @@ export default function ForumPostCard({
                 <button
                     style={{ color: likeBttnColor }}
                     onClick={handleAddLike}
+                    disabled={userType === "guest" ? true : false}
                 >
                     &#10084;
                 </button>
@@ -203,10 +208,16 @@ export default function ForumPostCard({
                                     onChange={(e) =>
                                         setcommentInput(e.target.value)
                                     }
+                                    disabled={
+                                        userType === "guest" ? true : false
+                                    }
                                 />
                                 <Button
                                     type="primary"
                                     onClick={() => handleCommentSubmit()}
+                                    disabled={
+                                        userType === "guest" ? true : false
+                                    }
                                 >
                                     Comment
                                 </Button>

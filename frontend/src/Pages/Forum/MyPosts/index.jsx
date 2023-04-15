@@ -6,6 +6,8 @@ import ForumPostCard from "../../../Components/ForumPostCard";
 import ForumSidebar from "../../../Components/ForumSidebar";
 import { handleGetAllAuthorPost } from "../../../Functions/handleGetAllAuthorPost";
 import "./style.css";
+import { Modal } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const { Search } = Input;
 const cookies = new Cookies();
@@ -13,6 +15,9 @@ const cookies = new Cookies();
 export default function MyPosts() {
     const [allPostData, setallPostData] = useState([]);
     const [allPostDataFiltered, setallPostDataFiltered] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate();
+    const userType = cookies.get("USERTYPE");
 
     const getAllAuthorPostDataURL = useSelector(
         (state) => state.global.getAllAuthorPostURL
@@ -22,6 +27,16 @@ export default function MyPosts() {
     useEffect(() => {
         getAllAuthorPostData();
     }, []);
+
+    useEffect(() => {
+        if (userType === "guest") {
+            setIsModalOpen(true);
+
+            if (document.querySelector(".view-all-post"))
+                document.querySelector(".view-all-post").style.filter =
+                    "blur(10px)";
+        }
+    });
 
     const getAllAuthorPostData = () => {
         const userID = cookies.get("USERID");
@@ -64,6 +79,26 @@ export default function MyPosts() {
 
     return (
         <div className="view-all-post">
+            <Modal
+                title="Feature Unavailable For Guest Account"
+                open={isModalOpen}
+                onOk={() => navigate("signup")}
+                onCancel={() => navigate("/login")}
+                okText="Sign Up"
+                cancelText="Login"
+                closeIcon={<></>}
+                maskClosable={false}
+                maskStyle={{
+                    backgroundColor: "rgba(0, 0, 0, 0.7)",
+                }}
+                centered
+            >
+                <p>
+                    This feature is not available for Guest Accounts. To access
+                    this, either login from your gofi account or create new
+                    account.
+                </p>
+            </Modal>
             <ForumSidebar activeSidebar={2} />
             <div className="view-all-post__container">
                 <div className="view-all-post__top">

@@ -1,14 +1,31 @@
 import { HighlightOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form, Input, Modal, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ForumSidebar from "../../../Components/ForumSidebar";
 import { handleCreatePost } from "../../../Functions/handleCreatePost";
 import "./style.css";
+import Cookies from "universal-cookie";
+import { useNavigate } from "react-router-dom";
+
+const cookies = new Cookies();
 
 export default function CreatePost() {
     const createPostURL = useSelector((state) => state.global.createPostURL);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate();
+    const userType = cookies.get("USERTYPE");
+
+    useEffect(() => {
+        if (userType === "guest") {
+            setIsModalOpen(true);
+
+            if (document.querySelector(".create-post"))
+                document.querySelector(".create-post").style.filter =
+                    "blur(10px)";
+        }
+    });
 
     const handleSubmit = async (value) => {
         const { title, body, tag, category } = value;
@@ -39,6 +56,26 @@ export default function CreatePost() {
 
     return (
         <div className="create-post">
+            <Modal
+                title="Feature Unavailable For Guest Account"
+                open={isModalOpen}
+                onOk={() => navigate("signup")}
+                onCancel={() => navigate("/login")}
+                okText="Sign Up"
+                cancelText="Login"
+                closeIcon={<></>}
+                maskClosable={false}
+                maskStyle={{
+                    backgroundColor: "rgba(0, 0, 0, 0.7)",
+                }}
+                centered
+            >
+                <p>
+                    This feature is not available for Guest Accounts. To access
+                    this, either login from your gofi account or create new
+                    account.
+                </p>
+            </Modal>
             <div className="forum-sidebar-container-create">
                 <ForumSidebar activeSidebar={0} />
             </div>

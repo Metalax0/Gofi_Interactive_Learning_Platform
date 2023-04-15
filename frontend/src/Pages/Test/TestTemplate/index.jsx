@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
+import { Modal } from "antd";
 import { useSelector } from "react-redux";
 import { handleUpdateTestProgress } from "../../../Functions/handleUpdateTestProgress";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 export default function TestTemplate({
     state,
@@ -11,11 +15,24 @@ export default function TestTemplate({
     test,
     testCount,
 }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const updateTestProgressURL = useSelector(
         (state) => state.global.updateTestProgressURL
     );
-
     const navigate = useNavigate();
+    const userType = cookies.get("USERTYPE");
+
+    useEffect(() => {
+        if (userType === "guest") {
+            console.log("guesttt");
+            setIsModalOpen(true);
+
+            if (document.querySelector(".test-template"))
+                document.querySelector(".test-template").style.filter =
+                    "blur(10px)";
+        }
+    });
+
     const handleClick = (option) => {
         if (option === data.answer) {
             const userID = JSON.parse(
@@ -36,13 +53,32 @@ export default function TestTemplate({
             if (state + 1 <= testCount) setState(state + 1);
             else console.log("// Navigate to test Completed page");
         } else {
-            // wrong then open modal and say going to previous page in 3 seconds
             navigate("/test");
         }
     };
 
     return (
         <div className="test-template">
+            <Modal
+                title="Feature Unavailable For Guest Account"
+                open={isModalOpen}
+                onOk={() => navigate("signup")}
+                onCancel={() => navigate("/login")}
+                okText="Sign Up"
+                cancelText="Login"
+                closeIcon={<></>}
+                maskClosable={false}
+                maskStyle={{
+                    backgroundColor: "rgba(0, 0, 0, 0.7)",
+                }}
+                centered
+            >
+                <p>
+                    This feature is not available for Guest Accounts. To access
+                    this, either login from your gofi account or create new
+                    account.
+                </p>
+            </Modal>
             <div className="test-template-container">
                 <h2>{test.toUpperCase()}</h2>
                 <div className="test-template-question">

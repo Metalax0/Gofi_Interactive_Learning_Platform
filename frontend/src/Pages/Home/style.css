@@ -1,26 +1,80 @@
 .home-page {
-    height: 100%;
-
-    overflow-y: auto;
+    height: 100vh;
+    background-image: url("https://media.tenor.com/4ryx66tWEhcAAAAd/pixel-study.gif");
+    background-image: url("../../Assets/homebg.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.home-page-section-1 {
+.home-page-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     height: 100%;
+    gap: 30px;
 }
 
-.home-page-section-2 {
+.home-page-top {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    height: 100%;
+    align-items: flex-start;
+
+    font-family: "Roboto Slab", serif;
+    margin-left: 5%;
+    gap: 15px;
 }
 
-.home-page-section-3 {
+.home-page-title {
+    padding: 0 10px;
+    font-size: 6rem;
+
+    color: wheat;
+    background-color: #458fa0;
+}
+
+.home-page-user {
+    padding: 0 10px;
+    font-size: 3rem;
+
+    color: wheat;
+    background-color: #463e44;
+}
+
+.home-page-text {
+    padding: 0 10px;
+    font-size: 1.3rem;
+
+    color: wheat;
+    background-color: #ce4536;
+}
+
+.home-page-bottom {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100%;
+    align-items: flex-start;
+
+    font-size: 1rem;
+    font-family: "Roboto Slab", serif;
+    text-align: center;
+
+    gap: 30px;
+    width: 31%;
+    margin-left: 5%;
+}
+
+.home-page-card {
+    width: 50%;
+    padding: 15px;
+    transition: all 0.3s;
+
+    background-color: rgb(252, 201, 108);
+    box-shadow: 10px 10px 0px yellow;
+}
+
+.home-page-card:hover {
+    cursor: pointer;
+    translate: 10px 10px;
+    box-shadow: 0px 0px 0px;
 }

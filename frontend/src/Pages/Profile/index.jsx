@@ -11,6 +11,11 @@ import totalPostsImg from "../../Assets/totalPosts.png";
 import { Modal, Skeleton } from "antd";
 import BadgeCircle from "../../Components/Badge/BadgeCircle";
 import { useNavigate } from "react-router-dom";
+import {
+    ClockCircleOutlined,
+    MailOutlined,
+    UserOutlined,
+} from "@ant-design/icons";
 const cookies = new Cookies();
 
 export default function Profile() {
@@ -42,6 +47,8 @@ export default function Profile() {
         }
         fetchUserData();
     }, []);
+
+    console.log(userData);
 
     useEffect(() => {
         if (userType === "guest") {
@@ -77,8 +84,8 @@ export default function Profile() {
                         create new account.
                     </p>
                 </Modal>
-                <div className="profile-page__user-details">
-                    <div className="profile-page__user-details__top">
+                <div className="profile-page-container">
+                    {/* <div className="profile-page__user-details__top">
                         <img
                             className="profile-page__user-details__image"
                             src={userData.profileImg}
@@ -90,16 +97,36 @@ export default function Profile() {
                         <small className="profile-page__user-details__title">
                             {userData.statistics.title}
                         </small>
+                    </div> */}
+                    <div className="profile-page-card">
+                        <img
+                            className="profile-page__image"
+                            src={userData.profileImg}
+                            alt="user profile img"
+                        ></img>
+                        <div className="profile-page-card__details">
+                            <label className="profile-page-card__details-item">
+                                <UserOutlined />
+                                {userData.fullName}
+                            </label>
+                            <label className="profile-page-card__details-item">
+                                <MailOutlined />
+                                {userData.email}
+                            </label>
+                            <label className="profile-page-card__details-item">
+                                <ClockCircleOutlined />
+                                {dateJoined}
+                            </label>
+                        </div>
                     </div>
-                    <div className="profile-page__user-details__stats">
+                    <hr />
+                    <div className="profile-page-badges">
                         <BadgeSquare
-                            className="profile-page__user-details__stats__badge-1"
                             src={badgeCountImg}
                             title={userData.statistics.badges.length}
                             size={80}
                         />
                         <BadgeSquare
-                            className="profile-page__user-details__stats__badge-2"
                             src={totalPointsImg}
                             title={
                                 userData.statistics.communityStats
@@ -108,7 +135,6 @@ export default function Profile() {
                             size={80}
                         />
                         <BadgeSquare
-                            className="profile-page__user-details__stats__badge-3"
                             src={totalCommentsImg}
                             title={
                                 userData.statistics.communityStats.totalComments
@@ -116,7 +142,6 @@ export default function Profile() {
                             size={80}
                         />
                         <BadgeSquare
-                            className="profile-page__user-details__stats__badge-4"
                             src={totalPostsImg}
                             title={
                                 userData.statistics.communityStats.totalPosts
@@ -124,46 +149,14 @@ export default function Profile() {
                             size={80}
                         />
                     </div>
-                    <div className="profile-page__user-details__bio">
-                        {/* <Skeleton active width="100" /> */}
-                        <p>
-                            Hi, I'm Joe! I'm a creative and adventurous person
-                            who loves exploring new cultures and ideas. have a
-                            natural curiosity for the world around me and love
-                            learning new things.
-                        </p>
-                    </div>
+                    <hr />
+                    <div className="profile-page-badges">Tutorial</div>
+                    <hr />
+                    <div className="profile-page-badges">Test</div>
+                    <hr />
+                    <div className="profile-page-badges">Forum</div>
+                    <hr />
                     <small>Joined on {dateJoined}</small>
-                </div>
-
-                <div className="profile-page__user-activities">
-                    <div className="profile-page__user-activities__badges">
-                        <label>Badges Collected</label>
-                        <br></br>
-                        <div className="profile-page__user-activities__badges-list">
-                            {userData.statistics.badges.map((badge, i) => {
-                                return (
-                                    <BadgeCircle
-                                        key={i}
-                                        className="profile-page__user-details__badge"
-                                        src={badge.badgeImage}
-                                        title={badge.title}
-                                        description={badge.description}
-                                        size={80}
-                                    />
-                                );
-                            })}
-                        </div>
-                    </div>
-                    <hr />
-                    <div className="profile-page__user-activities__progress">
-                        <label>Tutorial Progress</label>
-                    </div>
-                    <hr />
-
-                    <div className="profile-page__user-activities__community">
-                        <label>Community Activity</label>
-                    </div>
                 </div>
             </div>
         );

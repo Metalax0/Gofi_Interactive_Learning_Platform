@@ -4,36 +4,72 @@
 
 hr {
     width: 100%;
+    border: none !important;
+    outline: 1px solid rgb(158, 157, 157);
 }
 
 .profile-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/dece5f124024167.60fb03546918b.gif");
 
     background-repeat: no-repeat;
     background-size: cover;
+
+    overflow: hidden;
 }
 
 .profile-page-container {
-    max-height: 70%;
-    padding: 2rem 3rem;
+    width: 60%;
+    overflow: hidden;
 
-    overflow-x: hidden;
-    overflow-y: auto;
+    border: 5px solid rgb(255, 186, 107);
+    box-shadow: 20px 20px 20px rgb(41, 41, 41);
+    border-radius: 20px;
+}
 
+.profile-page-book-page {
+    height: 100%;
+    background-color: wheat;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.book-page-container {
+    width: 100%;
+    height: 100%;
+    background-color: wheat;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    border-left: 5px dotted rgb(158, 157, 157) !important;
+    border-right: 5px dotted rgb(158, 157, 157) !important;
+}
+
+.profile-page-book-top {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    flex: 5;
     gap: 20px;
+}
 
-    border: 1px solid rgb(223, 218, 218);
-    box-shadow: 30px 30px 5px wheat;
-    border-radius: 20px 0px 0px 20px;
-    background-color: white;
+.profile-page-book-bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 7px;
 }
 
 .profile-page-card {
@@ -46,14 +82,15 @@ hr {
     gap: 20px;
     background-image: url("../../Assets/idBackground1.jpg");
     background-size: cover;
+    font-size: 0.9rem;
 }
 
 .profile-page-badges {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
 }
 
 .profile-page__image {
@@ -79,4 +116,19 @@ hr {
     border: 1px solid black;
     border-radius: 30px;
     background-color: aliceblue;
+}
+
+.profile-page-book-heading {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 2rem;
+}
+
+.profile-page-book-subheading {
+    font-size: 1.1rem;
+}
+
+.profile-page-book-paragraph {
+    font-size: 1.2rem;
+    text-align: justify;
+    width: 85%;
 }

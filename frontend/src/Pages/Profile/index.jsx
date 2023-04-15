@@ -16,6 +16,8 @@ import {
     MailOutlined,
     UserOutlined,
 } from "@ant-design/icons";
+import HTMLFlipBook from "react-pageflip";
+
 const cookies = new Cookies();
 
 export default function Profile() {
@@ -85,78 +87,151 @@ export default function Profile() {
                     </p>
                 </Modal>
                 <div className="profile-page-container">
-                    {/* <div className="profile-page__user-details__top">
-                        <img
-                            className="profile-page__user-details__image"
-                            src={userData.profileImg}
-                            alt="user profile img"
-                        ></img>
-                        <label className="profile-page__user-details__fullName">
-                            {userData.fullName}
-                        </label>
-                        <small className="profile-page__user-details__title">
-                            {userData.statistics.title}
-                        </small>
-                    </div> */}
-                    <div className="profile-page-card">
-                        <img
-                            className="profile-page__image"
-                            src={userData.profileImg}
-                            alt="user profile img"
-                        ></img>
-                        <div className="profile-page-card__details">
-                            <label className="profile-page-card__details-item">
-                                <UserOutlined />
-                                {userData.fullName}
-                            </label>
-                            <label className="profile-page-card__details-item">
-                                <MailOutlined />
-                                {userData.email}
-                            </label>
-                            <label className="profile-page-card__details-item">
-                                <ClockCircleOutlined />
-                                {dateJoined}
-                            </label>
+                    <HTMLFlipBook
+                        id="profile-page-flipbook"
+                        width={1000}
+                        height={1000}
+                        size="stretch"
+                    >
+                        <div className="profile-page-book-page">
+                            <div className="book-page-container">
+                                <div className="profile-page-book-top">
+                                    <label className="profile-page-book-heading">
+                                        USER PROFILE
+                                    </label>
+                                    <label className="profile-page-book-subheading">
+                                        (book)
+                                    </label>
+                                </div>
+                                <div className="profile-page-book-bottom">
+                                    <hr />
+                                    <small>page 1</small>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <hr />
-                    <div className="profile-page-badges">
-                        <BadgeSquare
-                            src={badgeCountImg}
-                            title={userData.statistics.badges.length}
-                            size={80}
-                        />
-                        <BadgeSquare
-                            src={totalPointsImg}
-                            title={
-                                userData.statistics.communityStats
-                                    .communityPoints
-                            }
-                            size={80}
-                        />
-                        <BadgeSquare
-                            src={totalCommentsImg}
-                            title={
-                                userData.statistics.communityStats.totalComments
-                            }
-                            size={80}
-                        />
-                        <BadgeSquare
-                            src={totalPostsImg}
-                            title={
-                                userData.statistics.communityStats.totalPosts
-                            }
-                            size={80}
-                        />
-                    </div>
-                    <hr />
-                    <div className="profile-page-badges">Tutorial</div>
-                    <hr />
-                    <div className="profile-page-badges">Test</div>
-                    <hr />
-                    <div className="profile-page-badges">Forum</div>
-                    <hr />
-                    <small>Joined on {dateJoined}</small>
+                        <div className="profile-page-book-page">
+                            <div className="book-page-container">
+                                <div className="profile-page-book-top">
+                                    <p className="profile-page-book-paragraph">
+                                        Your user profile information is
+                                        represented by this book. Click on the
+                                        edge of the pages to turn to the
+                                        next/previous page. The book has total
+                                        of 5 pages.
+                                    </p>
+                                </div>
+                                <div className="profile-page-book-bottom">
+                                    <hr />
+                                    <small>page 2</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="profile-page-book-page">
+                            <div className="book-page-container">
+                                <div className="profile-page-book-top">
+                                    <div className="profile-page-card">
+                                        <img
+                                            className="profile-page__image"
+                                            src={userData.profileImg}
+                                            alt="user profile img"
+                                        ></img>
+                                        <div className="profile-page-card__details">
+                                            <label className="profile-page-card__details-item">
+                                                <UserOutlined />
+                                                {userData.fullName}
+                                            </label>
+                                            <label className="profile-page-card__details-item">
+                                                <MailOutlined />
+                                                {userData.email}
+                                            </label>
+                                            <label className="profile-page-card__details-item">
+                                                <ClockCircleOutlined />
+                                                {dateJoined}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <p className="profile-page-book-paragraph">
+                                        This here is your identification card.
+                                        Look familiar? Well, you probabily have
+                                        seen this while creating your account
+                                        (signup). It contains your user avatar,
+                                        full name, email associated with
+                                        account, date joined
+                                    </p>
+                                </div>
+                                <div className="profile-page-book-bottom">
+                                    <hr />
+                                    <small>page 3</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="profile-page-book-page">
+                            <div className="book-page-container">
+                                <div className="profile-page-book-top">
+                                    <div className="profile-page-badges">
+                                        <BadgeSquare
+                                            src={badgeCountImg}
+                                            title={
+                                                userData.statistics.badges
+                                                    .length
+                                            }
+                                            size={80}
+                                        />
+                                        <BadgeSquare
+                                            src={totalPointsImg}
+                                            title={
+                                                userData.statistics
+                                                    .communityStats
+                                                    .communityPoints
+                                            }
+                                            size={80}
+                                        />
+                                        <BadgeSquare
+                                            src={totalCommentsImg}
+                                            title={
+                                                userData.statistics
+                                                    .communityStats
+                                                    .totalComments
+                                            }
+                                            size={80}
+                                        />
+                                        <BadgeSquare
+                                            src={totalPostsImg}
+                                            title={
+                                                userData.statistics
+                                                    .communityStats.totalPosts
+                                            }
+                                            size={80}
+                                        />
+                                    </div>
+                                    <p className="profile-page-book-paragraph">
+                                        These are your overall statistics at
+                                        gofi. This contains your badge count,
+                                        which will increase based on achieving
+                                        certain goals, total points which would
+                                        be your overall score, and the last two
+                                        are self explainatory.
+                                    </p>
+                                </div>
+                                <div className="profile-page-book-bottom">
+                                    <hr />
+                                    <small>page 4</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="profile-page-book-page">
+                            <div className="book-page-container">
+                                <div className="profile-page-book-top">
+                                    <h1>The End</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="profile-page-book-page">
+                            <div className="book-page-container">
+                                <div className="profile-page-book-top"></div>
+                            </div>
+                        </div>
+                    </HTMLFlipBook>
                 </div>
             </div>
         );

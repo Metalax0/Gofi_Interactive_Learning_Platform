@@ -4,5 +4,8 @@
     },
     "devDependencies": {
         "concurrently": "^7.6.0"
+    },
+    "dependencies": {
+        "react-pageflip": "^2.0.3"
     }
 }

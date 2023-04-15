@@ -1,10 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
+import { handleLogin } from "../../Functions/handleLogin";
 import "./style.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { NotificationContext } from "../../App";
+import { setisLoggedIn } from "../../StateManagement/Slices/GlobalSlice";
 
 export default function Guest() {
-    const handleContinueClick = () => {
-        // Login with credentials for guest.
-        // In backend check if guest acc exists, if not create new guest acc
+    const loginURL = useSelector((state) => state.global.loginURL);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { openNotification } = useContext(NotificationContext);
+
+    const handleContinueClick = async () => {
+        const loginConfig = {
+            method: "post",
+            url: loginURL,
+            data: {
+                email: "guest@gofi.com",
+                password: "guest",
+            },
+        };
+
+        const loginStatus = await handleLogin(loginConfig, dispatch, navigate);
+        if (loginStatus) {
+            openNotification(
+                "Login Successful",
+                "Logged in as Guest",
+                "success"
+            );
+            dispatch(setisLoggedIn("true"));
+        } else {
+            openNotification(
+                "Login Failed",
+                "Failed to log in as guest",
+                "error"
+            );
+        }
     };
 
     return (
@@ -26,7 +58,10 @@ export default function Guest() {
                     Click on continue to proceed.
                 </p>
                 <br />
-                <button class="guest-continue" onClick={handleContinueClick}>
+                <button
+                    className="guest-continue"
+                    onClick={handleContinueClick}
+                >
                     CONTINUE
                 </button>
                 <br />

@@ -14,6 +14,22 @@ export default function NavigationbarTwo() {
     const activeUserLocalStorage = JSON.parse(
         localStorage.getItem("activeUser")
     );
+    if (
+        typeof activeUserLocalStorage === "object" &&
+        activeUserLocalStorage !== null &&
+        JSON.stringify(activeUserLocalStorage) === "{}"
+    ) {
+        // This happens when user continues as guest but acc does not exist.
+        // It will create acc and log in as guest
+        // But will cause error due to localstorage now being set
+        // This block will handle that one specific case
+        const guest = {
+            fullName: "Guest",
+            userID: "000000000000000000000000",
+            userType: "guest",
+        };
+        localStorage.setItem("activeUser", JSON.stringify(guest));
+    }
 
     const handleLogout = () => {
         // Resetting all user data and logged in status
@@ -84,6 +100,11 @@ export default function NavigationbarTwo() {
                     }
                 >
                     <UserOutlined />
+                    {console.log(
+                        "NAV - activeUser",
+                        activeUser,
+                        activeUserLocalStorage
+                    )}
                     <label>
                         {
                             (activeUser

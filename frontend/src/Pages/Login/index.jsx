@@ -38,7 +38,7 @@ const Login = () => {
             openNotification(
                 "Login Failed",
                 "Your credentials could not be verified",
-                "success"
+                "error"
             );
             document.getElementById("login-error").innerHTML =
                 "ERROR: Failed to Login";

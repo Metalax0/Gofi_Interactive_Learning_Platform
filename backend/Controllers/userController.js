@@ -5,9 +5,12 @@ const mongoose = require("mongoose");
 const { sendEmail } = require("../Functions/sendEmail");
 
 exports.login = (request, response) => {
+    //
+    // Check if email exists, guest@gofi.com. If it does not exist create it and log in as guest, if not log in as guest
+    //
+
     // check if email exists
     User.findOne({ email: request.body.email })
-
         // if email exists
         .then((user) => {
             // compare the password entered and the hashed password found
@@ -53,10 +56,24 @@ exports.login = (request, response) => {
         })
         // catch error if email does not exist
         .catch((e) => {
-            response.status(404).send({
-                message: "Email not found",
-                e,
-            });
+            // If user is trying to log in as guest account and acc does not exist, create acc
+            if (request.body.email === "guest@gofi.com") {
+                console.log("create New User");
+                const guest = {
+                    fullName: "Guest",
+                    email: "guest@gofi.com",
+                    password: "guest",
+                    dateRegistered: Date.now(),
+                    profileImgBase64: "",
+                    userType: "guest",
+                    statistics: {},
+                };
+                this.signup({ body: guest }, response);
+            } else
+                response.status(404).send({
+                    message: "Email not found",
+                    e,
+                });
         });
 };
 
@@ -65,16 +82,30 @@ exports.signup = (request, response) => {
     bcrypt
         .hash(request.body.password, 10)
         .then((hashedPassword) => {
+            let user = null;
             // create a new user instance and collect the data
-            const user = new User({
-                fullName: request.body.fullName,
-                email: request.body.email,
-                password: hashedPassword,
-                dateRegistered: request.body.dateRegistered,
-                profileImg: request.body.profileImgBase64,
-                userType: request.body.userType,
-                statistics: {},
-            });
+            if (request.body.fullName === "Guest")
+                user = new User({
+                    _id: "000000000000000000000000",
+                    fullName: request.body.fullName,
+                    email: request.body.email,
+                    password: hashedPassword,
+                    dateRegistered: request.body.dateRegistered,
+                    profileImg: request.body.profileImgBase64,
+                    userType: request.body.userType,
+                    statistics: {},
+                });
+            else
+                user = new User({
+                    fullName: request.body.fullName,
+                    email: request.body.email,
+                    password: hashedPassword,
+                    dateRegistered: request.body.dateRegistered,
+                    profileImg: request.body.profileImgBase64,
+                    userType: request.body.userType,
+                    statistics: {},
+                });
+            console.log(user);
 
             user.save()
                 // Success Case : New user added to database

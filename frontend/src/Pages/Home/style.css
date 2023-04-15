@@ -1,7 +1,22 @@
 .home-page {
     height: 100vh;
-    background-image: url("https://media.tenor.com/4ryx66tWEhcAAAAd/pixel-study.gif");
     background-image: url("../../Assets/homebg.gif");
+
+    /* GOOD - LEFT - Girl in desk with book */
+    /* background-image: url("https://media.tenor.com/4ryx66tWEhcAAAAd/pixel-study.gif"); */
+
+    /* GOOD - RIGHT - Man In Desk with laptop  */
+    background-image: url("https://i.pinimg.com/originals/15/e7/e3/15e7e300166c962d3b8a22f60b5cac9e.gif");
+
+    /* MAYBE LEFT */
+    /* background-image: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2015/07/tumblr_nmvrs6ubl71qze3hdo1_r1_500.gif"); */
+
+    /* ENTIRE LEFT  */
+    /* background-image: url("https://i.pinimg.com/originals/b8/2f/28/b82f28a7e9c8fcb3868d3d94652c107c.gif"); */
+
+    /* IDK */
+    /* background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/dece5f124024167.60fb03546918b.gif"); */
+
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -10,7 +25,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* Left */
     align-items: flex-start;
+    /* right */
+    align-items: flex-end;
+    /* center */
+    /* align-items: center; */
+
     height: 100%;
     gap: 30px;
 }
@@ -19,11 +40,39 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
 
     font-family: "Roboto Slab", serif;
-    margin-left: 5%;
+
     gap: 15px;
+
+    /* Left Alignment */
+    align-items: flex-start;
+    margin-left: 5%;
+
+    /* Right Alignment */
+    align-items: flex-end;
+    margin-right: 10%;
+}
+
+.home-page-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    font-size: 1.1rem;
+    font-family: "Roboto Slab", serif;
+    text-align: center;
+
+    gap: 30px;
+    width: 31%;
+
+    /* Left Alignment */
+    align-items: flex-start;
+    margin-left: 5%;
+
+    /* Right Alignment */
+    align-items: flex-end;
+    margin-right: 10%;
 }
 
 .home-page-title {
@@ -50,22 +99,8 @@
     background-color: #ce4536;
 }
 
-.home-page-bottom {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-
-    font-size: 1rem;
-    font-family: "Roboto Slab", serif;
-    text-align: center;
-
-    gap: 30px;
-    width: 31%;
-    margin-left: 5%;
-}
-
 .home-page-card {
-    width: 50%;
+    width: 21%;
     padding: 15px;
     transition: all 0.3s;
 

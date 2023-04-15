@@ -100,11 +100,6 @@ export default function NavigationbarTwo() {
                     }
                 >
                     <UserOutlined />
-                    {console.log(
-                        "NAV - activeUser",
-                        activeUser,
-                        activeUserLocalStorage
-                    )}
                     <label>
                         {
                             (activeUser

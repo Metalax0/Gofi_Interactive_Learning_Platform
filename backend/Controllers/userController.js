@@ -58,7 +58,6 @@ exports.login = (request, response) => {
         .catch((e) => {
             // If user is trying to log in as guest account and acc does not exist, create acc
             if (request.body.email === "guest@gofi.com") {
-                console.log("create New User");
                 const guest = {
                     fullName: "Guest",
                     email: "guest@gofi.com",
@@ -91,7 +90,8 @@ exports.signup = (request, response) => {
                     email: request.body.email,
                     password: hashedPassword,
                     dateRegistered: request.body.dateRegistered,
-                    profileImg: request.body.profileImgBase64,
+                    profileImg:
+                        "data:image/png;base64,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",
                     userType: request.body.userType,
                     statistics: {},
                 });
@@ -105,7 +105,6 @@ exports.signup = (request, response) => {
                     userType: request.body.userType,
                     statistics: {},
                 });
-            console.log(user);
 
             user.save()
                 // Success Case : New user added to database

@@ -180,7 +180,7 @@ export default function ForumPostCard({
                     disabled={
                         userType === "guest"
                             ? true
-                            : false || enablePostDelete || enableCommentDelete
+                            : false || enableCommentDelete
                     }
                 >
                     &#10084;
@@ -243,9 +243,7 @@ export default function ForumPostCard({
                                     disabled={
                                         userType === "guest"
                                             ? true
-                                            : false ||
-                                              enablePostDelete ||
-                                              enableCommentDelete
+                                            : false || enableCommentDelete
                                     }
                                 />
                                 <Button
@@ -254,9 +252,7 @@ export default function ForumPostCard({
                                     disabled={
                                         userType === "guest"
                                             ? true
-                                            : false ||
-                                              enablePostDelete ||
-                                              enableCommentDelete
+                                            : false || enableCommentDelete
                                     }
                                 >
                                     Comment

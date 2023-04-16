@@ -38,3 +38,41 @@ exports.getUserStatistics = async (req, res) => {
         res.status(500).send("Server Error");
     }
 };
+
+// Get all user data
+exports.getUsers = (req, res) => {
+    console.log("----getUsers Called");
+    User.find()
+        .then((users) => {
+            res.status(200).json(users);
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).json({
+                message: "Failed to get all users data",
+            });
+        });
+};
+
+// Delete User By ID
+exports.deleteUserById = (req, res) => {
+    console.log("----getUsers Called");
+
+    User.findByIdAndDelete(req)
+        .then((result) => {
+            if (!result) {
+                return res.status(404).json({
+                    message: "User not found!",
+                });
+            }
+            res.status(200).json({
+                message: "User deleted successfully!",
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).json({
+                message: "Deleting user failed!",
+            });
+        });
+};

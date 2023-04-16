@@ -1,0 +1,34 @@
+.admin-sidebar {
+    height: 50%;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(239, 253, 253, 0.95);
+    border: 1px solid grey;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.admin-sidebar-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.admin-sidebar-items button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    gap: 10px;
+    text-align: left;
+    padding: 0.8rem 5rem 0.8rem 1.5rem;
+}
+
+#admin-sidebar-item-active {
+    color: rgba(50, 50, 255, 1);
+    background-color: rgba(3, 150, 255, 0.2);
+    border-left: 10px solid rgba(50, 50, 255, 1);
+    padding-left: 1.3rem;
+}

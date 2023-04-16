@@ -1,0 +1,49 @@
+.admin-manage {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+
+    background-image: url("https://e0.pxfuel.com/wallpapers/559/159/desktop-wallpaper-bit-skyline-8-bit-city.jpg");
+    background-image: url("https://i.pinimg.com/originals/2d/dd/65/2ddd65d337a48d0c8dc223f849c3dc5a.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.admin-manage-container {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-manage-body {
+    height: 80%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    border: 2px solid grey;
+    border-left: 10px solid grey;
+    border-radius: 20px;
+    flex: 1;
+    background-color: rgba(243, 220, 179, 0.95);
+}
+
+.admin-manage-p {
+    text-align: justify;
+    padding: 0px 50px;
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+.admin-manage-body li {
+    padding: 0px 50px;
+    font-size: 1.2rem;
+}

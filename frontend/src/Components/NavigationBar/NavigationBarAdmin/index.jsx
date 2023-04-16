@@ -77,13 +77,13 @@ export default function NavigationbarAdmin() {
                 </NavLink>
                 <div className="navigation-bar--vertical-line"> | </div>
                 <NavLink
-                    to="/admin/htmltutorial"
+                    to="/admin/manage"
                     className="navigation-bar--item"
                     style={({ isActive }) =>
                         isActive ? activeStyle : undefined
                     }
                 >
-                    Manage tutorial
+                    Manage
                 </NavLink>
                 <div className="navigation-bar--vertical-line"> | </div>
                 <NavLink

@@ -15,6 +15,7 @@ const initialState = {
     getAllAuthorPostURL: `${baseURL}/api/getallauthorpost`,
     addLikeToPostURL: `${baseURL}/api/likepost`,
     addCommentURL: `${baseURL}/api/addcomment`,
+    deleteCommentURL: `${baseURL}/api/deletecomment`,
     addhtmlchapter: `${baseURL}/api/addhtmlchapter`,
     gethtmlchapter: `${baseURL}/api/gethtmlchapter`,
     getUserStatisticsURL: `${baseURL}/api/getUserStatistics`,

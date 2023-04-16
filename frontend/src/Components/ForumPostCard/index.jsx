@@ -15,12 +15,16 @@ export default function ForumPostCard({
     getAllPostData,
     addCommentURL,
     enablePostDelete = false,
+    enableCommentDelete = false,
 }) {
     const addLikeToPostURL = useSelector(
         (state) => state.global.addLikeToPostURL
     );
 
     const deletePostURL = useSelector((state) => state.global.deletePostURL);
+    const deleteCommentURL = useSelector(
+        (state) => state.global.deleteCommentURL
+    );
 
     const [commentInput, setcommentInput] = useState("");
     const [likeBttnColor, setlikeBttnColor] = useState("grey");
@@ -106,7 +110,7 @@ export default function ForumPostCard({
         getAllPostData();
     };
 
-    const confirm = async (e) => {
+    const postConfirm = async (e) => {
         console.log("delete post");
         const postID = post._id;
 
@@ -122,9 +126,33 @@ export default function ForumPostCard({
         getAllPostData();
         message.success("Post Deleted Successfully");
     };
-    const cancel = (e) => {
+
+    const postCancel = (e) => {
         console.log(e);
         message.error("Post Deletion Was Canceled");
+    };
+
+    const commentConfirm = async (index) => {
+        console.log("delete comment", index);
+        const postID = post._id;
+
+        const config = {
+            method: "post",
+            url: deleteCommentURL,
+            data: {
+                postID,
+                commentIndex: index,
+            },
+        };
+
+        await handleAddLikeToPost(config);
+        getAllPostData();
+        message.success("Comment Deleted Successfully");
+    };
+
+    const commentCancel = (e) => {
+        console.log(e);
+        message.error("Commend Deletion Was Canceled");
     };
 
     return (
@@ -137,8 +165,8 @@ export default function ForumPostCard({
                         <Popconfirm
                             title="Delete Post?"
                             description="Are you sure to delete this post?"
-                            onConfirm={confirm}
-                            onCancel={cancel}
+                            onConfirm={postConfirm}
+                            onCancel={postCancel}
                             okText="Yes"
                             cancelText="No"
                         >
@@ -149,7 +177,11 @@ export default function ForumPostCard({
                 <button
                     style={{ color: likeBttnColor }}
                     onClick={handleAddLike}
-                    disabled={userType === "guest" ? true : false}
+                    disabled={
+                        userType === "guest"
+                            ? true
+                            : false || enablePostDelete || enableCommentDelete
+                    }
                 >
                     &#10084;
                 </button>
@@ -209,14 +241,22 @@ export default function ForumPostCard({
                                         setcommentInput(e.target.value)
                                     }
                                     disabled={
-                                        userType === "guest" ? true : false
+                                        userType === "guest"
+                                            ? true
+                                            : false ||
+                                              enablePostDelete ||
+                                              enableCommentDelete
                                     }
                                 />
                                 <Button
                                     type="primary"
                                     onClick={() => handleCommentSubmit()}
                                     disabled={
-                                        userType === "guest" ? true : false
+                                        userType === "guest"
+                                            ? true
+                                            : false ||
+                                              enablePostDelete ||
+                                              enableCommentDelete
                                     }
                                 >
                                     Comment
@@ -229,6 +269,37 @@ export default function ForumPostCard({
                                           className="view-all-post__comments__view__comment"
                                           key={j}
                                       >
+                                          {enableCommentDelete && (
+                                              <button
+                                                  style={{
+                                                      backgroundColor:
+                                                          "#eb664b",
+                                                      color: "black",
+                                                  }}
+                                              >
+                                                  <Popconfirm
+                                                      title="Delete Comment?"
+                                                      description="Are you sure to delete this comment?"
+                                                      onConfirm={() =>
+                                                          commentConfirm(
+                                                              comments.length -
+                                                                  j -
+                                                                  1
+                                                          )
+                                                      }
+                                                      onCancel={commentCancel}
+                                                      okText="Yes"
+                                                      cancelText="No"
+                                                  >
+                                                      <DeleteFilled
+                                                          style={{
+                                                              fontSize:
+                                                                  "0.9rem",
+                                                          }}
+                                                      />
+                                                  </Popconfirm>
+                                              </button>
+                                          )}
                                           <small>
                                               {new Date(comment.datePublished)
                                                   .toISOString()

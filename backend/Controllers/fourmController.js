@@ -73,6 +73,29 @@ exports.deletePostById = async (request, response) => {
     }
 };
 
+// Delete a forum comment post by index
+exports.deleteCommentByIndex = async (request, response) => {
+    const { postID, commentIndex } = request.body;
+    console.log(postID);
+
+    try {
+        const post = await forum.findById(postID);
+
+        if (!post) {
+            return response.status(404).json({ message: "Post not found" });
+        }
+
+        console.log(commentIndex, post.comments[commentIndex]);
+        post.comments.splice(-commentIndex, 1);
+        await post.save();
+
+        response.json({ message: "Comment removed" });
+    } catch (err) {
+        console.error(err);
+        response.status(500).json({ message: "Server Error" });
+    }
+};
+
 exports.addCommentToPost = async (request, response) => {
     const { postID, authorID, authorName, commentInput } = request.body;
 

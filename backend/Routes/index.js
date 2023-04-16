@@ -23,6 +23,7 @@ router.post("/createpost", forumController.createPost);
 router.post("/addcomment", forumController.addCommentToPost);
 router.post("/likepost", forumController.likePost);
 router.post("/deletepost", forumController.deletePostById);
+router.post("/deletecomment", forumController.deleteCommentByIndex);
 router.get("/getallpost", forumController.getAllPosts);
 router.get("/getallauthorpost", forumController.getAllAuthorPost);
 

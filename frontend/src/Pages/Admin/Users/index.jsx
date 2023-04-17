@@ -6,6 +6,9 @@ import { handleGetAllAuthorPost } from "../../../Functions/handleGetAllAuthorPos
 import { DeleteFilled } from "@ant-design/icons";
 import { handleDeletePost } from "../../../Functions/handleDeletePost";
 import { message, Popconfirm } from "antd";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 export default function ManageUsers() {
     const [allUsersData, setallUsersData] = useState([]);
@@ -13,8 +16,23 @@ export default function ManageUsers() {
         (state) => state.global.getAllUserDataURL
     );
     const deleteUserURL = useSelector((state) => state.global.deleteUserURL);
+    const activeUserID = cookies.get("USERID");
+
+    const deleteBttnStyle = {
+        backgroundColor: "#eb664b",
+        color: "black",
+    };
+
+    const deleteBttnDisableStyle = {
+        backgroundColor: "grey",
+        color: "black",
+    };
 
     useEffect(() => {
+        callApi();
+    }, []);
+
+    const callApi = () => {
         const config = {
             method: "get",
             url: getAllUserDataURL,
@@ -24,12 +42,9 @@ export default function ManageUsers() {
             console.log(res.data);
             setallUsersData(res.data);
         });
-    });
+    };
 
     const confirm = async (userID) => {
-        console.log("delete user DOES NOT WORK CURRENTLY");
-        console.log(userID);
-
         const config = {
             method: "post",
             url: deleteUserURL,
@@ -39,9 +54,12 @@ export default function ManageUsers() {
         };
 
         const deleteStatus = await handleDeletePost(config);
-        deleteStatus
-            ? message.success("User Deleted Successfully")
-            : message.error("User Deletion Failed");
+        if (deleteStatus) {
+            message.success("User Deleted Successfully");
+            callApi();
+        } else {
+            message.error("User Deletion Failed");
+        }
     };
 
     const cancel = () => {
@@ -57,10 +75,11 @@ export default function ManageUsers() {
                         return (
                             <div className="admin-manage-user" key={key}>
                                 <button
-                                    style={{
-                                        backgroundColor: "#eb664b",
-                                        color: "black",
-                                    }}
+                                    style={
+                                        activeUserID === user._id
+                                            ? deleteBttnDisableStyle
+                                            : deleteBttnStyle
+                                    }
                                 >
                                     <Popconfirm
                                         title="Delete Post?"
@@ -69,6 +88,7 @@ export default function ManageUsers() {
                                         onCancel={cancel}
                                         okText="Yes"
                                         cancelText="No"
+                                        disabled={activeUserID === user._id}
                                     >
                                         <DeleteFilled
                                             style={{ fontSize: "0.9rem" }}

@@ -24,7 +24,7 @@ export default function ManageUsers() {
             console.log(res.data);
             setallUsersData(res.data);
         });
-    }, []);
+    });
 
     const confirm = async (userID) => {
         console.log("delete user DOES NOT WORK CURRENTLY");
@@ -38,12 +38,13 @@ export default function ManageUsers() {
             },
         };
 
-        await handleDeletePost(config);
-        message.success("User Deleted Successfully");
+        const deleteStatus = await handleDeletePost(config);
+        deleteStatus
+            ? message.success("User Deleted Successfully")
+            : message.error("User Deletion Failed");
     };
 
-    const cancel = (e) => {
-        console.log(e);
+    const cancel = () => {
         message.error("User Deletion Was Canceled");
     };
 

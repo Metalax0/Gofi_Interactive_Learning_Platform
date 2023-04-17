@@ -24,7 +24,7 @@ router.get("/getallpost", forumController.getAllPosts);
 router.get("/getallauthorpost", forumController.getAllAuthorPost);
 
 router.get("/alluserdata", userDataController.getUsers);
-router.get("/deleteuser", userDataController.deleteUserById);
+router.post("/deleteuser", userDataController.deleteUserById);
 
 router.get("/userdata", userDataController.userData);
 router.get("/getUserStatistics", userDataController.getUserStatistics);

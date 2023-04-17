@@ -41,7 +41,6 @@ exports.getUserStatistics = async (req, res) => {
 
 // Get all user data
 exports.getUsers = (req, res) => {
-    console.log("----getUsers Called");
     User.find()
         .then((users) => {
             res.status(200).json(users);
@@ -55,24 +54,27 @@ exports.getUsers = (req, res) => {
 };
 
 // Delete User By ID
-exports.deleteUserById = (req, res) => {
-    console.log("----getUsers Called");
+exports.deleteUserById = async (req, res) => {
+    const { userID } = req.body;
 
-    User.findByIdAndDelete(req)
-        .then((result) => {
-            if (!result) {
-                return res.status(404).json({
-                    message: "User not found!",
+    User.findById(userID)
+        .then((user) => {
+            user.remove()
+                .then(() => {
+                    res.status(200).json({
+                        message: "User deleted successfully!",
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.status(500).json({
+                        message:
+                            "SERVER ERROR : User found but could not be deleted.",
+                    });
                 });
-            }
-            res.status(200).json({
-                message: "User deleted successfully!",
-            });
         })
-        .catch((error) => {
-            console.log(error);
-            res.status(500).json({
-                message: "Deleting user failed!",
-            });
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({ message: "User Not Found" });
         });
 };

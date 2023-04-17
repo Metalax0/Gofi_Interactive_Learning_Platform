@@ -19,6 +19,8 @@ const initialState = {
 
     createPostURL: `${baseURL}/api/createpost`,
     deletePostURL: `${baseURL}/api/deletepost`,
+    deletepostandcommentURL: `${baseURL}/api/deletepostandcomment`,
+
     getAllPostURL: `${baseURL}/api/getallpost`,
     getAllAuthorPostURL: `${baseURL}/api/getallauthorpost`,
     addLikeToPostURL: `${baseURL}/api/likepost`,

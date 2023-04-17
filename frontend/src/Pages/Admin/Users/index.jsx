@@ -16,6 +16,10 @@ export default function ManageUsers() {
         (state) => state.global.getAllUserDataURL
     );
     const deleteUserURL = useSelector((state) => state.global.deleteUserURL);
+    const deletepostandcommentURL = useSelector(
+        (state) => state.global.deletepostandcommentURL
+    );
+
     const activeUserID = cookies.get("USERID");
 
     const deleteBttnStyle = {
@@ -29,10 +33,10 @@ export default function ManageUsers() {
     };
 
     useEffect(() => {
-        callApi();
+        getAllUserData();
     }, []);
 
-    const callApi = () => {
+    const getAllUserData = () => {
         const config = {
             method: "get",
             url: getAllUserDataURL,
@@ -44,7 +48,7 @@ export default function ManageUsers() {
         });
     };
 
-    const confirm = async (userID) => {
+    const deleteUser = async (userID) => {
         const config = {
             method: "post",
             url: deleteUserURL,
@@ -56,9 +60,30 @@ export default function ManageUsers() {
         const deleteStatus = await handleDeletePost(config);
         if (deleteStatus) {
             message.success("User Deleted Successfully");
-            callApi();
+            getAllUserData();
         } else {
             message.error("User Deletion Failed");
+        }
+
+        deletePostAndComments(userID);
+    };
+
+    // Delete Post and Comments of deleted user
+    const deletePostAndComments = async (userID) => {
+        const config = {
+            method: "post",
+            url: deletepostandcommentURL,
+            data: {
+                userID,
+            },
+        };
+
+        const deleteStatus = await handleDeletePost(config);
+        if (deleteStatus) {
+            message.success("User Data (Forum) Deleted Successfully");
+            getAllUserData();
+        } else {
+            message.error("User Data(Forum) Deletion Failed");
         }
     };
 
@@ -84,7 +109,7 @@ export default function ManageUsers() {
                                     <Popconfirm
                                         title="Delete Post?"
                                         description="Are you sure to delete this post?"
-                                        onConfirm={() => confirm(user._id)}
+                                        onConfirm={() => deleteUser(user._id)}
                                         onCancel={cancel}
                                         okText="Yes"
                                         cancelText="No"

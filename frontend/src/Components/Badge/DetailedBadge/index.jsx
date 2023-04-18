@@ -18,7 +18,7 @@ export default function DetailedBadge({ title, description, icon }) {
 
             case "signin":
                 // Made an gofi account.
-                return <IdcardTwoTone size={"big"} />;
+                return <IdcardTwoTone />;
 
             // -------
             // FORUM

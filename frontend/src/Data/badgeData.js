@@ -17,8 +17,8 @@ export const badgeData = {
     },
     like: {
         title: "The Liker",
-        description: "",
-        icon: "Badge was provided on sending out your very first like",
+        description: "Badge was provided on sending out your very first like",
+        icon: "like",
     },
     tutorial: {
         title: "The Student",

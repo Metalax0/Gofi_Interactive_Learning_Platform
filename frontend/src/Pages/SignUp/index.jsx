@@ -36,7 +36,6 @@ const SignUp = () => {
             canvas.removeEventListener("mousedown", () => (drag = true));
             canvas.removeEventListener("mouseup", () => (drag = false));
         };
-
         //
     }, []);
 
@@ -195,6 +194,7 @@ const SignUp = () => {
                                         type: "email",
                                     },
                                 ]}
+                                w
                             >
                                 <Input
                                     size="large"

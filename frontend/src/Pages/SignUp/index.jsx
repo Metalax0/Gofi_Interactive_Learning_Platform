@@ -120,6 +120,7 @@ const SignUp = () => {
                                 value={fullName}
                                 disabled
                             />
+
                             <Input
                                 className="register-identity-input"
                                 size="medium"
@@ -128,6 +129,7 @@ const SignUp = () => {
                                 value={email}
                                 disabled
                             />
+
                             <Input
                                 className="register-identity-input"
                                 size="medium"
@@ -189,7 +191,8 @@ const SignUp = () => {
                                 rules={[
                                     {
                                         required: true,
-                                        message: "Please input your Email!",
+                                        message: "Please input valid Email!",
+                                        type: "email",
                                     },
                                 ]}
                             >

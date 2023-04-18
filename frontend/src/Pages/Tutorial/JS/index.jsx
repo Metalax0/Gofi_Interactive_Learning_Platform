@@ -50,6 +50,7 @@ const TutorialJS = () => {
                 setState={setactiveChapter}
                 data={jsTutorialData[activeChapter - 1]}
                 tutorial="js"
+                totalChapters={jsTutorialData.length}
             />
         </div>
     );

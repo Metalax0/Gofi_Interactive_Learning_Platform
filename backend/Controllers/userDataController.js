@@ -39,6 +39,24 @@ exports.getUserStatistics = async (req, res) => {
     }
 };
 
+// Update user statistics by of a user by their ID
+exports.updateUserStatistics = async (req, res) => {
+    const { userID } = req.body;
+
+    try {
+        const user = await User.findById(userID);
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+
+        const userStatistics = user.statistics;
+        return res.json(userStatistics);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+};
+
 // Get all user data
 exports.getUsers = (req, res) => {
     User.find()
@@ -77,4 +95,36 @@ exports.deleteUserById = async (req, res) => {
             console.log(err);
             res.status(500).json({ message: "User Not Found" });
         });
+};
+
+//
+exports.updateBadge = async (req, res) => {
+    try {
+        const { userID, title, description, icon } = req.body;
+
+        // Find the user by their ID
+        const user = await User.findById(userID);
+
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        const badges = user.statistics.badges;
+        const badgeExist = badges.some((badge) => badge.icon === icon);
+        if (!badgeExist) {
+            user.statistics.badges.push({
+                title: title,
+                description: description,
+                icon: icon,
+            });
+            await user.save();
+        }
+
+        return res
+            .status(200)
+            .json({ message: "Badge was added successfully" });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "Server error" });
+    }
 };

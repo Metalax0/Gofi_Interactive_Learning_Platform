@@ -1,4 +1,4 @@
-.badge-circle {
+.detailed-badge {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,17 +9,20 @@
     background-color: antiquewhite;
     padding: 10px;
     text-align: center;
+
+    width: 80%;
 }
 
-.badge-circle__img {
-    border-radius: 100%;
-    width: inherit;
-}
-
-.badge-circle__description {
+.detailed-badge-description {
     font-size: 0.9rem;
 }
 
-.badge-circle__title {
+.detailed-badge-title {
     font-weight: bold;
+}
+
+.detailed-badge-icon {
+    font-size: 3rem;
+    width: 100%;
+    height: 100%;
 }

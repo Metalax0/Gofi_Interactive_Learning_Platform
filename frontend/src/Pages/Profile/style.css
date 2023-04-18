@@ -18,8 +18,6 @@ hr {
 
     background-repeat: no-repeat;
     background-size: cover;
-
-    overflow: hidden;
 }
 
 .profile-page-container {
@@ -61,6 +59,8 @@ hr {
     align-items: center;
     flex: 5;
     gap: 20px;
+    width: 93%;
+    height: 100%;
 }
 
 .profile-page-book-bottom {
@@ -131,4 +131,14 @@ hr {
     font-size: 1.2rem;
     text-align: justify;
     width: 85%;
+}
+
+.profile-page-book-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3%;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
 }

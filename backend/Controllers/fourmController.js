@@ -183,3 +183,28 @@ exports.likePost = async (req, res) => {
         res.status(500).json({ message: "Server Error" });
     }
 };
+
+exports.getAllComments = async (req, res) => {
+    const { userID } = req.query; // Assuming userID is passed as a parameter in the request
+    console.log("---userID", userID);
+
+    try {
+        const forums = await forum.find({ "comments.author_id": userID });
+
+        let commentCount = 0;
+
+        forums.forEach((forum) => {
+            forum.comments.forEach((comment) => {
+                if (comment.author_id.toString() === userID.toString()) {
+                    commentCount++;
+                }
+            });
+        });
+
+        res.status(200).json({ commentCount });
+    } catch (error) {
+        res.status(500).json({
+            error: "Failed to count total comments by user",
+        });
+    }
+};

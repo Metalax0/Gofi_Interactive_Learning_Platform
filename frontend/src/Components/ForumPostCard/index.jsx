@@ -6,6 +6,8 @@ import "./style.css";
 import { useSelector } from "react-redux";
 import { handleAddLikeToPost } from "../../Functions/handleAddLikeToPost";
 import Cookies from "universal-cookie";
+import { badgeData } from "../../Data/badgeData";
+import { handleCreatePost } from "../../Functions/handleCreatePost";
 
 const { Panel } = Collapse;
 const cookies = new Cookies();
@@ -25,6 +27,7 @@ export default function ForumPostCard({
     const deleteCommentURL = useSelector(
         (state) => state.global.deleteCommentURL
     );
+    const updateBadgeURL = useSelector((state) => state.global.updateBadgeURL);
 
     const [commentInput, setcommentInput] = useState("");
     const [likeBttnColor, setlikeBttnColor] = useState("grey");
@@ -34,6 +37,7 @@ export default function ForumPostCard({
     const formattedDate = dateObj.toISOString().substring(0, 10);
     const categoryStyle = { backgroundColor: "" };
     const userType = cookies.get("USERTYPE");
+    const userID = cookies.get("USERID");
     console.log(userType);
 
     useEffect(() => {
@@ -90,6 +94,21 @@ export default function ForumPostCard({
         };
 
         const isCommentAdded = await handleAddComment(config);
+
+        // BADGE EARNED - FIRST COMMENT
+        const updateBadgeConfig = {
+            method: "post",
+            url: updateBadgeURL,
+            data: {
+                userID: userID,
+                title: badgeData.comment.title,
+                description: badgeData.comment.description,
+                icon: badgeData.comment.icon,
+            },
+        };
+        await handleCreatePost(updateBadgeConfig);
+        //
+
         if (isCommentAdded) getAllPostData();
     };
 
@@ -107,6 +126,21 @@ export default function ForumPostCard({
         };
 
         await handleAddLikeToPost(config);
+
+        // BADGE EARNED - FIRST LIKE
+        const updateBadgeConfig = {
+            method: "post",
+            url: updateBadgeURL,
+            data: {
+                userID: userID,
+                title: badgeData.like.title,
+                description: badgeData.like.description,
+                icon: badgeData.like.icon,
+            },
+        };
+        await handleCreatePost(updateBadgeConfig);
+        //
+
         getAllPostData();
     };
 

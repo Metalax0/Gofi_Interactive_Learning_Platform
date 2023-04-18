@@ -23,11 +23,13 @@ router.post("/deletecomment", forumController.deleteCommentByIndex);
 router.post("/deletepostandcomment", forumController.deletePostAndComments);
 router.get("/getallpost", forumController.getAllPosts);
 router.get("/getallauthorpost", forumController.getAllAuthorPost);
+router.get("/getAllComments", forumController.getAllComments);
 
 router.get("/alluserdata", userDataController.getUsers);
 router.post("/deleteuser", userDataController.deleteUserById);
 
 router.get("/userdata", userDataController.userData);
 router.get("/getUserStatistics", userDataController.getUserStatistics);
+router.post("/updateBadge", userDataController.updateBadge);
 
 module.exports = router;

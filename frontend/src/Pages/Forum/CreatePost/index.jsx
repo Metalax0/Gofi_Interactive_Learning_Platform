@@ -9,15 +9,18 @@ import "./style.css";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import { NotificationContext } from "../../../App";
+import { badgeData } from "../../../Data/badgeData";
 
 const cookies = new Cookies();
 
 export default function CreatePost() {
     const createPostURL = useSelector((state) => state.global.createPostURL);
+    const updateBadgeURL = useSelector((state) => state.global.updateBadgeURL);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
     const { openNotification } = useContext(NotificationContext);
     const userType = cookies.get("USERTYPE");
+    const userID = JSON.parse(localStorage.getItem("activeUser")).userID;
 
     useEffect(() => {
         if (userType === "guest") {
@@ -34,7 +37,6 @@ export default function CreatePost() {
         const authorName = JSON.parse(
             localStorage.getItem("activeUser")
         ).fullName;
-        const userID = JSON.parse(localStorage.getItem("activeUser")).userID;
 
         const createPostConfig = {
             method: "post",
@@ -51,13 +53,26 @@ export default function CreatePost() {
 
         const isPostCreated = await handleCreatePost(createPostConfig);
 
-        if (isPostCreated)
+        if (isPostCreated) {
             openNotification(
                 "Post created",
                 "Your post has been created.",
                 "success"
             );
-        else
+
+            // BADGE EARNED - FIRST POST
+            const updateBadgeConfig = {
+                method: "post",
+                url: updateBadgeURL,
+                data: {
+                    userID: userID,
+                    title: badgeData.post.title,
+                    description: badgeData.post.description,
+                    icon: badgeData.post.icon,
+                },
+            };
+            await handleCreatePost(updateBadgeConfig);
+        } else
             openNotification(
                 "Failed to create post",
                 "Your post could not be created.",

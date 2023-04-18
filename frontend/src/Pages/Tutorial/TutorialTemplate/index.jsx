@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button, Input, Tour } from "antd";
+import { Button, Input, Modal, Tour } from "antd";
 import { ProfileOutlined } from "@ant-design/icons";
 import "./style.css";
 import TextArea from "antd/es/input/TextArea";
@@ -10,15 +10,25 @@ import {
 import Cookies from "universal-cookie";
 import { handleUpdateTutorialProgress } from "../../../Functions/handleUpdateTutorialProgress";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { handleCreatePost } from "../../../Functions/handleCreatePost";
+import { badgeData } from "../../../Data/badgeData";
 
 const cookies = new Cookies();
 
-const TutorialTemplate = ({ data, state, setState, tutorial }) => {
+const TutorialTemplate = ({
+    data,
+    state,
+    setState,
+    tutorial,
+    totalChapters,
+}) => {
     const [textAreaValue, settextAreaValue] = useState("");
     const [browserTitle, setBrowserTitle] = useState("Title");
     const [isTaskAvailable, setisTaskAvailable] = useState(false);
     const [isAnswerCorrect, setisAnswerCorrect] = useState(false);
     const [open, setOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const userInputRef = useRef(null);
     const userAnswerRef = useRef(null);
@@ -29,16 +39,18 @@ const TutorialTemplate = ({ data, state, setState, tutorial }) => {
     const OutputRef = useRef(null);
     const TaskRef = useRef(null);
     const browserWindowRef = useRef(null);
-
+    const navigate = useNavigate();
     const userType = cookies.get("USERTYPE");
 
     const updateTutorialProgressURL = useSelector(
         (state) => state.global.updateTutorialProgressURL
     );
+    const updateBadgeURL = useSelector((state) => state.global.updateBadgeURL);
+
+    const userID = JSON.parse(localStorage.getItem("activeUser")).userID;
 
     useEffect(() => {
         console.log("CURRENT CHAPTER", state);
-
         setOpen(true);
 
         if (browserWindowRef.current) {
@@ -67,8 +79,33 @@ const TutorialTemplate = ({ data, state, setState, tutorial }) => {
                 setisTaskAvailable(true);
             }
         });
-        if (state === 9) setisAnswerCorrect(false);
+        // if (state === 9) setisAnswerCorrect(false);
+
+        // Check if end of tutorial, if end - show modal , else nothing
+        if (state === totalChapters) {
+            setIsModalOpen(true);
+            document.querySelector(".tutorial-template").style.filter =
+                "blur(10px)";
+
+            // BADGE EARNED - FIRST Tutorial Complete
+            const updateBadgeConfig = {
+                method: "post",
+                url: updateBadgeURL,
+                data: {
+                    userID: userID,
+                    title: badgeData.tutorial.title,
+                    description: badgeData.tutorial.description,
+                    icon: badgeData.tutorial.icon,
+                },
+            };
+            handleCreatePost(updateBadgeConfig);
+            //
+        }
     }, [state, data]);
+
+    // useEffect(() => {
+
+    // }, [state]);
 
     const addStyle = (add, answer = "") => {
         const style = document.querySelector("#tutorial-output-style");
@@ -224,6 +261,28 @@ const TutorialTemplate = ({ data, state, setState, tutorial }) => {
 
     return (
         <div className="tutorial-template">
+            <Modal
+                title="You have Reached the end of tutorial"
+                open={isModalOpen}
+                onOk={() => navigate(`/test/${tutorial}`)}
+                onCancel={() => navigate("/home")}
+                okText="Go To Tests"
+                cancelText="Go To Home"
+                closeIcon={<></>}
+                maskClosable={false}
+                maskStyle={{
+                    backgroundColor: "rgba(0, 0, 0, 0.7)",
+                }}
+                centered
+            >
+                <p>
+                    Congratulations, you have made it till the end of the
+                    tutorial. Hopefully this journey was insightful and you
+                    gained something out of it. Now from here, you can either go
+                    to the home page or take a test to check your skills and
+                    learnings. Happy Learning !
+                </p>
+            </Modal>
             {(state === 1 || state === 2) && userType !== "guest" ? (
                 <Tour
                     open={open}

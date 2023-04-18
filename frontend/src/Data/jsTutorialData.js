@@ -296,4 +296,9 @@ multiply(5, 4);`,
             },
         ],
     },
+
+    {
+        title: "END OF TUTORIAL",
+        body: [{ content: "", type: "" }],
+    },
 ];

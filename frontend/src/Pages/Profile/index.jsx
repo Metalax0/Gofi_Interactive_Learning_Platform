@@ -9,7 +9,7 @@ import totalPointsImg from "../../Assets/totalPoints.png";
 import totalCommentsImg from "../../Assets/totalComments.png";
 import totalPostsImg from "../../Assets/totalPosts.png";
 import { Modal, Skeleton } from "antd";
-import BadgeCircle from "../../Components/Badge/BadgeCircle";
+import BadgeCircle from "../../Components/Badge/DetailedBadge";
 import { useNavigate } from "react-router-dom";
 import {
     ClockCircleOutlined,
@@ -17,30 +17,39 @@ import {
     UserOutlined,
 } from "@ant-design/icons";
 import HTMLFlipBook from "react-pageflip";
+import DetailedBadge from "../../Components/Badge/DetailedBadge";
+import { handleGetAllUserComments } from "../../Functions/handleGetAllUserComments";
 
 const cookies = new Cookies();
 
 export default function Profile() {
     const [userData, setuserData] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [totalComments, setTotalComments] = useState(0);
+    const [totalPosts, setTotalPosts] = useState(0);
+
     const userDataURL = useSelector((state) => state.global.userDataURL);
-    const dispatch = useDispatch();
+    const getAllCommentsURL = useSelector(
+        (state) => state.global.getAllCommentsURL
+    );
+    const getAllAuthorPostDataURL = useSelector(
+        (state) => state.global.getAllAuthorPostURL
+    );
     const navigate = useNavigate();
 
     const userID = cookies.get("USERID");
     const userType = cookies.get("USERTYPE");
-
-    const userDataConfig = {
-        method: "get",
-        url: userDataURL,
-        params: { userID: userID },
-    };
 
     const dateObj = userData ? new Date(userData.dateRegistered) : null;
     const dateJoined = userData ? dateObj.toISOString().substring(0, 10) : null;
 
     useEffect(() => {
         async function fetchUserData() {
+            const userDataConfig = {
+                method: "get",
+                url: userDataURL,
+                params: { userID },
+            };
             setuserData(
                 await (
                     await handleUserDataFetch(userDataConfig)
@@ -48,9 +57,29 @@ export default function Profile() {
             );
         }
         fetchUserData();
+
+        countData();
     }, []);
 
-    console.log(userData);
+    const countData = async () => {
+        // Total Comments
+        const commentCountConfig = {
+            method: "get",
+            url: getAllCommentsURL,
+            params: { userID },
+        };
+        const data1 = await handleGetAllUserComments(commentCountConfig);
+        setTotalComments(data1.data.commentCount);
+
+        // Total Posts
+        const postCommentCount = {
+            method: "get",
+            url: getAllAuthorPostDataURL,
+            params: { authorID: userID },
+        };
+        const data2 = await handleGetAllUserComments(postCommentCount);
+        setTotalPosts(data2.data.length);
+    };
 
     useEffect(() => {
         if (userType === "guest") {
@@ -177,30 +206,25 @@ export default function Profile() {
                                             }
                                             size={80}
                                         />
+
                                         <BadgeSquare
                                             src={totalPointsImg}
                                             title={
-                                                userData.statistics
-                                                    .communityStats
-                                                    .communityPoints
+                                                totalComments +
+                                                userData.statistics.badges
+                                                    .length +
+                                                totalPosts
                                             }
                                             size={80}
                                         />
                                         <BadgeSquare
                                             src={totalCommentsImg}
-                                            title={
-                                                userData.statistics
-                                                    .communityStats
-                                                    .totalComments
-                                            }
+                                            title={totalComments}
                                             size={80}
                                         />
                                         <BadgeSquare
                                             src={totalPostsImg}
-                                            title={
-                                                userData.statistics
-                                                    .communityStats.totalPosts
-                                            }
+                                            title={totalPosts}
                                             size={80}
                                         />
                                     </div>
@@ -222,13 +246,35 @@ export default function Profile() {
                         <div className="profile-page-book-page">
                             <div className="book-page-container">
                                 <div className="profile-page-book-top">
-                                    <h1>The End</h1>
+                                    <p className="profile-page-book-paragraph">
+                                        These are all the badges that you have
+                                        earned throught your journey at GOFI.
+                                        These mark the achievements
+                                    </p>
+                                    <div className="profile-page-book-badges">
+                                        {userData.statistics.badges &&
+                                            userData.statistics.badges.map(
+                                                (badge) => {
+                                                    return (
+                                                        <DetailedBadge
+                                                            icon={badge.icon}
+                                                            title={badge.title}
+                                                            description={
+                                                                badge.description
+                                                            }
+                                                        />
+                                                    );
+                                                }
+                                            )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div className="profile-page-book-page">
                             <div className="book-page-container">
-                                <div className="profile-page-book-top"></div>
+                                <div className="profile-page-book-top">
+                                    <h1>The End</h1>
+                                </div>
                             </div>
                         </div>
                     </HTMLFlipBook>

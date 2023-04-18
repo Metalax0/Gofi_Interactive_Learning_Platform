@@ -11,6 +11,7 @@ const initialState = {
 
     updateTutorialProgressURL: `${baseURL}/api/updatetutorialprogress`,
     updateTestProgressURL: `${baseURL}/api/updateTestProgress`,
+    updateBadgeURL: `${baseURL}/api/updateBadge`,
 
     userDataURL: `${baseURL}/api/userdata`,
     getUserStatisticsURL: `${baseURL}/api/getUserStatistics`,
@@ -23,6 +24,7 @@ const initialState = {
 
     getAllPostURL: `${baseURL}/api/getallpost`,
     getAllAuthorPostURL: `${baseURL}/api/getallauthorpost`,
+    getAllCommentsURL: `${baseURL}/api/getAllComments`,
     addLikeToPostURL: `${baseURL}/api/likepost`,
     addCommentURL: `${baseURL}/api/addcomment`,
     deleteCommentURL: `${baseURL}/api/deletecomment`,

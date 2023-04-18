@@ -357,4 +357,9 @@ p{
             },
         ],
     },
+
+    {
+        title: "END OF TUTORIAL",
+        body: [{ content: "", type: "" }],
+    },
 ];

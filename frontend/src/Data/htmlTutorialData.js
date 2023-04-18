@@ -479,4 +479,9 @@ export const htmlTutorialData = [
             },
         ],
     },
+
+    {
+        title: "END OF TUTORIAL",
+        body: [{ content: "", type: "" }],
+    },
 ];

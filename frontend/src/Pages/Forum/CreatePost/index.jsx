@@ -1,13 +1,14 @@
 import { HighlightOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ForumSidebar from "../../../Components/ForumSidebar";
 import { handleCreatePost } from "../../../Functions/handleCreatePost";
 import "./style.css";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
+import { NotificationContext } from "../../../App";
 
 const cookies = new Cookies();
 
@@ -15,6 +16,7 @@ export default function CreatePost() {
     const createPostURL = useSelector((state) => state.global.createPostURL);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
+    const { openNotification } = useContext(NotificationContext);
     const userType = cookies.get("USERTYPE");
 
     useEffect(() => {
@@ -47,7 +49,20 @@ export default function CreatePost() {
             },
         };
 
-        handleCreatePost(createPostConfig);
+        const isPostCreated = await handleCreatePost(createPostConfig);
+
+        if (isPostCreated)
+            openNotification(
+                "Post created",
+                "Your post has been created.",
+                "success"
+            );
+        else
+            openNotification(
+                "Failed to create post",
+                "Your post could not be created.",
+                "error"
+            );
     };
 
     const onFinishFailed = (errorInfo) => {

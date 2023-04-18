@@ -86,9 +86,12 @@ exports.deleteCommentByIndex = async (request, response) => {
 
         post.comments.splice(-commentIndex, 1);
         await post.save();
+        response.json({ message: "Post removed" });
+        console.log("post saved");
     } catch (err) {
         console.error(err);
         response.status(500).json({ message: "Server Error" });
+        console.log("error last line");
     }
 };
 

@@ -11,7 +11,6 @@ export default function Home() {
 
     useEffect(() => {
         const nav = document.getElementById("navigation-bar");
-        console.log(nav.style.backgroundColor);
         if (nav) {
             nav.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
         }

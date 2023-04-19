@@ -16,21 +16,6 @@ const NavigationBar = () => {
     const userType = cookies.get("USERTYPE");
     // const activeUserStorage = localStorage.getItem("activeUser");
 
-    useEffect(() => {
-        // const navDOM = document.getElementById("navigation-bar");
-        // let prevScrollpos = window.pageYOffset;
-        // window.onload = () => (navDOM.style.top = "-50px");
-        // window.onscroll = () => {
-        //     const currentScrollPos = window.pageYOffset;
-        //     if (prevScrollpos > currentScrollPos) {
-        //         navDOM.style.top = "0";
-        //     } else {
-        //         navDOM.style.top = "-50px";
-        //     }
-        //     prevScrollpos = currentScrollPos;
-        // };
-    }, []);
-
     return (
         <div id="navigation-bar">
             {!token ? (

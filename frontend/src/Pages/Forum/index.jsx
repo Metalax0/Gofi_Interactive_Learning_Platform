@@ -43,7 +43,6 @@ export default function Forum() {
 
         handleGetAllAuthorPost(config).then((res) => {
             settotalUserPosts({ postCount: res.data.length });
-            console.log(res.data.length);
         });
     };
 

@@ -24,6 +24,7 @@ import Guest from "../../Pages/Guest";
 import AdminManage from "../../Pages/Admin/Manage";
 import ManageUsers from "../../Pages/Admin/Users";
 import ManageForum from "../../Pages/Admin/Forum";
+import TutorialProblemSolving from "../../Pages/Tutorial/ProblemSolving";
 
 export default function RoutesDefinition() {
     return (
@@ -119,6 +120,14 @@ export default function RoutesDefinition() {
                     element={
                         <ProtectedRoutes>
                             <TutorialJS />
+                        </ProtectedRoutes>
+                    }
+                />
+                <Route
+                    path="/tutorial/problemsolving"
+                    element={
+                        <ProtectedRoutes>
+                            <TutorialProblemSolving />
                         </ProtectedRoutes>
                     }
                 />

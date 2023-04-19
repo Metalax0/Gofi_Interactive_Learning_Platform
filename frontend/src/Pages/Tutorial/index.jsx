@@ -11,6 +11,21 @@ export default function Tutorial() {
         <div className="tutorial-page">
             <section className="tutorial-section">
                 <CourseCard
+                    headerText="Logical"
+                    bodyTitle="Problem Solving"
+                    bodyText={
+                        "Develop essential problem-solving skills in a practical and engaging way."
+                    }
+                    chapterCount="One"
+                    headerColor="#32a856"
+                    chapters={[""]}
+                    progress={""}
+                    navigateTo="/tutorial/problemsolving"
+                    tutorial="html"
+                />
+            </section>
+            <section className="tutorial-section">
+                <CourseCard
                     headerText={tutorialCardData.html.headerText}
                     bodyTitle={tutorialCardData.html.bodyTitle}
                     bodyText={tutorialCardData.html.bodyText}

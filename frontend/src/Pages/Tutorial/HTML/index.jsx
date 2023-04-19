@@ -13,6 +13,8 @@ const TutorialHTML = () => {
     const navigate = useNavigate();
     const userType = cookies.get("USERTYPE");
 
+    console.log("Tutorial/HTML Rendered");
+
     useEffect(() => {
         if (userType === "guest" && activeChapter >= 4) {
             setIsModalOpen(true);

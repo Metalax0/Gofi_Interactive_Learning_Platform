@@ -43,7 +43,6 @@ export default function ManageUsers() {
         };
 
         handleGetAllAuthorPost(config).then((res) => {
-            console.log(res.data);
             setallUsersData(res.data);
         });
     };

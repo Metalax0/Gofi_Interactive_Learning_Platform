@@ -50,7 +50,6 @@ const TutorialTemplate = ({
     const userID = JSON.parse(localStorage.getItem("activeUser")).userID;
 
     useEffect(() => {
-        console.log("CURRENT CHAPTER", state);
         setOpen(true);
 
         if (browserWindowRef.current) {
